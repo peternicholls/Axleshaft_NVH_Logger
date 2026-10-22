@@ -2,6 +2,11 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.2.6 — 2026-10-22
+
+- Reconcile the progress summary with the already captured passing RUN0003 short session, preserving RUN0002 as historical failure.
+- Firmware remains 0.2.4; full hardware acceptance remains pending. Checked evidence arithmetic, links and whitespace.
+
 ## 0.2.5 — 2026-10-22
 
 ### Added

@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.2.5 (installed firmware: 0.2.4).
+Last updated: 2026-10-22. Repository version: 0.2.6 (installed firmware: 0.2.4).
 
 ## Current position
 
@@ -13,7 +13,7 @@ Stage 0B: standalone 1 kHz firmware, instructions and validator implemented. ESP
 | Documentation and delivery rules | Complete | Version 0.1.0 documentation checks; see development log |
 | Stage 0A storage | Historical pass | Handover: 262,144 bytes verified; 2.93 s write; 58 ms maximum observed block write |
 | Stage 0B planning | Complete | Version 0.1.2; design, test matrix and standalone Stage0B_Recorder folder contract |
-| Stage 0B recorder | Implemented, bench pending | Core 3.3.12 compile passes; host controls/validator checks pass; ESP32 upload verified; user-reported RUN0002 completed with 1 missed slot, 0 drops; continuity acceptance failed |
+| Stage 0B recorder | Implemented, bench pending | Core 3.3.12 compile passes; host controls/validator checks pass; ESP32 upload verified; [RUN0003 short-run capture](evidence/2026-10-22-stage0b-v0.2.4-statistics.md): 7647 samples, zero misses/drops, all four checks PASS; full acceptance pending |
 | Stage 1 optical | Gated | Requires Stage 0B acceptance, then standalone sensor evidence |
 | Stage 2 IMU | Gated | Requires Stage 0B acceptance, then standalone acquisition evidence |
 | Stage 3 integration | Gated | Requires accepted optical and IMU stages |
@@ -48,3 +48,9 @@ Service the current pending synthetic slot at stop instead of unconditionally co
 ## Latest bench evidence — 2026-10-22
 
 [Full RUN0003 statistics](evidence/2026-10-22-stage0b-v0.2.4-statistics.md): v0.2.4 upload verified; SD mounted; 7.646714 s, 7,647 generated/persisted samples, 91,764 bytes, zero misses/drops, write/read-back/accounting/continuity PASS. Short-session success only. Actual recording host validation, 60-second sessions and remaining acceptance matrix are open.
+
+## Latest captured result — RUN0003 supersedes RUN0002 as the current run
+
+Firmware 0.2.4 passed the captured 7.646714-second button-controlled session: 7647 eligible/generated/persisted samples, 91764 bytes, write/read-back/accounting/continuity all PASS. Peak queue 528 bytes (4.30%); longest observed write 44.064 ms. See the linked report and raw Serial capture above. RUN0002 remains preserved as historical failed evidence.
+
+Next gates: independent validation of the actual recording, approximately 60-second recording, repeated button sessions and reboot numbering preservation, physical LED/polarity, and storage-full/stall qualification. No per-sample timing evidence exists. Firmware unchanged; this update reconciles the summary with the already committed evidence.

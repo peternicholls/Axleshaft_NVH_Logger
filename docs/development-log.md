@@ -53,3 +53,7 @@ Verification: ESP32 core 3.3.12 compile with all warnings, Python validator chec
 ## 2026-10-22 — 0.2.5: v0.2.4 hardware recording evidence
 
 Compiled and uploaded source fef35d1 to ESP32-D0WD-V3 revision 3.1 at 115200 baud; flash hashes verified. SD mounted. Physical button recorded RUN0003.BIN for 7,646,714 us: generated/persisted 7,647 samples, 91,764 bytes, missed=0, dropped=0. Write/read-back/accounting/continuity checks all PASS; CRC32 f6e7c3d2. Maximum write 44,064 us, peak queue 44 records/528 bytes, flush-close 44,584 us. Full statistics and raw serial saved under docs/evidence/2026-10-22-stage0b-v0.2.4-*. Python validator and both C++ host checks passed. Actual recording host validation, 60-second test and full bench matrix remain pending. Documentation version 0.2.5; installed firmware remains 0.2.4.
+
+## 2026-10-22 — 0.2.6: reconcile evidence and progress
+
+Read both RUN0002 report and RUN0003 v0.2.4 statistics/raw Serial capture. Updated the stale milestone summary to identify RUN0003 as the latest passing short run. Verified 7647*12=91764 and ceil(7646714/1000)=7647. Retained all remaining gates and original evidence. Documentation links and whitespace checked; no firmware modification, binary inspection or new hardware run.
