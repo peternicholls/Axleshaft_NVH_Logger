@@ -37,3 +37,15 @@ Physical button START opened a timestamped file; STOP drained, closed and read-b
 Physical LED on/pulse/off was requested but not separately confirmed by the completion-only reply. No computer copy of the SD file was available, so independent sequence/timestamp/CRC validator execution on this recording remains pending. All 11 accepted events were persisted with zero queue loss and firmware CRC read-back PASS. Host Python validator tests and C++ optical storage regression checks passed. Exact-count edge cases are explicitly deferred by the user; controlled rotation and remaining Stage 0B/full acceptance gates remain open.
 
 Raw captures: [initial 0.4.0 failure](2026-10-22-stage1-v040-sd-serial.txt), [corrected 0.4.1 session](2026-10-22-stage1-v041-sd-serial.txt).
+
+## Follow-up review and user clarification — repository 0.4.2
+
+Reviewed raw 0.4.1 Serial capture: 11 accepted/persisted events, 176 bytes, zero queue drops and CRC32 d0aa5ebe agree with this report; write/readback/accounting all explicitly PASS. User clarified that this was informal finger passing, accounting for the imprecise physical count. Treat it as a storage/button test, not a calibrated 10-revolution test or confirmed optical defect.
+
+User confirmed the binary remains on the ESP32's SD card. No computer-side file is currently available for independent inspection. This chat performs no hardware operation/upload. After the separate workflow copies the file to a computer, validate with:
+
+```sh
+python3 Stage1_Optical_Test/validate_optical.py /path/to/OPT_2026-10-22_14-45-28_0001.BIN --expected-events 11 --expected-crc d0aa5ebe
+```
+
+Retain the original file and capture. Expected file size is 176 bytes. File SHA-256, independent sequence/timestamp checks and host CRC verification remain pending; no claim of computer-side validation is made.

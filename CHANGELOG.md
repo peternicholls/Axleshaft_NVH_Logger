@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.4.2 — 2026-10-22
+
+- Reconcile captured optical SD statistics and user clarification that informal finger passages explain the imprecise expected physical count.
+- Record that binary remains on ESP32 SD; independent host validation pending computer copy. Added exact count/CRC validation command.
+- Checked captured counts, size, firmware check outcomes, links and whitespace; firmware unchanged.
+
 ## 0.4.1 — 2026-10-22
 
 ### Fixed

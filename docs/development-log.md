@@ -113,3 +113,7 @@ Validation: ESP32 core 3.3.12 build with all warnings; host Python checks valid 
 ## 2026-10-22 — 0.4.1: SD absolute-path fix and clocked recording
 
 0.4.0 upload and clock set succeeded but file create failed. Installed FS source rejects paths without '/'. Changed helper plus regression expectations; test failed before fix and passed after. Firmware 0.4.1 compiled/uploaded with verified hashes; reset, mounted SD, sent current TIME and confirmed acknowledgement. Button session wrote OPT_2026-10-22_14-45-28_0001.BIN: 16,847,223 us, accepted=persisted=11, bytes=176, raw=85, rejected=0, queue drops=0, peak=1/16 bytes, max write=22 us, flush-close=53,464 us, CRC d0aa5ebe. Write/read-back/accounting PASS and returned Idle. User reported possible manual error for requested 10 cycles and deferred count edge cases; count accuracy inconclusive. Full report/raw captures saved. Host Python and C++ storage checks/whitespace pass; actual-file host validation and LED observation remain pending.
+
+## 2026-10-22 — 0.4.2: review optical storage evidence
+
+Read SD/button report and 0.4.1 raw capture; checked accepted=persisted=11, 176 bytes, zero drops and three PASS checks with CRC d0aa5ebe. User clarified informal finger passing and confirmed binary is still on ESP32 SD. No binary contents or file hash inspected; host validation awaits separate copy. Preserved original findings and appended clarification/validator command. Capture arithmetic, documentation links and whitespace checked. Firmware unchanged; no upload or hardware operation.

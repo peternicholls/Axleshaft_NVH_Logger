@@ -98,3 +98,7 @@ Prepared standalone Stage 1 optical+SD test by explicit user request (no IMU int
 ## Clocked optical storage bench — 2026-10-22
 
 [Report](evidence/2026-10-22-stage1-sd-button-report.md): v0.4.1 fixes missing '/' in SD paths. Verified upload and UTC clock acknowledgement; button START/STOP saved 11 events/176 bytes with zero queue drops, write/read-back/accounting PASS. Requested 10-cycle comparison is inconclusive because user reported possible manual error and deferred edge cases. Physical LED confirmation and independent actual-file validator remain open. Full optical/Stage 0B acceptance is not implied.
+
+## Optical SD evidence review — 0.4.2
+
+Firmware 0.4.1 capture confirms 11 accepted/persisted events, 176 bytes, zero queue drops, CRC32 d0aa5ebe and write/readback/accounting PASS. User clarified informal finger passages; no confirmed optical miscount diagnosis. Binary remains on ESP32 SD, so host file/sequence/timestamp/CRC validation and file hash are pending copy through the separate hardware workflow. See [updated storage report](evidence/2026-10-22-stage1-sd-button-report.md) for exact validator command. Firmware unchanged; no hardware operations here.
