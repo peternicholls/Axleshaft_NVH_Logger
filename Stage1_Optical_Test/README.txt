@@ -1,4 +1,4 @@
-Polestar 2 NVH Logger — Stage 1: Optical sensor test — 0.3.0
+Polestar 2 NVH Logger — Stage 1: Optical sensor test — 0.3.3
 =========================================================
 Standalone bench sketch. No SD, GY-521, button or external LED required.
 Use the narrow three-pin reflective module first. Module identity/pin order
@@ -33,9 +33,12 @@ BENCH PROCEDURE
 1. Start stationary. Observe level=0/1 with dark background and a white mark.
    Adjust sensitivity and distance if the module has an adjustment. The correct
    distance must be measured experimentally for the actual sensor.
-2. Default selected edge is FALLING (high to low). Check that one mark passage
-   produces one accepted count. Change OPTICAL_EDGE to RISING if appropriate.
-   Do not use CHANGE: it normally counts entry and exit as two events.
+2. Default detected level is LOW. A detection must remain stable for 1000 us;
+   count/flash once, then require a stable HIGH clear for 1000 us to rearm.
+   If the module detects the mark with HIGH, set DETECTED_LEVEL = HIGH.
+   Boot with the sensor clear. Booting covered does not count until cleared.
+   CHANGE interrupts capture both transitions, but only qualified detection
+   counts; the clear/trailing transition never directly flashes the LED.
 3. Pass the mark manually 20 times; accepted count should increase by exactly
    20. Hold it stationary and confirm no extra counts. Repeat at several gaps,
    angles and lighting levels. Built-in LED lights briefly for accepted edges.
@@ -47,7 +50,7 @@ BENCH PROCEDURE
 
 DIAGNOSTICS / SETTINGS
 Serial prints once per second: instantaneous output level, accepted/rejected
-edges, latest accepted timestamp (microseconds since boot), last/min/max
+detections, latest accepted timestamp (microseconds since boot), last/min/max
 accepted interval, instantaneous RPM, run-wide average RPM and stale flag.
 RPM assumes one accepted edge per revolution. First edge has no interval.
 After 2 s without an edge rpm shows zero/stale=1; extremely slow rotation may
@@ -71,3 +74,17 @@ with no unexplained missing/extra pulses. Save the Serial log and test setup.
 Firmware compilation and host filter tests are not physical optical acceptance.
 Stage 0B's remaining acceptance checks are still open. This stage proceeds
 independently by user instruction; it does not integrate with recording yet.
+
+0.3.3 QUALIFICATION UPDATE
+The raw_transitions count includes both polarities and chatter, not revolutions.
+A 250 us task-dispatched timer qualifies levels, preserving the timestamp of
+that candidate raw transition. Serial/LED are separate. Brief return-edge
+chatter cannot rearm the detection cycle. Rejected counts still refer only to
+qualified detections rejected by MIN_PULSE_INTERVAL_US; compare raw transitions
+separately. Both active and clear dwell must exceed STABLE_LEVEL_US plus
+scheduling margin; short pulses can be missed. Measure the real pulse widths
+before choosing this threshold for higher RPM. This is a bench setting.
+Test one deliberate cover/uncover: require ONE count and ONE flash. Repeat 20
+known cycles and verify no counts on clear. If there are still two flashes,
+record output levels/polarity and timing; do not mask them by halving counts.
+No physical confirmation of this update is claimed until retested.

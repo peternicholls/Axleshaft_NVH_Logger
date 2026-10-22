@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.3.2 (latest captured installed firmware: optical 0.3.0).
+Last updated: 2026-10-22. Repository version: 0.3.3 (latest captured installed firmware: optical 0.3.0).
 
 ## Current position
 
@@ -66,3 +66,7 @@ User requested optical work next, overriding the development-order gate for this
 ## Evidence review — 0.3.2
 
 Reconciled optical report against all 133 Serial snapshots: final 23 accepted and 51 rejected edges, with 123 final snapshots retaining those counters. No new measurement or firmware change. Prior no-upload statements describe earlier milestones; latest captured installed firmware is optical 0.3.0. Next optical check is a known count of mark passages (for example 20), with fixed measured gap/lighting and stationary false-count observation before controlled rotation. Do not equate rejected electrical transitions with lost revolutions or tune the filter without these measurements.
+
+## Optical single-flash correction — 0.3.3
+
+User observed leading/trailing flashes. Stable-cycle qualification now counts only detected state, rearming only after stable clear. Both levels need 1000 us dwell; task timer checks at 250 us, preserving candidate transition timestamps. Raw transitions are shown separately. Host tests cover boot-covered, one event per hold, trailing bounce and rearming; compile passes. Latest captured installed firmware remains 0.3.0; upload and physical retest of 0.3.3 pending. Long chatter or incorrect polarity still require measured setup rather than assuming a verified fix.

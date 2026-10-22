@@ -71,3 +71,9 @@ Built and uploaded Stage 1 v0.3.0 (source 1f92fd2), verified flash hashes on ESP
 ## 2026-10-22 — 0.3.2: review optical report and capture
 
 Read optical report and checked all captured snapshots programmatically: 133 total, final 23 accepted/51 rejected, 123 final snapshots unchanged. Updated stale progress header and optical milestone to the actual input-response result. No passage count or rotation accuracy can be derived from the finger test; 51 rejections indicate close electrical transitions, with cause unproven. Next test: fixed setup and known-count mark passages, then controlled rotation. Firmware unchanged; no new hardware run. Capture arithmetic and whitespace checks passed.
+
+## 2026-10-22 — 0.3.3: qualify one optical detection cycle
+
+Replaced direct falling-edge counts with CHANGE-edge candidate capture and stable detected/clear qualification. Clear transition never counts; 1 ms stable clear is needed before another stable detection can count. A 250 us ESP timer qualifies independently of Serial loop, retaining candidate timestamp. Boot-covered cannot produce an initial event. Preserved interval filter and added raw-transition diagnostic; documented polarity and pulse-width tradeoffs. User's double-flash observation is not proven to have a particular electrical cause; this rejects brief edge chatter without blindly halving counts.
+
+Host cycle/bounce/boot tests pass with warnings-as-errors and address/undefined sanitizers; ESP32 compile and whitespace checks pass. No dependencies, SD or IMU changes. Physical single-flash test and speed-range qualification remain pending; no upload performed.

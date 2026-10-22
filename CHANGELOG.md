@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.3.3 — 2026-10-22
+
+- Qualify stable detected/clear levels so one detection cycle counts/flashes once; trailing clear only rearms after 1 ms stable, rejecting brief chatter.
+- Added raw-transition diagnostics and configurable detection polarity; preserve candidate-edge timestamp. Document minimum pulse-width limitations.
+- Host bounce/cycle regressions and ESP32 compilation pass; physical single-flash confirmation pending.
+
 ## 0.3.2 — 2026-10-22
 
 - Reconciled optical report with 133 captured snapshots and corrected stale installed-firmware/milestone summary.

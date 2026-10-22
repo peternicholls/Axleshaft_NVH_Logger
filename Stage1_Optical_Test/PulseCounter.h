@@ -14,3 +14,19 @@ struct PulseCounter {
     lastUs = now; ++accepted; return true;
   }
 };
+
+// Qualify both levels: one event on stable detection, rearm only on stable clear.
+struct DetectionCycle {
+  bool active = false, armed = false, qualified = false;
+  uint64_t changedUs = 0;
+  void change(bool detected, uint64_t now) {
+    active = detected; changedUs = now; qualified = false;
+  }
+  bool poll(uint64_t now, uint32_t stableUs) {
+    if (qualified || now - changedUs < stableUs) return false;
+    qualified = true;
+    if (!active) { armed = true; return false; }
+    if (!armed) return false;
+    armed = false; return true;
+  }
+};
