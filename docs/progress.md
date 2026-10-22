@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.2.2.
+Last updated: 2026-10-22. Repository version: 0.2.3.
 
 ## Current position
 
@@ -13,7 +13,7 @@ Stage 0B: standalone 1 kHz firmware, instructions and validator implemented. ESP
 | Documentation and delivery rules | Complete | Version 0.1.0 documentation checks; see development log |
 | Stage 0A storage | Historical pass | Handover: 262,144 bytes verified; 2.93 s write; 58 ms maximum observed block write |
 | Stage 0B planning | Complete | Version 0.1.2; design, test matrix and standalone Stage0B_Recorder folder contract |
-| Stage 0B recorder | Implemented, bench pending | Core 3.3.12 compile passes; host controls/validator checks pass; ESP32 upload verified; current startup blocked by SD mount/card failure |
+| Stage 0B recorder | Implemented, bench pending | Core 3.3.12 compile passes; host controls/validator checks pass; ESP32 upload verified; user-reported RUN0002 completed with 1 missed slot, 0 drops; continuity acceptance failed |
 | Stage 1 optical | Gated | Requires Stage 0B acceptance, then standalone sensor evidence |
 | Stage 2 IMU | Gated | Requires Stage 0B acceptance, then standalone acquisition evidence |
 | Stage 3 integration | Gated | Requires accepted optical and IMU stages |
@@ -33,6 +33,10 @@ Stage 0B: standalone 1 kHz firmware, instructions and validator implemented. ESP
 - Button module wiring and output voltage behaviour require inspection.
 - Small SDSC capacity is approximately 0.01 GiB according to supplied results.
 - The 58 ms observed write is not an upper latency bound.
-- Firmware compile and host checks passed; upload hashes verified at 115200 baud. Startup after wiring recheck reports SD mount/card failed; recording acceptance remains pending.
+- Firmware compile and host checks passed; upload hashes verified at 115200 baud. Later user-reported RUN0002 recording demonstrates storage available on that run; one missed slot leaves acceptance pending.
 
 Phase 0B indicator now uses the built-in LED (board definition or GPIO2 fallback), with configurable polarity; no separate recording LED required. Actual board mapping remains to be verified.
+
+## Latest reported bench evidence
+
+[Firmware 0.2.2 RUN0002](evidence/2026-10-22-phase0b-run0002.md): 5.994734 s, 5995 eligible slots, 5994 generated/persisted, 71928 bytes, one missed slot and zero drops. Button start/stop reported successful. Read-back outcome unresolved by combined error; host validation, LED polarity, 60-second and insufficient-space tests remain pending. Current card reports 31323062272 bytes; do not treat it as the original tiny SDSC. Repository 0.2.3 is a documentation update, not a new tested firmware build.

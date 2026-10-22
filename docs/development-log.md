@@ -37,3 +37,7 @@ User confirmed no separate LED is fitted. Replaced GPIO25 with LED_BUILTIN where
 ## 2026-10-22 — 0.2.2: upload retry and Arduino declaration fix
 
 Reproduced Arduino-generated declarations appearing before State after the built-in LED helper was added. Explicit getState/setState declarations fix compilation without changing recorder behavior. Python validator and C++ controls checks pass; git whitespace check passes. Compile target esp32:esp32:esp32, CLI 1.5.1, core 3.3.12. Physical board ESP32-D0WD-V3 revision 3.1, MAC 28:05:a5:35:1c:90 on /dev/cu.usbserial-410. Upload at 115200 baud verified flash hashes. Startup after user wiring check still reports SD mount/card failed. No recording started; card identity, physical LED operation and full Stage 0B acceptance remain unverified.
+
+## 2026-10-22 — 0.2.3: reported RUN0002 evidence
+
+Logged user-supplied firmware 0.2.2 statistics in docs/evidence/2026-10-22-phase0b-run0002.md. Reported button start/stop and persistence succeeded, with one missed eligible slot and no queue drops; firmware latched ERROR. Combined diagnostics do not establish read-back outcome. Larger reported card capacity supersedes the tiny-card assumption for this run only. No firmware changes, binary inspection or new hardware test. Checked count/size/slot arithmetic, documentation links and whitespace. Hardware acceptance remains open.

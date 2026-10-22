@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.2.3 — 2026-10-22
+
+- Record user-supplied firmware 0.2.2 RUN0002 bench statistics and update current progress beyond the earlier mount failure.
+- Preserve failed continuity status: one missed slot, no drops, read-back outcome unresolved. Firmware unchanged; physical acceptance remains pending.
+- Checked arithmetic, documentation links and whitespace; no binary inspection or new hardware run.
+
 ## 0.2.2 — 2026-10-22
 
 ### Fixed
