@@ -1,0 +1,10 @@
+.DS_Store
+.omx/
+.vscode/
+__pycache__/
+*.py[cod]
+.build/
+build/
+# Raw recordings remain local unless deliberately added as fixtures.
+*.BIN
+*.bin
