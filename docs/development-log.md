@@ -1,0 +1,9 @@
+# Development log
+
+## 2026-10-22 — 0.1.0: repository foundation
+
+Initial baseline commit: f9b294a. Preserved the supplied handover, Stage 0A sketch and its README without edits. Established `main`; ignored local runtime/editor artifacts and raw recordings. No remote configured.
+
+Added documentation index, stage-gated development plan, progress tracker, wiring/test references and format/timing design placeholders. Established a mandatory version, changelog, progress and evidence update for each deliverable in the repository working contract.
+
+Validation: local relative Markdown links, required documentation files, version/changelog alignment, original-file preservation and Git whitespace checks passed. Firmware has not been compiled, uploaded or rerun. Historical Stage 0A hardware results remain attributed to the handover. Stage 0B implementation and all subsequent hardware gates remain pending.
