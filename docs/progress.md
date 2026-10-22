@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.3.0 (installed firmware: 0.2.4).
+Last updated: 2026-10-22. Repository version: 0.3.1 (installed firmware: 0.2.4).
 
 ## Current position
 
@@ -58,3 +58,7 @@ Next gates: independent validation of the actual recording, approximately 60-sec
 ## Stage 1 standalone development — 0.3.0
 
 User requested optical work next, overriding the development-order gate for this standalone test only. Stage1_Optical_Test contains sketch, local filter helper and README.txt with exact pins, electrical checks, build/upload and manual/controlled-speed procedures. Optical count/interval/RPM firmware and host filter tests compile/pass; no upload or optical hardware result collected. Stage 0B acceptance remains open; Stage 2 and combined logging remain unimplemented.
+
+## Stage 1 bench observation — 2026-10-22
+
+[Report and statistics](evidence/2026-10-22-stage1-v0.3.0-report.md): v0.3.0 upload hashes verified; finger cover/uncover produced 23 accepted/51 rejected edges, then stable counters. Input response observed only. Known-count passages, measured setup and controlled-speed accuracy remain pending. Installed firmware remains 0.3.0.

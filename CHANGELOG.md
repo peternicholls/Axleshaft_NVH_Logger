@@ -2,6 +2,13 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.3.1 — 2026-10-22
+
+### Added
+
+- Stage 1 v0.3.0 verified upload and finger cover/uncover bench report with raw serial: 23 accepted edges, 51 rejected edges, stable final counters. No known-count or calibrated RPM acceptance claimed.
+- Firmware compile and host optical filter check passed. Documentation-only version; installed firmware remains 0.3.0.
+
 ## 0.3.0 — 2026-10-22
 
 - Added standalone Stage1_Optical_Test folder: GPIO26 digital edge timestamps, counts, provisional pulse filtering, interval/RPM diagnostics and built-in LED.
