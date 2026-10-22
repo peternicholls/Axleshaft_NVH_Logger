@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.3.6 (latest captured installed firmware: optical 0.3.0).
+Last updated: 2026-10-22. Repository version: 0.3.7 (latest captured installed firmware: optical 0.3.3).
 
 ## Current position
 
@@ -14,7 +14,7 @@ Stage 0B: standalone 1 kHz firmware, instructions and validator implemented. ESP
 | Stage 0A storage | Historical pass | Handover: 262,144 bytes verified; 2.93 s write; 58 ms maximum observed block write |
 | Stage 0B planning | Complete | Version 0.1.2; design, test matrix and standalone Stage0B_Recorder folder contract |
 | Stage 0B recorder | Implemented, bench pending | Core 3.3.12 compile passes; host controls/validator checks pass; ESP32 upload verified; [RUN0003 short-run capture](evidence/2026-10-22-stage0b-v0.2.4-statistics.md): 7647 samples, zero misses/drops, all four checks PASS; full acceptance pending |
-| Stage 1 optical | Input response observed; counting accuracy pending | [Finger-test report](evidence/2026-10-22-stage1-v0.3.0-report.md): 23 accepted / 51 rejected edges; no known passage count or controlled RPM |
+| Stage 1 optical | Known-count manual test passed; rotation acceptance pending | [Exact 20-cycle report](evidence/2026-10-22-stage1-exact20-report.md): 20 cycles / 20 detections; physical LED count and controlled RPM unverified |
 | Stage 2 IMU | Gated | Requires Stage 0B acceptance, then standalone acquisition evidence |
 | Stage 3 integration | Gated | Requires accepted optical and IMU stages |
 | Vehicle trials | Not started | Requires integrated bench acceptance and secured mounting/wiring |

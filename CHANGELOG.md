@@ -2,6 +2,11 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.3.7 — 2026-10-22
+
+- Reconcile current optical milestone and installed-firmware header with the already recorded exact-20 manual test.
+- Check raw capture starts at zero and ends with 20 detections, 138 raw transitions, zero qualified rejections and stale state. No firmware or acceptance expansion.
+
 ## 0.3.6 — 2026-10-22
 
 ### Added

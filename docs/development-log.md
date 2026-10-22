@@ -89,3 +89,7 @@ Uploaded firmware banner 0.3.3 from repository revision 61d2fd0 (0.3.4). Compile
 ## 2026-10-22 — 0.3.6: exact 20-cycle optical bench pass
 
 Reset installed Stage 1 firmware 0.3.3 and captured zero initial counters. User completed requested exactly 20 finger cover/uncover cycles. Accepted=20, rejected qualified=0, raw transitions=138; final level=1, stale=1, counters stable. Intervals 391,662–632,032 us; latest 418,269 us. Saved full report and raw serial under docs/evidence/2026-10-22-stage1-exact20-*. No firmware edit/upload needed. Exact-count bench check passes; physical LED flash count, measured setup and calibrated rotation remain unverified. Whitespace and report/capture count consistency checks passed.
+
+## 2026-10-22 — 0.3.7: reconcile exact-count evidence
+
+Read updated-code rerun and exact-20 reports, checked exact-20 raw capture initial/final counters, and reconciled stale current milestone and installed firmware header. Manual detection count passes for this test; flash count was not independently confirmed and controlled rotation remains open. Firmware unchanged. Capture assertions and whitespace checks passed; no new hardware run.
