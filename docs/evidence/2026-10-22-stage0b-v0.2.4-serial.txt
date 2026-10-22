@@ -1,0 +1,6 @@
+Phase 0B 0.2.4; 1000 Hz, six int16 channels, 12 KiB queue. No auto-stop.
+Card bytes=31323062272; highest run=2; ready, release then press.
+START /RUN0003.BIN — press to stop
+CHECKS write=PASS readback=PASS accounting=PASS continuity=PASS crc32=f6e7c3d2
+SUMMARY /RUN0003.BIN duration_us=7646714 generated=7647 persisted=7647 bytes=91764 missed=0 dropped=0 max_write_us=44064 peak_records=44 peak_bytes=528 flush_close_us=44584
+PASS /RUN0003.BIN expected_samples=7647 — closed and CRC read-back verified

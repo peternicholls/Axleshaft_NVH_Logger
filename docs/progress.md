@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.2.4.
+Last updated: 2026-10-22. Repository version: 0.2.5 (installed firmware: 0.2.4).
 
 ## Current position
 
@@ -44,3 +44,7 @@ Phase 0B indicator now uses the built-in LED (board definition or GPIO2 fallback
 ## 0.2.4 correction awaiting bench retest
 
 Service the current pending synthetic slot at stop instead of unconditionally counting it missed; genuine earlier gaps remain errors. Split write/read-back/accounting/continuity diagnostics and compare full-file CRC with submitted bytes independently of sequence gaps. Boundary/CRC host regressions and ESP32 compilation pass. This addresses a code-level explanation for RUN0002, not a confirmed diagnosis of that run. Upload and physical retest remain pending.
+
+## Latest bench evidence — 2026-10-22
+
+[Full RUN0003 statistics](evidence/2026-10-22-stage0b-v0.2.4-statistics.md): v0.2.4 upload verified; SD mounted; 7.646714 s, 7,647 generated/persisted samples, 91,764 bytes, zero misses/drops, write/read-back/accounting/continuity PASS. Short-session success only. Actual recording host validation, 60-second sessions and remaining acceptance matrix are open.

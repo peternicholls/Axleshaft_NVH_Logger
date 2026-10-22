@@ -2,6 +2,13 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.2.5 — 2026-10-22
+
+### Added
+
+- Recorded v0.2.4 firmware upload and RUN0003 hardware statistics with raw serial evidence: 7,647 samples, zero missed/dropped slots, CRC read-back and all checks passing.
+- Host regression checks and compile passed; 7.646714-second run qualifies a short session only. Full Stage 0B acceptance remains pending. Documentation-only release; installed firmware remains v0.2.4.
+
 ## 0.2.4 — 2026-10-22
 
 - Service the current due synthetic slot once at stop, retaining earlier missed slots and queue drops.
