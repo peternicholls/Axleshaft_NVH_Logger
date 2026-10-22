@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.2.4 — 2026-10-22
+
+- Service the current due synthetic slot once at stop, retaining earlier missed slots and queue drops.
+- Separate write/read-back/accounting/continuity checks; read-back uses full-file CRC of submitted bytes instead of assuming lossless sample indices.
+- Added exact-boundary, reported-duration, true-gap and golden CRC regressions. ESP32 build and host checks pass; hardware retest pending.
+
 ## 0.2.3 — 2026-10-22
 
 - Record user-supplied firmware 0.2.2 RUN0002 bench statistics and update current progress beyond the earlier mount failure.

@@ -1,4 +1,4 @@
-PHASE 0B — RECORDING CONTROLS AND CONTINUOUS SD LOGGING — 0.2.2
+PHASE 0B — RECORDING CONTROLS AND CONTINUOUS SD LOGGING — 0.2.4
 
 Copy this entire folder. Open Stage0B_Recorder.ino in Arduino IDE.
 Board: ESP32 Dev Module (conventional ESP32-WROOM). Verified compilation with
@@ -43,8 +43,9 @@ Late slots are counted, never invented. Queue overflow stops acquisition;
 any loss makes the final result an error. Button/LED polling runs independently
 of SD writes. Timing under real SD load must still be measured.
 
-On stop, producer cutoff freezes, queue drains, file flushes/closes, every byte
-is read back against the sequential pattern. Serial prints duration_us,
+On stop, the current due synthetic slot is serviced once before producer
+cutoff freezes; earlier gaps remain missed. Queue drains, file flushes/closes, all bytes
+are read back and CRC32-compared with bytes submitted to storage. Serial prints duration_us,
 generated/persisted samples, bytes, missed/dropped slots, max_write_us,
 peak_records/peak_bytes and flush_close_us, followed by PASS or ERROR.
 Flush/close return no success status; read-back checks size and contents.
@@ -74,3 +75,12 @@ BENCH ACCEPTANCE — NOT YET RUN
 The small SDSC should fit a 720 KB test if enough free space remains. Do not
 format or delete wanted files just to test. No hardware acceptance is claimed
 by a successful compile or host test. Stage 1/2 remain gated until this passes.
+
+DIAGNOSTICS UPDATE (0.2.4)
+CHECKS reports write, readback, accounting and continuity independently.
+Readback CRC covers all successfully submitted bytes, including any declared
+sampling gaps; it does not imply lossless sampling. Host validator still checks
+the lossless sequential pattern. Final PASS requires all four checks to pass.
+The stop-boundary fix services only the current due synthetic sample, never
+backfills older slots. This synthetic behaviour is not an IMU timing model.
+Re-test short runs and ~60 s after upload; physical acceptance is still pending.

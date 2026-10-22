@@ -1,4 +1,4 @@
-/* Polestar NVH Logger 0.2.2 — standalone Phase 0B. See README.txt. */
+/* Polestar NVH Logger 0.2.4 — standalone Phase 0B. See README.txt. */
 #include <Arduino.h>
 #include <SPI.h>
 #include <SD.h>
@@ -6,6 +6,7 @@
 #include <freertos/FreeRTOS.h>
 #include <freertos/queue.h>
 #include "ButtonTest.h"
+#include "RecordingChecks.h"
 using button_test::Button;
 // Generic ESP32 Dev Module has no LED_BUILTIN definition. Common WROOM
 // development boards use GPIO2; adjust these for the actual board if needed.
@@ -41,11 +42,25 @@ static State getState() {
 static void setState(State value) {
   portENTER_CRITICAL(&mux); state = value; portEXIT_CRITICAL(&mux);
 }
+// Called only with mux held. Actual synthetic generation, never backfilling.
+static void generateSlotLocked(uint64_t slot) {
+  missed += slot - nextSlot;
+  nextSlot = slot + 1;
+  Sample sample;
+  for (unsigned c = 0; c < 6; ++c)
+    sample.channel[c] = int32_t((slot * (2*c+1) + 997*c) & 65535) - 32768;
+  if (xQueueSend(queueHandle, &sample, 0) == pdTRUE) {
+    ++generated;
+    unsigned used = uxQueueMessagesWaiting(queueHandle);
+    if (used > peak) peak = used;
+  } else ++dropped;
+}
 static void stopLocked(uint64_t now) {
   cutoffUs = now;
-  uint64_t eligible = now <= startUs ? 0 : (now - startUs + 999) / 1000;
-  if (eligible > nextSlot) missed += eligible - nextSlot;
-  nextSlot = eligible;
+  uint64_t eligible = recording_checks::eligible(startUs, now);
+  // The button may precede the periodic callback within the current slot.
+  // Service that current synthetic slot once; retain all earlier misses.
+  if (eligible > nextSlot) generateSlotLocked(recording_checks::stopSlot(startUs, now));
   state = State::Saving;
 }
 static void sampleTimer(void *) {
@@ -54,16 +69,8 @@ static void sampleTimer(void *) {
   if (state == State::Recording && now >= startUs) {
     uint64_t slot = (now - startUs) / 1000;
     if (slot >= nextSlot) {
-      missed += slot - nextSlot;
-      nextSlot = slot + 1;
-      Sample sample;
-      for (unsigned c = 0; c < 6; ++c)
-        sample.channel[c] = int32_t((slot * (2*c+1) + 997*c) & 65535) - 32768;
-      if (xQueueSend(queueHandle, &sample, 0) == pdTRUE) {
-        ++generated;
-        unsigned used = uxQueueMessagesWaiting(queueHandle);
-        if (used > peak) peak = used;
-      } else { ++dropped; stopLocked(now + 1); }
+      generateSlotLocked(slot);
+      if (dropped) { cutoffUs = now + 1; state = State::Saving; }
     }
   }
   portEXIT_CRITICAL(&mux);
@@ -113,6 +120,7 @@ static void storageTask(void *) {
     size_t used = 0;
     uint64_t persisted = 0, bytes = 0;
     uint32_t maxWrite = 0;
+    uint32_t writtenCrc = 0xffffffffU;
     bool ok = true;
     while (ok) {
       Sample sample;
@@ -131,6 +139,7 @@ static void storageTask(void *) {
         if (duration > maxWrite) maxWrite = duration;
         bytes += count;
         if (count != used) { ok = false; break; }
+        writtenCrc = recording_checks::crcUpdate(writtenCrc, block, used);
         persisted += used / 12; used = 0;
       }
       if (draining && empty && used == 0) break;
@@ -145,29 +154,33 @@ static void storageTask(void *) {
     uint64_t closing = esp_timer_get_time();
     file.flush(); file.close();
     uint64_t closeUs = uint64_t(esp_timer_get_time()) - closing;
-    // Producer is quiescent in Saving/Error. Read back the full deterministic sequence.
+    // Compare stored bytes with bytes actually submitted, independently of gaps.
     bool verified = ok;
     File check = SD.open(name, FILE_READ);
     if (!check || check.size() != bytes) verified = false;
-    uint64_t index = 0;
-    while (verified && index < persisted) {
-      uint8_t data[12];
-      if (check.read(data, sizeof(data)) != sizeof(data)) { verified = false; break; }
-      for (unsigned c = 0; c < 6; ++c) {
-        uint16_t expected = uint16_t(((index * (2*c+1) + 997*c) & 65535) - 32768);
-        if (uint16_t(data[2*c] | (uint16_t(data[2*c+1]) << 8)) != expected) verified = false;
-      }
-      ++index;
-      if (index % 256 == 0) vTaskDelay(1);
+    uint64_t readBytes = 0;
+    uint32_t readCrc = 0xffffffffU;
+    while (verified && readBytes < bytes) {
+      size_t wanted = bytes - readBytes < sizeof(block) ? size_t(bytes-readBytes) : sizeof(block);
+      if (check.read(block, wanted) != wanted) { verified = false; break; }
+      readCrc = recording_checks::crcUpdate(readCrc, block, wanted);
+      readBytes += wanted;
+      vTaskDelay(1);
     }
+    if (readCrc != writtenCrc) verified = false;
     check.close();
+    bool accounting = nextSlot == generated + missed + dropped && generated == persisted;
+    Serial.printf("CHECKS write=%s readback=%s accounting=%s continuity=%s crc32=%08lx\n",
+      ok ? "PASS" : "FAIL", !ok ? "NOT_CHECKED" : (verified ? "PASS" : "FAIL"),
+      accounting ? "PASS" : "FAIL", (missed == 0 && dropped == 0) ? "PASS" : "FAIL",
+      (unsigned long)(writtenCrc ^ 0xffffffffU));
     Serial.printf("SUMMARY %s duration_us=%llu generated=%llu persisted=%llu bytes=%llu missed=%llu dropped=%llu max_write_us=%lu peak_records=%u peak_bytes=%u flush_close_us=%llu\n",
       name, (unsigned long long)(cutoffUs > startUs ? cutoffUs-startUs : 0),
       (unsigned long long)generated, (unsigned long long)persisted, (unsigned long long)bytes,
       (unsigned long long)missed, (unsigned long long)dropped, (unsigned long)maxWrite,
       peak, peak*12, (unsigned long long)closeUs);
-    if (verified && generated == persisted && missed == 0 && dropped == 0) {
-      Serial.printf("PASS %s expected_samples=%llu — closed and fully verified\n", name,
+    if (verified && accounting && missed == 0 && dropped == 0) {
+      Serial.printf("PASS %s expected_samples=%llu — closed and CRC read-back verified\n", name,
                     (unsigned long long)persisted);
       setState(State::Idle);
     } else error("storage, sample continuity or read-back failed");
@@ -178,7 +191,7 @@ void setup() {
   pinMode(32, INPUT_PULLUP); pinMode(RECORDING_LED_PIN, OUTPUT); pinMode(33, OUTPUT);
   recordingLed(false); digitalWrite(33, LOW);
   delay(1600);
-  Serial.println("Phase 0B 0.2.2; 1000 Hz, six int16 channels, 12 KiB queue. No auto-stop.");
+  Serial.println("Phase 0B 0.2.4; 1000 Hz, six int16 channels, 12 KiB queue. No auto-stop.");
   queueHandle = xQueueCreateStatic(CAPACITY, sizeof(Sample), queueMemory, &queueControl);
   esp_timer_create_args_t args = {};
   args.callback = sampleTimer; args.name = "samples"; args.skip_unhandled_events = true;

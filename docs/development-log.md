@@ -41,3 +41,11 @@ Reproduced Arduino-generated declarations appearing before State after the built
 ## 2026-10-22 — 0.2.3: reported RUN0002 evidence
 
 Logged user-supplied firmware 0.2.2 statistics in docs/evidence/2026-10-22-phase0b-run0002.md. Reported button start/stop and persistence succeeded, with one missed eligible slot and no queue drops; firmware latched ERROR. Combined diagnostics do not establish read-back outcome. Larger reported card capacity supersedes the tiny-card assumption for this run only. No firmware changes, binary inspection or new hardware test. Checked count/size/slot arithmetic, documentation links and whitespace. Hardware acceptance remains open.
+
+## 2026-10-22 — 0.2.4: stop-boundary and diagnostic correction
+
+Code inspection found stopLocked counted a pending current slot as missed even if its periodic callback had not yet run. Stop now generates that current synthetic slot once under the same producer lock; older skipped slots remain counted. This is a plausible explanation of the reported single miss, not a confirmed diagnosis without its timing trace. No historical samples are backfilled and no loss tolerance was relaxed.
+
+Read-back now computes CRC32 across all reopened bytes and compares against CRC32 of successfully submitted writes, independently of sample indices. Added separate write/readback/accounting/continuity statuses; final PASS still requires all checks. Added portable eligible-slot/CRC helper and host tests for before-start/exact-deadline boundaries, reported run duration, retained earlier gaps, chunked CRC and a standard golden vector. No dependencies added; raw format unchanged.
+
+Verification: ESP32 core 3.3.12 compile with all warnings, Python validator checks and both C++ host test executables with warnings-as-errors and address/undefined sanitizers pass. No upload or hardware retest performed. Physical 60-second run, LED polarity and insufficient-space qualification remain open.

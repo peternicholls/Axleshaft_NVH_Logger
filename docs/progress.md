@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.2.3.
+Last updated: 2026-10-22. Repository version: 0.2.4.
 
 ## Current position
 
@@ -40,3 +40,7 @@ Phase 0B indicator now uses the built-in LED (board definition or GPIO2 fallback
 ## Latest reported bench evidence
 
 [Firmware 0.2.2 RUN0002](evidence/2026-10-22-phase0b-run0002.md): 5.994734 s, 5995 eligible slots, 5994 generated/persisted, 71928 bytes, one missed slot and zero drops. Button start/stop reported successful. Read-back outcome unresolved by combined error; host validation, LED polarity, 60-second and insufficient-space tests remain pending. Current card reports 31323062272 bytes; do not treat it as the original tiny SDSC. Repository 0.2.3 is a documentation update, not a new tested firmware build.
+
+## 0.2.4 correction awaiting bench retest
+
+Service the current pending synthetic slot at stop instead of unconditionally counting it missed; genuine earlier gaps remain errors. Split write/read-back/accounting/continuity diagnostics and compare full-file CRC with submitted bytes independently of sequence gaps. Boundary/CRC host regressions and ESP32 compilation pass. This addresses a code-level explanation for RUN0002, not a confirmed diagnosis of that run. Upload and physical retest remain pending.
