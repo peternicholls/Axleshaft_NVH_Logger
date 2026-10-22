@@ -8,6 +8,8 @@ Preserve original files, initialise Git, establish documentation, versioning and
 
 ## 1 — Stage 0B: controls and sustained synthetic logging
 
+Detailed execution sequence and measurable gates: [Stage 0B plan](stage0b-plan.md).
+
 1. Confirm toolchain and button/LED wiring. Retain the Stage 0A SPI setup.
 2. Specify a versioned binary format: metadata, deterministic six-axis records, sequence numbers, timing, session completion and errors. Define scheduling tolerance and count accounting before testing.
 3. Implement debounced GPIO32 press toggling and GPIO25 idle/recording/flushing/error states; reserve GPIO33.
