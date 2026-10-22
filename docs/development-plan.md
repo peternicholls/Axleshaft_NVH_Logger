@@ -43,3 +43,7 @@ Exit: recoverable common timebase and validated RPM, phase and rotational-order 
 Deliver CSV conversion, traces, RMS/peak, FFT, spectrogram, RPM, order tracking and angular averaging. Validate with deterministic reference signals. Document calibration, secured mounting, power and environmental limitations before vehicle trials. Keep diagnostic conclusions separate from measurements.
 
 Exit: repeatable combined measurements and documented limitations; release acceptance is an explicit later decision.
+
+## Sequence override — 2026-10-22
+
+User explicitly requested standalone Stage 1 next while Phase 0B acceptance remains incomplete. Stage1_Optical_Test now provides that bench sketch independently; it does not qualify Phase 0B or permit integration. Physical optical acceptance still requires one reliable index per known revolution over a measured speed range.

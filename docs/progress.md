@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.2.6 (installed firmware: 0.2.4).
+Last updated: 2026-10-22. Repository version: 0.3.0 (installed firmware: 0.2.4).
 
 ## Current position
 
@@ -14,7 +14,7 @@ Stage 0B: standalone 1 kHz firmware, instructions and validator implemented. ESP
 | Stage 0A storage | Historical pass | Handover: 262,144 bytes verified; 2.93 s write; 58 ms maximum observed block write |
 | Stage 0B planning | Complete | Version 0.1.2; design, test matrix and standalone Stage0B_Recorder folder contract |
 | Stage 0B recorder | Implemented, bench pending | Core 3.3.12 compile passes; host controls/validator checks pass; ESP32 upload verified; [RUN0003 short-run capture](evidence/2026-10-22-stage0b-v0.2.4-statistics.md): 7647 samples, zero misses/drops, all four checks PASS; full acceptance pending |
-| Stage 1 optical | Gated | Requires Stage 0B acceptance, then standalone sensor evidence |
+| Stage 1 optical | Standalone firmware built; bench pending | User explicitly advanced optical work; GPIO26 edge capture and built-in LED; no integration |
 | Stage 2 IMU | Gated | Requires Stage 0B acceptance, then standalone acquisition evidence |
 | Stage 3 integration | Gated | Requires accepted optical and IMU stages |
 | Vehicle trials | Not started | Requires integrated bench acceptance and secured mounting/wiring |
@@ -54,3 +54,7 @@ Service the current pending synthetic slot at stop instead of unconditionally co
 Firmware 0.2.4 passed the captured 7.646714-second button-controlled session: 7647 eligible/generated/persisted samples, 91764 bytes, write/read-back/accounting/continuity all PASS. Peak queue 528 bytes (4.30%); longest observed write 44.064 ms. See the linked report and raw Serial capture above. RUN0002 remains preserved as historical failed evidence.
 
 Next gates: independent validation of the actual recording, approximately 60-second recording, repeated button sessions and reboot numbering preservation, physical LED/polarity, and storage-full/stall qualification. No per-sample timing evidence exists. Firmware unchanged; this update reconciles the summary with the already committed evidence.
+
+## Stage 1 standalone development — 0.3.0
+
+User requested optical work next, overriding the development-order gate for this standalone test only. Stage1_Optical_Test contains sketch, local filter helper and README.txt with exact pins, electrical checks, build/upload and manual/controlled-speed procedures. Optical count/interval/RPM firmware and host filter tests compile/pass; no upload or optical hardware result collected. Stage 0B acceptance remains open; Stage 2 and combined logging remain unimplemented.

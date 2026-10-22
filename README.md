@@ -27,3 +27,7 @@ Stage deliverables use individual root-level folders containing code and instruc
 ## Phase 0B
 
 Open [Stage0B_Recorder/Stage0B_Recorder.ino](Stage0B_Recorder/Stage0B_Recorder.ino) and follow [its standalone instructions](Stage0B_Recorder/README.txt). The folder includes its validator and requires no sibling runtime files.
+
+## Stage 1 optical bench test
+
+Open [Stage1_Optical_Test.ino](Stage1_Optical_Test/Stage1_Optical_Test.ino) and follow [the standalone wiring and test instructions](Stage1_Optical_Test/README.txt). Module VCC uses verified 3V3, GND uses common ground, and digital OUT goes to GPIO26 after verifying its voltage. Built-in LED indicates accepted edges. No recording integration yet.

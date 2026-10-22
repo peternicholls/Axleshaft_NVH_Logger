@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.3.0 — 2026-10-22
+
+- Added standalone Stage1_Optical_Test folder: GPIO26 digital edge timestamps, counts, provisional pulse filtering, interval/RPM diagnostics and built-in LED.
+- Added exact 3V3/GND/OUT wiring, module voltage checks, Arduino build/upload and bench procedures in README.txt, matching earlier stages.
+- ESP32 compilation and sanitized host pulse-filter tests pass; optical hardware acceptance pending. User authorised advancing this standalone stage while Phase 0B acceptance remains open.
+
 ## 0.2.6 — 2026-10-22
 
 - Reconcile the progress summary with the already captured passing RUN0003 short session, preserving RUN0002 as historical failure.

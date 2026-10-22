@@ -57,3 +57,9 @@ Compiled and uploaded source fef35d1 to ESP32-D0WD-V3 revision 3.1 at 115200 bau
 ## 2026-10-22 — 0.2.6: reconcile evidence and progress
 
 Read both RUN0002 report and RUN0003 v0.2.4 statistics/raw Serial capture. Updated the stale milestone summary to identify RUN0003 as the latest passing short run. Verified 7647*12=91764 and ceil(7646714/1000)=7647. Retained all remaining gates and original evidence. Documentation links and whitespace checked; no firmware modification, binary inspection or new hardware run.
+
+## 2026-10-22 — 0.3.0: standalone optical test
+
+User explicitly requested optical next. Added independently copyable Stage1_Optical_Test folder with code and README.txt matching the earlier stage convention. GPIO26 digital falling-edge input, module verified 3V3/common GND, built-in LED, GPIO33 reserved. Captures monotonic edge times in the interrupt; reports count, rejected edges, intervals, instantaneous/run-wide RPM and stale state outside the interrupt. Provisional 1000 us rejection threshold is configurable and unqualified. No SD or IMU integration and no new dependencies.
+
+Verification: ESP32 core 3.3.12 compile with all warnings; host tests with warnings-as-errors and address/undefined sanitizers cover first edge, threshold boundary, rejection reference, interval extrema and 64-bit timestamps; documentation links/whitespace checked. No upload or physical optical testing. Actual module pin order, output voltage, polarity, sensing distance and reliable speed range remain unverified. Phase 0B gates remain open by explicit sequence override.
