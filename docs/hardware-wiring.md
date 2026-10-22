@@ -23,3 +23,5 @@ Proposed remote: button signal, two LED signals, common ground over four conduct
 Stage 1 uses module VCC to verified 3V3, GND to common GND and digital OUT to GPIO26 only after confirming 3.3 V compatibility. Pin order must follow actual module labels. Built-in LED is used; GPIO33 remains reserved. See [standalone instructions](../Stage1_Optical_Test/README.txt).
 
 Optical 0.3.8 also uses GPIO32 as a normally-open button to GND with INPUT_PULLUP, matching the recorder control wiring. Start resets session counts, stop freezes them. Built-in LED is on during the optical test with OFF pulses per detection; no external LED required. See standalone README for sensitivity-pot and white-mark procedure.
+
+Optical 0.4.0 additionally uses the same SD connections and 1 MHz SPI as Stage 0A. No optical/button pin changes: GPIO26 input, GPIO32 button and built-in status LED. See [standalone instructions](../Stage1_Optical_Test/README.txt) for full wiring and clock/file validation procedure.

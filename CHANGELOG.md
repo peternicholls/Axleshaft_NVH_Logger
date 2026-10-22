@@ -8,6 +8,13 @@ Versions describe repository deliverables, not hardware qualification. The impor
 
 - Button-controlled Stage 1 v0.3.8 bench report and serial: START/STOP observed, 14.099 s, 12 detections, 88 raw transitions. Physical LED confirmation and SD writing remain unverified; this sketch has no SD output. Documentation-only release.
 
+## 0.4.0 — 2026-10-22
+
+- Add buffered standalone optical SD event logging with per-session sequence/timestamp records, stop/drain/close/CRC read-back and separate error checks.
+- Use user-set UTC date/time filenames with collision suffix; explicit UNSET boot/uptime fallback before clock setup. Preserve prior recordings.
+- Add Serial clock command, standalone event validator, SD wiring and combined optical/storage test instructions.
+- ESP32 build and host validator/encoding/session/filter checks pass. No upload or physical SD/optical acceptance performed.
+
 ## 0.3.8 — 2026-10-22
 
 - Add standalone optical GPIO32 start/stop, per-run counter reset, frozen stop summary and idle gating.

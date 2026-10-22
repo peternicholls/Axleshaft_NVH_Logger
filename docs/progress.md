@@ -90,3 +90,7 @@ Prepared GPIO32 debounced start/stop for the standalone optical test; each start
 ## Button-controlled optical bench — 2026-10-22
 
 [Report](evidence/2026-10-22-stage1-button-report.md): v0.3.8 upload verified; physical button START/STOP observed, 14.099 s, 12 detections, zero qualified rejections, 88 raw transitions. Post-stop counters frozen. LED physical confirmation and requested SD writing remain open; standalone sketch does not write SD. Firmware remains 0.3.8.
+
+## Optical SD event logging — 0.4.0
+
+Prepared standalone Stage 1 optical+SD test by explicit user request (no IMU integration). Accepted optical timestamps/sequence numbers pass through a 4 KiB queue to a dedicated storage task. Button starts a new dated file; stop drains, closes and CRC-verifies. Serial TIME sets UTC naming; unset clock uses labelled boot/uptime fallback. Added standalone validator and SD wiring/bench instructions. ESP32 compile and host integrity/session/filter checks pass. No upload or hardware operation here; optical+storage load, 20-revolution file validation, SD-full behaviour and timestamp naming need physical qualification in the separate workflow. Earlier Stage 0B gates remain open.

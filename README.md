@@ -32,3 +32,5 @@ Open [Stage0B_Recorder/Stage0B_Recorder.ino](Stage0B_Recorder/Stage0B_Recorder.i
 ## Stage 1 optical bench test
 
 Open [Stage1_Optical_Test.ino](Stage1_Optical_Test/Stage1_Optical_Test.ino) and follow [the standalone wiring and test instructions](Stage1_Optical_Test/README.txt). Module VCC uses verified 3V3, GND uses common ground, and digital OUT goes to GPIO26 after verifying its voltage. Built-in LED indicates accepted edges. No recording integration yet.
+
+Optical firmware 0.4.0 adds buffered SD event files, UTC date/time filenames (or explicit UNSET boot/uptime fallback), close/CRC checks and a standalone host validator. See the optical README for exact SD pins and Serial clock setup. Code preparation only; physical combined optical/storage acceptance remains pending.

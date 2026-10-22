@@ -27,3 +27,7 @@ Record each outcome and remaining failures in progress and development log. Stag
 Follow [the standalone README](../Stage0B_Recorder/README.txt) for the current firmware and validation commands. Record ~60 seconds, stop with GPIO32, require full read-back PASS and zero missed/dropped slots; compare persisted count against duration_us/1000 within one boundary slot. Repeat short sessions, reboot numbering and insufficient-space tests. All physical checklist boxes above remain pending. Current file format deliberately uses raw six-channel records and Serial evidence instead of an embedded footer.
 
 Host checks: `python3 -m unittest discover -s tests -v`; compile/run `tests/test_controls.cpp` using a C++17 compiler with warnings and address/undefined sanitizers. Firmware build: `arduino-cli compile --fqbn esp32:esp32:esp32 --warnings all Stage0B_Recorder`.
+
+## Optical SD test — 0.4.0 (physical execution pending)
+
+Use [Stage 1 instructions](../Stage1_Optical_Test/README.txt) to set UTC over Serial, record a known 20-revolution session, stop and require accepted=persisted=20, 320 bytes, zero queue drops and all checks PASS. Copy the file and run validate_optical.py with Serial count/CRC. Repeat dated-file collisions/restarts, controlled speeds and disposable-card insufficient-space cases; preserve Serial and recording hashes. Code-preparation chat does not upload or operate hardware.
