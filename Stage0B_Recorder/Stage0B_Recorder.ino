@@ -1,4 +1,4 @@
-/* Polestar NVH Logger 0.2.0 — standalone Phase 0B. See README.txt. */
+/* Polestar NVH Logger 0.2.1 — standalone Phase 0B. See README.txt. */
 #include <Arduino.h>
 #include <SPI.h>
 #include <SD.h>
@@ -7,6 +7,17 @@
 #include <freertos/queue.h>
 #include "ButtonTest.h"
 using button_test::Button;
+// Generic ESP32 Dev Module has no LED_BUILTIN definition. Common WROOM
+// development boards use GPIO2; adjust these for the actual board if needed.
+#ifdef LED_BUILTIN
+constexpr uint8_t RECORDING_LED_PIN = LED_BUILTIN;
+#else
+constexpr uint8_t RECORDING_LED_PIN = 2;
+#endif
+constexpr bool RECORDING_LED_ACTIVE_LOW = false;
+static void recordingLed(bool on) {
+  digitalWrite(RECORDING_LED_PIN, (on != RECORDING_LED_ACTIVE_LOW) ? HIGH : LOW);
+}
 constexpr unsigned CAPACITY = 1024;
 struct Sample { int16_t channel[6]; };
 static_assert(sizeof(Sample) == 12, "sample size");
@@ -161,10 +172,10 @@ static void storageTask(void *) {
 }
 void setup() {
   Serial.begin(115200);
-  pinMode(32, INPUT_PULLUP); pinMode(25, OUTPUT); pinMode(33, OUTPUT);
-  digitalWrite(25, LOW); digitalWrite(33, LOW);
+  pinMode(32, INPUT_PULLUP); pinMode(RECORDING_LED_PIN, OUTPUT); pinMode(33, OUTPUT);
+  recordingLed(false); digitalWrite(33, LOW);
   delay(1600);
-  Serial.println("Phase 0B 0.2.0; 1000 Hz, six int16 channels, 12 KiB queue. No auto-stop.");
+  Serial.println("Phase 0B 0.2.1; 1000 Hz, six int16 channels, 12 KiB queue. No auto-stop.");
   queueHandle = xQueueCreateStatic(CAPACITY, sizeof(Sample), queueMemory, &queueControl);
   esp_timer_create_args_t args = {};
   args.callback = sampleTimer; args.name = "samples"; args.skip_unhandled_events = true;
@@ -189,6 +200,6 @@ void loop() {
   bool led = current == State::Recording ||
     ((current == State::Starting || current == State::Saving) && (millis()/500)%2 == 0) ||
     (current == State::Error && (millis()/125)%2 == 0);
-  digitalWrite(25, led ? HIGH : LOW);
+  recordingLed(led);
   delay(1);
 }

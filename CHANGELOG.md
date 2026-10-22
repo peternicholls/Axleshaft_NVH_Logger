@@ -2,6 +2,11 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.2.1 — 2026-10-22
+
+- Use the built-in recording LED instead of external GPIO25 wiring; support board-defined LED pin, GPIO2 fallback and configurable polarity.
+- Updated standalone wiring instructions. ESP32 compilation, host checks and whitespace checks pass; physical LED mapping remains unverified.
+
 ## 0.2.0 — 2026-10-22
 
 ### Added

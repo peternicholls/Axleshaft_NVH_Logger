@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.2.0.
+Last updated: 2026-10-22. Repository version: 0.2.1.
 
 ## Current position
 
@@ -34,3 +34,5 @@ Stage 0B: standalone 1 kHz firmware, instructions and validator implemented. ESP
 - Small SDSC capacity is approximately 0.01 GiB according to supplied results.
 - The 58 ms observed write is not an upper latency bound.
 - Firmware compile and host checks passed; no upload or hardware measurement performed.
+
+Phase 0B indicator now uses the built-in LED (board definition or GPIO2 fallback), with configurable polarity; no separate recording LED required. Actual board mapping remains to be verified.

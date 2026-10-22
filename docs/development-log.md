@@ -29,3 +29,7 @@ Scope followed the user's final full Phase 0B requirements after a temporary but
 Evidence: Arduino CLI 1.5.1, ESP32 core 3.3.12, FQBN esp32:esp32:esp32 compile with all warnings succeeds (331802 flash bytes, 35152 static RAM bytes). Python validator checks valid empty/short/multi-batch sessions and corruption/truncation/extra/missing samples; C++ controls/naming checks pass with -Wall -Wextra -Werror -pedantic and address/undefined sanitizers. Documentation and whitespace checks pass. Official ESP timer documentation and installed core headers reviewed. Native helper delegation was unavailable due to model availability; implementation completed directly.
 
 No ESP32 USB device detected, no upload or hardware acceptance. Timing under actual writes, physical controls/LEDs, 60-second recording, storage-full behaviour and injected-stall/error qualification remain unverified. Stage 1/2 remain gated.
+
+## 2026-10-22 — 0.2.1: built-in recording indicator
+
+User confirmed no separate LED is fitted. Replaced GPIO25 with LED_BUILTIN where available or GPIO2 for the generic target, with configurable active-low polarity. Generic ESP32 variant does not define LED_BUILTIN; actual board mapping remains unconfirmed. Updated standalone and project wiring instructions. ESP32 compile, existing host controls/validator checks and whitespace checks pass. No physical LED test or upload performed.

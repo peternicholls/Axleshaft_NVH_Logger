@@ -1,4 +1,4 @@
-PHASE 0B — RECORDING CONTROLS AND CONTINUOUS SD LOGGING — 0.2.0
+PHASE 0B — RECORDING CONTROLS AND CONTINUOUS SD LOGGING — 0.2.1
 
 Copy this entire folder. Open Stage0B_Recorder.ino in Arduino IDE.
 Board: ESP32 Dev Module (conventional ESP32-WROOM). Verified compilation with
@@ -15,7 +15,11 @@ SPI remains 1 MHz. Check cradle jumper and actual module voltage behaviour.
 Button: GPIO32 to normally-open contact, other contact GND. Internal pull-up
 is enabled; proposed external 4.7k pull-up to 3V3 for the remote cable.
 Inspect the three-pin module first: do not assume S/+/- internal wiring.
-LED: GPIO25 -> 330–470 ohm resistor -> LED anode; cathode -> GND.
+Recording indication uses the built-in programmable LED. No external LED or
+GPIO25 wiring is required. Uses LED_BUILTIN when defined, otherwise GPIO2
+for the generic ESP32 Dev Module target. Set RECORDING_LED_PIN and
+RECORDING_LED_ACTIVE_LOW in the sketch if your board differs. A fixed power
+LED cannot be controlled; the actual board LED mapping is not yet verified.
 GPIO33 reserved, held LOW; no optical sensor or IMU needed.
 
 OPERATION
@@ -58,7 +62,7 @@ The pattern repeats after 65536 samples; whole-period losses cannot be detected
 from bytes alone. Serial count, duration, loss counters and PASS are essential.
 
 BENCH ACCEPTANCE — NOT YET RUN
-1. Check LED/button wiring; hold at boot and confirm no recording starts.
+1. Check built-in LED operation and button wiring; hold at boot and confirm no recording starts.
 2. Start, release, record ~60 s, stop. Keep Serial summary; require zero losses,
    count/duration agreement, full firmware read-back and host validator PASS.
 3. Repeat several short recordings; hold button 2 s, verify one event per press.

@@ -9,7 +9,8 @@ Original storage reference: [Stage 0A instructions](../Stage0A_SD_Test/README.tx
 | 19 | SD MISO | Reported tested |
 | 23 | SD MOSI | Reported tested |
 | 32 | Remote button | Proposed; inspect module wiring |
-| 25 | Recording LED | Proposed |
+| Built-in LED (GPIO2 fallback) | Phase 0B recording status | Board mapping/polarity to verify; no external LED |
+| 25 | Future remote recording LED | Not used by current Phase 0B |
 | 33 | Rotation LED | Reserved |
 | 21 / 22 | MPU-6050 SDA / SCL | Proposed |
 | 27 | MPU-6050 data ready | Proposed |
