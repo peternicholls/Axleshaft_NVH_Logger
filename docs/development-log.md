@@ -77,3 +77,7 @@ Read optical report and checked all captured snapshots programmatically: 133 tot
 Replaced direct falling-edge counts with CHANGE-edge candidate capture and stable detected/clear qualification. Clear transition never counts; 1 ms stable clear is needed before another stable detection can count. A 250 us ESP timer qualifies independently of Serial loop, retaining candidate timestamp. Boot-covered cannot produce an initial event. Preserved interval filter and added raw-transition diagnostic; documented polarity and pulse-width tradeoffs. User's double-flash observation is not proven to have a particular electrical cause; this rejects brief edge chatter without blindly halving counts.
 
 Host cycle/bounce/boot tests pass with warnings-as-errors and address/undefined sanitizers; ESP32 compile and whitespace checks pass. No dependencies, SD or IMU changes. Physical single-flash test and speed-range qualification remain pending; no upload performed.
+
+## 2026-10-22 — 0.3.4: wireless planning
+
+User proposed the fitted ESP32 radio for monitoring and recording start/stop. Reviewed supplied photo and official Espressif ESP32/Wi-Fi documentation; added a SoftAP/browser-first proposal with BLE alternative, explicit idempotent commands, physical fallback, bounded telemetry and acquisition isolation. Added standalone StageWireless_Test packaging proposal and measurable network/recording/disconnect/range gates. No code, dependencies, pin changes or hardware tests. Verified documentation links, version alignment and whitespace; current acceptance gaps remain open.

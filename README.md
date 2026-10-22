@@ -10,6 +10,7 @@ Stage 0A passed the hardware test reported in the [original handover](handover_v
 
 - [Progress and current evidence](docs/progress.md)
 - [Development plan and stage gates](docs/development-plan.md)
+- [Planned wireless monitoring and controls](docs/wireless-control-plan.md)
 - [Stage 0B implementation plan](docs/stage0b-plan.md)
 - [Development workflow and version policy](docs/development-workflow.md)
 - [Hardware wiring](docs/hardware-wiring.md)

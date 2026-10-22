@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.3.4 — 2026-10-22
+
+- Plan optional local Wi-Fi/browser status and start/stop, standalone test packaging, physical fallback and bounded command/telemetry handling.
+- Define network load, retry/disconnect, storage-error and physical RF/power acceptance checks; BLE retained as an alternative.
+- Official capability documentation reviewed; local links, version alignment and whitespace checked. Firmware unchanged; wireless unimplemented.
+
 ## 0.3.3 — 2026-10-22
 
 - Qualify stable detected/clear levels so one detection cycle counts/flashes once; trailing clear only rearms after 1 ms stable, rejecting brief chatter.
