@@ -102,3 +102,7 @@ Prepared standalone Stage 1 optical+SD test by explicit user request (no IMU int
 ## Optical SD evidence review — 0.4.2
 
 Firmware 0.4.1 capture confirms 11 accepted/persisted events, 176 bytes, zero queue drops, CRC32 d0aa5ebe and write/readback/accounting PASS. User clarified informal finger passages; no confirmed optical miscount diagnosis. Binary remains on ESP32 SD, so host file/sequence/timestamp/CRC validation and file hash are pending copy through the separate hardware workflow. See [updated storage report](evidence/2026-10-22-stage1-sd-button-report.md) for exact validator command. Firmware unchanged; no hardware operations here.
+
+## Independent optical file validation — 0.4.3
+
+Actual evidence file OPT_2026-10-22_14-45-28_0001.BIN passes the host validator: 11 events, 176 bytes, contiguous sequence 1..11, increasing timestamps, CRC d0aa5ebe matching Serial. Intervals agree with captured min/max/final statistics; recording SHA-256 and decoded events are preserved in the [storage report](evidence/2026-10-22-stage1-sd-button-report.md). This closes the pending host-validation gate for this recording. Physical rotation accuracy remains unqualified; firmware remains 0.4.1. No upload or hardware operation.

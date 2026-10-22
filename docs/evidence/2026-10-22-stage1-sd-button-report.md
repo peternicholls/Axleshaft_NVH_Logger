@@ -49,3 +49,31 @@ python3 Stage1_Optical_Test/validate_optical.py /path/to/OPT_2026-10-22_14-45-28
 ```
 
 Retain the original file and capture. Expected file size is 176 bytes. File SHA-256, independent sequence/timestamp checks and host CRC verification remain pending; no claim of computer-side validation is made.
+
+## Independent recording validation — repository 0.4.3
+
+The actual [recording](OPT_2026-10-22_14-45-28_0001.BIN) is now available in evidence. Ran the existing standalone validator against expected_events=11 and expected_crc=d0aa5ebe:
+
+```text
+PASS: 11 sequential events, 176 bytes, increasing timestamps, CRC verified
+```
+
+Recording SHA-256: `66cb58696b546e97e47509218deb2af37229fd2af8b96ac94c5b0a73e61677e2`.
+
+Decoded sequence is exactly 1..11. All timestamps are within the captured 16847223 us session duration. Inter-event minimum 47260 us, maximum 1473034 us, final interval 681691 us and derived mean event-spacing RPM 77.833792 match the Serial report (display rounds to 77.83). This confirms storage/transfer integrity and sequence continuity for accepted events; it does not prove physical revolution count or speed in this informal finger test. The short interval occurs between records 7 and 8; no physical cause is inferred.
+
+| Sequence | Elapsed microseconds from START |
+|---|---:|
+| 1 | 1329668 |
+| 2 | 2289436 |
+| 3 | 3762470 |
+| 4 | 4575245 |
+| 5 | 5439029 |
+| 6 | 6203687 |
+| 7 | 6872315 |
+| 8 | 6919575 |
+| 9 | 7661991 |
+| 10 | 8356711 |
+| 11 | 9038402 |
+
+This supersedes the earlier pending computer-copy/host-validation status for this recording only. Firmware unchanged; no new hardware operation. Physical LED, controlled white-mark rotation, speed-range and remaining storage qualification gates remain open.

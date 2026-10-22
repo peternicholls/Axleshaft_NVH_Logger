@@ -117,3 +117,7 @@ Validation: ESP32 core 3.3.12 build with all warnings; host Python checks valid 
 ## 2026-10-22 — 0.4.2: review optical storage evidence
 
 Read SD/button report and 0.4.1 raw capture; checked accepted=persisted=11, 176 bytes, zero drops and three PASS checks with CRC d0aa5ebe. User clarified informal finger passing and confirmed binary is still on ESP32 SD. No binary contents or file hash inspected; host validation awaits separate copy. Preserved original findings and appended clarification/validator command. Capture arithmetic, documentation links and whitespace checked. Firmware unchanged; no upload or hardware operation.
+
+## 2026-10-22 — 0.4.3: independent SD recording inspection
+
+Validated actual evidence binary with validate_optical.py --expected-events 11 --expected-crc d0aa5ebe: PASS. Independently decoded sequence/time records and checked all timestamps fall within captured duration; min 47260 us, max 1473034 us and last 681691 us match Serial; event-spacing mean rounds to 77.83 RPM. File SHA-256 66cb58696b546e97e47509218deb2af37229fd2af8b96ac94c5b0a73e61677e2. Retained the 176-byte binary explicitly despite the general raw-recording ignore rule and documented decoded events. Host copy/integrity gate for this recording now passed; physical rotation accuracy remains open. Firmware unchanged, no hardware operations. Existing validator, timing assertions, links, version alignment and whitespace checked.

@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.4.3 — 2026-10-22
+
+- Independently validate the actual optical SD recording: 11 sequential events, 176 bytes, monotonic timestamps and CRC d0aa5ebe matching capture.
+- Retain the small binary as deliberate evidence; add its SHA-256, decoded events and agreement with Serial timing statistics to the report.
+- Close host-validation gap for this recording only; no firmware changes or expanded physical acceptance.
+
 ## 0.4.2 — 2026-10-22
 
 - Reconcile captured optical SD statistics and user clarification that informal finger passages explain the imprecise expected physical count.
