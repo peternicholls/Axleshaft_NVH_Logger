@@ -1,6 +1,6 @@
 # Stage 0B implementation plan
 
-Planning version: 0.1.2, 2026-10-22. Status: ready for implementation; no Stage 0B acceptance claimed.
+Planning version: 0.1.2, 2026-10-22. Status: implemented with scope adjustments below; hardware acceptance pending.
 
 ## Requirements and inspected baseline
 
@@ -85,3 +85,9 @@ Use a disposable card or preserve wanted recordings before fullness tests. Confi
 ## Completion evidence
 
 Record commit/version, CLI/core/FQBN, hardware/card identity, supply/wiring, run duration, serial capture reference, recording filename/hash, validator output, counters and pass/fail per matrix row. Raw recordings remain ignored unless deliberately selected as small fixtures. Link evidence from progress and test procedures. This plan authorises no claim that the pipeline or timing targets have already been achieved.
+
+## Execution update — 0.2.0, 2026-10-22
+
+The user's final Phase 0B requirements restore full 1 kHz logging while retaining simple files and button emphasis. Implementation uses exactly 12-byte six-channel records with Serial summary evidence rather than headers/footers or timestamps in each sample. Queue is 12 KiB, 1024 records; writes batch 42 records (504 bytes). No automatic short-test stop. Task-dispatched ESP timer produces independently of storage; Arduino loop handles button/LED. Filename is highest existing plus one. See the standalone README for the current acceptance procedure; the earlier detailed design is historical rationale where superseded by this update.
+
+Build and host controls/validator checks pass. Fault-injection storage-seam tests, induced-stall qualification, physical 60-second sessions and storage-full tests remain pending; no stage acceptance is claimed. The simple pattern repeats after 65536 samples, so external count/timing evidence is required. Future sensor timing work remains gated.

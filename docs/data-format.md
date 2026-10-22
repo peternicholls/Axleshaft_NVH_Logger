@@ -4,8 +4,10 @@
 
 T0001.BIN through T9999.BIN contain 262,144 pattern bytes with no header. For zero-based absolute byte offset `i`, expected byte is `(i * 17 + (i >> 8) + 0x5A) & 0xFF`. This is a storage test, not a sensor recording format.
 
-## Stage 0B — design pending
+## Stage 0B — raw synthetic samples (0.2.0)
 
-Before implementation define byte order, magic, format version, header/record lengths, six signed 16-bit synthetic channels, sequence numbers, timestamps, deterministic generation, completion/error records and corruption checks. Specify overflow, truncation, unsupported-version and incomplete-session handling. Document exact field offsets and validator rules here once selected.
+Each sample is exactly 12 bytes: six little-endian signed 16-bit integers. No header, padding or footer. Slot n, channel c=0..5 is `((n*(2*c+1)+997*c) mod 65536)-32768`. First sample is [-32768,-31771,-30774,-29777,-28780,-27783]. File length is 12 times the persisted sample count. Files increment from highest existing RUN number, never filling gaps.
 
-Repository version is not the binary format version. Integrated format must later carry raw values, scale/configuration metadata, timing anchors, optical events, errors and firmware identity. No RUN file format is implemented or accepted yet.
+The validator requires the expected sample count from the Serial PASS line and rejects size, pattern and sequence disagreement. The pattern repeats after 65536 slots; byte-only validation cannot detect loss of an entire pattern period. Preserve Serial duration, count and loss counters as essential evidence. An interrupted file has no embedded completion indicator. A firmware PASS requires zero reported losses and full size/content read-back. No real IMU or optical data is stored yet.
+
+This deliberately simple layout supersedes the proposed header/footer format for Phase 0B following the user's request. Future integrated recordings require a separately versioned format with timestamps and metadata.

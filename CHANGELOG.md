@@ -2,6 +2,20 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.2.0 — 2026-10-22
+
+### Added
+
+- Standalone Phase 0B Arduino recorder, wiring/upload/test instructions and Python recording validator.
+- Debounced start/stop, state LED, sequential files, 1000 Hz six-channel synthetic records, 12 KiB queue, drain/close/read-back and Serial metrics.
+- Host controls/naming and recording integrity checks.
+
+### Validation and limits
+
+- ESP32 core 3.3.12 compilation and host checks pass. No new dependencies.
+- Physical 60-second/button/storage-full tests and stall qualification remain pending; no Stage 0B hardware acceptance.
+- Simple raw files require Serial summary evidence for sample count/completion; pattern repeats after 65536 samples.
+
 ## 0.1.2 — 2026-10-22
 
 ### Changed

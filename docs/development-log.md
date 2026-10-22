@@ -19,3 +19,13 @@ Validation: relative documentation links, 0.1.1 bookkeeping alignment, local pla
 Updated Stage 0B planning to follow the user's Stage 0A folder convention. `Stage0B_Recorder/` will contain the sketch, README.txt, required local helpers and standalone validator, with no sibling runtime dependencies. Tests remain repository-level and use the bundled validator directly. No empty stage folder or placeholder firmware created.
 
 Validation: documentation links, version alignment, local plan-copy consistency and whitespace checks passed. Implementation and hardware acceptance remain pending.
+
+## 2026-10-22 — 0.2.0: standalone Phase 0B implementation
+
+Implemented debounced GPIO32 start/stop, GPIO25 state indication, reserved GPIO33, persistent highest-plus-one RUN naming, 1000 Hz six-int16 synthetic samples and static 12 KiB FreeRTOS queue. Storage task batches records, drains on stop, flushes/closes and fully reads back. Serial reports count/duration, bytes, missed/dropped slots, write latency, queue peak and close time. Added standalone instructions and Python validator; preserved Stage 0A source unchanged.
+
+Scope followed the user's final full Phase 0B requirements after a temporary button-only narrowing. Kept raw 12-byte records and external summary evidence; no header/footer or automatic stop. Disclosed repeating-pattern and interruption limits. No new dependencies installed.
+
+Evidence: Arduino CLI 1.5.1, ESP32 core 3.3.12, FQBN esp32:esp32:esp32 compile with all warnings succeeds (331802 flash bytes, 35152 static RAM bytes). Python validator checks valid empty/short/multi-batch sessions and corruption/truncation/extra/missing samples; C++ controls/naming checks pass with -Wall -Wextra -Werror -pedantic and address/undefined sanitizers. Documentation and whitespace checks pass. Official ESP timer documentation and installed core headers reviewed. Native helper delegation was unavailable due to model availability; implementation completed directly.
+
+No ESP32 USB device detected, no upload or hardware acceptance. Timing under actual writes, physical controls/LEDs, 60-second recording, storage-full behaviour and injected-stall/error qualification remain unverified. Stage 1/2 remain gated.

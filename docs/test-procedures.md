@@ -21,3 +21,9 @@ Supplied handover reports T0001.BIN, 262,144 bytes, complete reopen/byte verific
 Begin with short recordings on the tiny development card. Exercise storage exhaustion on disposable card contents after preserving wanted recordings. Define expected error behaviour before injecting failures. Do not remove cards during powered recording as a routine stop method.
 
 Record each outcome and remaining failures in progress and development log. Stage 1/2 remain gated until all Stage 0B criteria pass on hardware.
+
+## Phase 0B executable instructions
+
+Follow [the standalone README](../Stage0B_Recorder/README.txt) for the current firmware and validation commands. Record ~60 seconds, stop with GPIO32, require full read-back PASS and zero missed/dropped slots; compare persisted count against duration_us/1000 within one boundary slot. Repeat short sessions, reboot numbering and insufficient-space tests. All physical checklist boxes above remain pending. Current file format deliberately uses raw six-channel records and Serial evidence instead of an embedded footer.
+
+Host checks: `python3 -m unittest discover -s tests -v`; compile/run `tests/test_controls.cpp` using a C++17 compiler with warnings and address/undefined sanitizers. Firmware build: `arduino-cli compile --fqbn esp32:esp32:esp32 --warnings all Stage0B_Recorder`.
