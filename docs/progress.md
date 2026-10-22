@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.3.5 (latest captured installed firmware: optical 0.3.0).
+Last updated: 2026-10-22. Repository version: 0.3.6 (latest captured installed firmware: optical 0.3.0).
 
 ## Current position
 
@@ -78,3 +78,7 @@ Added [wireless plan](wireless-control-plan.md) at user request: local password-
 ## Updated optical rerun — 2026-10-22
 
 [Updated-code report](evidence/2026-10-22-stage1-v0.3.3-rerun-report.md): uploaded firmware 0.3.3 from repository 0.3.4, verified flash; 110 accepted, 1,413 raw transitions, zero rejected qualified detections, stable final counters. Actual cover/uncover count ambiguous; no 20-cycle acceptance claimed. Full optical accuracy remains pending.
+
+## Exact-count manual optical check — 2026-10-22
+
+[20-cycle report](evidence/2026-10-22-stage1-exact20-report.md): **PASS**, 20 user-confirmed finger cover/uncover cycles produced 20 accepted detections, zero qualified rejections, 138 raw transitions; counters stable after stopping. Firmware remains 0.3.3. Controlled rotation/RPM and full optical acceptance remain pending.

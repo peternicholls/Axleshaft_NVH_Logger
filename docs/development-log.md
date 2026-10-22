@@ -85,3 +85,7 @@ User proposed the fitted ESP32 radio for monitoring and recording start/stop. Re
 ## 2026-10-22 — 0.3.5: updated optical firmware rerun
 
 Uploaded firmware banner 0.3.3 from repository revision 61d2fd0 (0.3.4). Compile and flash hash verification passed; host optical checks passed. Captured 110 accepted detections, 1,413 raw transitions, zero rejected qualified detections; final counters stable. User answered “yes” to combined count/LED prompt; actual physical cycle count cannot be inferred. No verified 20-cycle pass claimed. Report and raw serial under docs/evidence/2026-10-22-stage1-v0.3.3-rerun-*. Controlled optical acceptance remains pending; firmware unchanged by documentation release.
+
+## 2026-10-22 — 0.3.6: exact 20-cycle optical bench pass
+
+Reset installed Stage 1 firmware 0.3.3 and captured zero initial counters. User completed requested exactly 20 finger cover/uncover cycles. Accepted=20, rejected qualified=0, raw transitions=138; final level=1, stale=1, counters stable. Intervals 391,662–632,032 us; latest 418,269 us. Saved full report and raw serial under docs/evidence/2026-10-22-stage1-exact20-*. No firmware edit/upload needed. Exact-count bench check passes; physical LED flash count, measured setup and calibrated rotation remain unverified. Whitespace and report/capture count consistency checks passed.

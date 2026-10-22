@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.3.6 — 2026-10-22
+
+### Added
+
+- Known-count manual optical bench evidence: 20 confirmed finger cover/uncover cycles yielded exactly 20 detections, zero rejected qualified detections and stable final counters. Raw transitions 138. Firmware remains 0.3.3; controlled rotation acceptance remains pending.
+
 ## 0.3.5 — 2026-10-22
 
 ### Added
