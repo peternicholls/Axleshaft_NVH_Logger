@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.3.1 (installed firmware: 0.2.4).
+Last updated: 2026-10-22. Repository version: 0.3.2 (latest captured installed firmware: optical 0.3.0).
 
 ## Current position
 
@@ -14,7 +14,7 @@ Stage 0B: standalone 1 kHz firmware, instructions and validator implemented. ESP
 | Stage 0A storage | Historical pass | Handover: 262,144 bytes verified; 2.93 s write; 58 ms maximum observed block write |
 | Stage 0B planning | Complete | Version 0.1.2; design, test matrix and standalone Stage0B_Recorder folder contract |
 | Stage 0B recorder | Implemented, bench pending | Core 3.3.12 compile passes; host controls/validator checks pass; ESP32 upload verified; [RUN0003 short-run capture](evidence/2026-10-22-stage0b-v0.2.4-statistics.md): 7647 samples, zero misses/drops, all four checks PASS; full acceptance pending |
-| Stage 1 optical | Standalone firmware built; bench pending | User explicitly advanced optical work; GPIO26 edge capture and built-in LED; no integration |
+| Stage 1 optical | Input response observed; counting accuracy pending | [Finger-test report](evidence/2026-10-22-stage1-v0.3.0-report.md): 23 accepted / 51 rejected edges; no known passage count or controlled RPM |
 | Stage 2 IMU | Gated | Requires Stage 0B acceptance, then standalone acquisition evidence |
 | Stage 3 integration | Gated | Requires accepted optical and IMU stages |
 | Vehicle trials | Not started | Requires integrated bench acceptance and secured mounting/wiring |
@@ -62,3 +62,7 @@ User requested optical work next, overriding the development-order gate for this
 ## Stage 1 bench observation — 2026-10-22
 
 [Report and statistics](evidence/2026-10-22-stage1-v0.3.0-report.md): v0.3.0 upload hashes verified; finger cover/uncover produced 23 accepted/51 rejected edges, then stable counters. Input response observed only. Known-count passages, measured setup and controlled-speed accuracy remain pending. Installed firmware remains 0.3.0.
+
+## Evidence review — 0.3.2
+
+Reconciled optical report against all 133 Serial snapshots: final 23 accepted and 51 rejected edges, with 123 final snapshots retaining those counters. No new measurement or firmware change. Prior no-upload statements describe earlier milestones; latest captured installed firmware is optical 0.3.0. Next optical check is a known count of mark passages (for example 20), with fixed measured gap/lighting and stationary false-count observation before controlled rotation. Do not equate rejected electrical transitions with lost revolutions or tune the filter without these measurements.

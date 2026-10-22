@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.3.2 — 2026-10-22
+
+- Reconciled optical report with 133 captured snapshots and corrected stale installed-firmware/milestone summary.
+- No firmware changes or additional hardware acceptance; known-count optical passage and controlled-speed tests remain pending.
+- Verified capture totals and whitespace.
+
 ## 0.3.1 — 2026-10-22
 
 ### Added

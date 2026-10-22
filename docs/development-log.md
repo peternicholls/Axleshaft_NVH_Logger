@@ -67,3 +67,7 @@ Verification: ESP32 core 3.3.12 compile with all warnings; host tests with warni
 ## 2026-10-22 — 0.3.1: Stage 1 input-response bench evidence
 
 Built and uploaded Stage 1 v0.3.0 (source 1f92fd2), verified flash hashes on ESP32-D0WD-V3 revision 3.1. User covered/uncovered sensor with a finger; no known-count mark or rotation test. Captured 23 accepted and 51 rejected falling edges, intervals 231,431–688,384 us; final level 1, stale 1 and counters stable. Saved raw serial and full report in docs/evidence/2026-10-22-stage1-v0.3.0-*. Host optical filter check and firmware compile passed. Gap, voltage, LED observation, passage accuracy and controlled RPM unverified; Stage 1 acceptance remains pending. Documentation release 0.3.1; installed firmware 0.3.0.
+
+## 2026-10-22 — 0.3.2: review optical report and capture
+
+Read optical report and checked all captured snapshots programmatically: 133 total, final 23 accepted/51 rejected, 123 final snapshots unchanged. Updated stale progress header and optical milestone to the actual input-response result. No passage count or rotation accuracy can be derived from the finger test; 51 rejections indicate close electrical transitions, with cause unproven. Next test: fixed setup and known-count mark passages, then controlled rotation. Firmware unchanged; no new hardware run. Capture arithmetic and whitespace checks passed.
