@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.3.9 (latest captured installed firmware: optical 0.3.3).
+Last updated: 2026-10-22. Repository version: 0.4.4 (latest captured installed firmware: optical 0.4.1).
 
 ## Current position
 
@@ -106,3 +106,7 @@ Firmware 0.4.1 capture confirms 11 accepted/persisted events, 176 bytes, zero qu
 ## Independent optical file validation — 0.4.3
 
 Actual evidence file OPT_2026-10-22_14-45-28_0001.BIN passes the host validator: 11 events, 176 bytes, contiguous sequence 1..11, increasing timestamps, CRC d0aa5ebe matching Serial. Intervals agree with captured min/max/final statistics; recording SHA-256 and decoded events are preserved in the [storage report](evidence/2026-10-22-stage1-sd-button-report.md). This closes the pending host-validation gate for this recording. Physical rotation accuracy remains unqualified; firmware remains 0.4.1. No upload or hardware operation.
+
+## Analysis bench planning — 0.4.4
+
+Added [analysis bench software](analysis-bench-plan.md) to the roadmap: offline optical import/validation, event/interval/RPM inspection, comparison and exports first; IMU traces, spectra and order tracking later when timing/format prerequisites exist. Reuse existing validators and retain source bytes/metadata. No application implementation or new dependencies; firmware unchanged. Also reconciled the stale progress header with the captured 0.4.1 firmware evidence.

@@ -51,3 +51,7 @@ User explicitly requested standalone Stage 1 next while Phase 0B acceptance rema
 ## Planned wireless monitoring and controls
 
 [Wireless control plan](wireless-control-plan.md): qualify a password-protected ESP32 Wi-Fi access point and local browser for status and explicit start/stop, retaining physical controls. Begin as an independent synthetic recording test after current bench gates, then consider final integration only after timing, disconnect and range tests. BLE remains a measured fallback. No wireless implementation or hardware acceptance yet.
+
+## Planned analysis bench software
+
+[Analysis bench plan](analysis-bench-plan.md): local offline workbench for importing and validating recordings, inspecting optical events/RPM, comparing sessions and exporting reproducible results. Begin with existing optical evidence; add six-axis/FFT/spectrogram and rotational-order tools when their formats and timing are qualified. Wireless telemetry is an optional later extension. No application implementation or dependencies added yet.

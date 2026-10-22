@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.4.4 — 2026-10-22
+
+- Add analysis bench software to planning: offline recording validation, optical/RPM inspection, comparison and reproducible exports; later IMU, spectral and order analysis.
+- Define fixture, UI, integrity and processing acceptance gates; reuse existing validators and preserve raw sources.
+- Correct stale progress version/installed-firmware header. Documentation links, version alignment and whitespace checked; no software implementation or firmware changes.
+
 ## 0.4.3 — 2026-10-22
 
 - Independently validate the actual optical SD recording: 11 sequential events, 176 bytes, monotonic timestamps and CRC d0aa5ebe matching capture.
