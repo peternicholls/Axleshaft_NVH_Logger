@@ -1,90 +1,92 @@
-Polestar 2 NVH Logger — Stage 1: Optical sensor test — 0.3.3
-=========================================================
-Standalone bench sketch. No SD, GY-521, button or external LED required.
-Use the narrow three-pin reflective module first. Module identity/pin order
-is not confirmed: follow its printed VCC/GND/OUT labels, NOT physical order.
+Polestar 2 NVH Logger — Stage 1 optical rotation test — 0.3.8
+==========================================================
+Standalone sketch for a rotating axle/substitute with ONE white reference mark.
+No SD recording or IMU integration. Code preparation/build only in this chat;
+uploading and physical capture are handled separately.
 
-WIRING — switch power off before changing wires
-Optical module VCC -> ESP32 verified 3V3
+WIRING — disconnect power before changing wires
+Optical module VCC -> verified ESP32 3V3
 Optical module GND -> ESP32 GND
-Optical module OUT (or digital DO) -> ESP32 GPIO26
-Built-in LED -> no wire needed (LED_BUILTIN or GPIO2 fallback, active high)
-GPIO33 -> reserved for a future external rotation LED; no connection required.
-GPIO25 -> unused. SD/IMU/button pins are unused by this sketch.
+Optical module digital OUT / DO -> GPIO26
+Button normally-open contact -> GPIO32; other contact -> GND
+Built-in LED -> no wire (LED_BUILTIN, or GPIO2 fallback, active high)
+GPIO33 -> reserved, no connection. GPIO25 -> unused.
 
-Check the expansion cradle voltage-selection jumper. Confirm the rail really
-is 3.3 V. Verify the module supports 3.3 V and its OUT cannot exceed 3.3 V before
-connecting OUT to GPIO26. Never feed a 5 V output into the ESP32. The input
-pull-up is to ESP32 logic voltage; it does not make a 5 V output safe.
-If the module has AO and DO, use DO. If its output/power requirements are
-unknown, verify the module first; do not guess from wire colour or pin order.
+Check actual module labels, not physical pin order. Confirm 3.3 V power and
+output compatibility before connecting OUT. Do not feed 5 V into GPIO26.
+Check the expansion cradle jumper/rail. Use DO, not AO, if both exist.
+GPIO32 uses INPUT_PULLUP. A proposed external 4.7k pull-up to 3V3 can help
+with the remote cable. Inspect the button module S/+/- connections first;
+only use S and GND if its internal wiring supports the simple contact circuit.
+Do not assume the third terminal needs connecting.
 
-BUILD / UPLOAD — same approach as Stage0A_SD_Test and Stage0B_Recorder
-1. Copy this whole folder and open Stage1_Optical_Test.ino in Arduino IDE.
-2. Select ESP32 Dev Module for the conventional ESP32-WROOM board.
-   Compile checked with Arduino-ESP32 3.3.12, Arduino CLI 1.5.1.
-3. Select the actual ESP32 USB serial port and upload.
-4. Open Serial Monitor at 115200 baud. Press RESET to restart counters.
-CLI, from the parent folder:
+BUILD / SEPARATE UPLOAD WORKFLOW
+Copy the entire folder, open Stage1_Optical_Test.ino in Arduino IDE, select
+ESP32 Dev Module for this conventional ESP32 board and the actual USB port.
+Compile checked with Arduino-ESP32 3.3.12 / Arduino CLI 1.5.1. No extra libraries.
+From the parent folder:
 arduino-cli compile --fqbn esp32:esp32:esp32 --warnings all Stage1_Optical_Test
-arduino-cli upload --fqbn esp32:esp32:esp32 --port YOUR_PORT Stage1_Optical_Test
+When ready, use your separate upload workflow. Serial Monitor: 115200 baud.
+No upload or hardware acceptance is performed by this code-preparation chat.
 
-BENCH PROCEDURE
-1. Start stationary. Observe level=0/1 with dark background and a white mark.
-   Adjust sensitivity and distance if the module has an adjustment. The correct
-   distance must be measured experimentally for the actual sensor.
-2. Default detected level is LOW. A detection must remain stable for 1000 us;
-   count/flash once, then require a stable HIGH clear for 1000 us to rearm.
-   If the module detects the mark with HIGH, set DETECTED_LEVEL = HIGH.
-   Boot with the sensor clear. Booting covered does not count until cleared.
-   CHANGE interrupts capture both transitions, but only qualified detection
-   counts; the clear/trailing transition never directly flashes the LED.
-3. Pass the mark manually 20 times; accepted count should increase by exactly
-   20. Hold it stationary and confirm no extra counts. Repeat at several gaps,
-   angles and lighting levels. Built-in LED lights briefly for accepted edges.
-4. Progress to controlled rotation with ONE mark per revolution. Compare counts
-   to independently known revolutions/RPM; record expected and observed counts,
-   min/max intervals, rejected counts, sensing gap, surface and illumination.
-5. Test the intended speed range and ensure no missing or additional pulses.
-   No vehicle trial or final mounting acceptance is implied by this test.
+BUTTON AND LED
+Boot idle: LED off; counts frozen. Release button for at least 30 ms.
+First debounced press: START, reset counts/statistics for a new test, LED ON.
+Release then press again: STOP, freeze counts, print summary, LED OFF.
+Holding the button does not repeat. Next start resets counters again: preserve
+Serial output before starting a new run. No files are written by this sketch.
+During a test, each accepted detection briefly switches the LED OFF (~30 ms
+from candidate timestamp), then ON again. Trailing clear does not flash.
+At high speed off pulses may merge; rely on counts for accuracy.
+Configure INDICATOR_PIN/INDICATOR_ACTIVE_LOW if the board LED differs.
+A fixed power LED cannot be controlled.
 
-DIAGNOSTICS / SETTINGS
-Serial prints once per second: instantaneous output level, accepted/rejected
-detections, latest accepted timestamp (microseconds since boot), last/min/max
-accepted interval, instantaneous RPM, run-wide average RPM and stale flag.
-RPM assumes one accepted edge per revolution. First edge has no interval.
-After 2 s without an edge rpm shows zero/stale=1; extremely slow rotation may
-therefore appear stale between pulses. Average RPM is across accepted event
-intervals over this boot, excludes the initial wait, and retains pauses.
-No per-event log is persisted; Serial snapshots do not capture every event.
+WHITE-MARK AND SENSITIVITY PROCEDURE
+1. Start with a stationary axle/substitute, dark background and one distinct
+   white mark. Use a fixed sensor mount and note the measured sensing gap.
+2. With counting stopped, rotate slowly between mark and background. Serial
+   level is still displayed while idle. Adjust the sensitivity pot in small
+   increments until the output reliably distinguishes them at the chosen gap.
+   For default DETECTED_LEVEL=LOW: mark should read level=0, background level=1.
+   If the actual output is opposite, set DETECTED_LEVEL=HIGH before compiling.
+   Note the adjustment and gap; don't tune the pot while collecting a count test.
+3. Begin with the mark clear. Press to start. If started over the mark, the
+   first covered state is intentionally ignored until a stable clear rearms it.
+4. Manually turn exactly 20 complete revolutions, starting and ending clear.
+   Press to stop; require exactly 20 accepted detections, one off pulse per mark,
+   and no extra event on the mark leaving. Save the START/STOP and snapshots.
+5. Repeat at several controlled speeds and compare with an independent RPM or
+   revolution reference. Record speed, mark width, gap, lighting and pot setting.
+   Then hold stationary with mark present and absent; check no accumulating
+   counts during each observation. Re-adjust only between test runs.
 
-MIN_PULSE_INTERVAL_US defaults to 1000 us: provisional noise rejection, allowing
-up to 60000 accepted edges/minute mathematically, NOT a verified speed rating.
-Rejected edges do not move the last accepted timestamp. Choose a threshold
-shorter than 60000000 / highest intended RPM, with margin for genuine variation.
-Filtering cannot guarantee one pulse per revolution; prove it on the bench.
-Interrupt captures time and updates counters; LED/Serial run separately.
-At high speed LED flashes can merge. Configure INDICATOR_PIN and
-INDICATOR_ACTIVE_LOW if your board's programmable LED differs. A fixed power
-LED cannot be controlled.
+FILTER / TIMING
+CHANGE interrupts capture both polarities and timestamp the candidate edge.
+Detection and clear each require STABLE_LEVEL_US=1000 us before qualification;
+a 250 us task timer checks stability. One stable detection counts, and stable
+clear must occur before another can count. Brief chatter cannot rearm it.
+MIN_PULSE_INTERVAL_US=1000 is an additional provisional acceptance threshold.
+Both the mark and clear dwell must exceed the stable time plus scheduling
+margin. A narrow mark at speed can be missed; measure pulse widths and test
+the intended range before altering the filter. No speed range is qualified yet.
+Counting/qualification is independent of the button/LED/Serial polling loop.
 
-ACCEPTANCE / LIMITS
-Require one accepted index per actual revolution across the documented range,
-with no unexplained missing/extra pulses. Save the Serial log and test setup.
-Firmware compilation and host filter tests are not physical optical acceptance.
-Stage 0B's remaining acceptance checks are still open. This stage proceeds
-independently by user instruction; it does not integrate with recording yet.
+SERIAL
+START resets a session. STOP prints duration_us, accepted, rejected and
+raw_transitions. Periodic snapshots show running, level, accepted/rejected,
+raw transitions, last candidate timestamp since boot, interval/min/max in us,
+instantaneous RPM, run-wide average RPM and stale state.
+Raw transitions include both polarities and chatter, only while running.
+Rejected counts are qualified detections rejected by the minimum-interval
+filter, not every raw transition suppressed by stability qualification.
+RPM assumes one detection per revolution. First event has no speed estimate;
+after 2 s without an event, or while stopped, instantaneous RPM is zero/stale.
+Average RPM uses first-to-last accepted event spacing and includes pauses.
+A full event trace is not persisted; save Serial summaries in the upload/capture
+workflow and keep expected physical revolution count with the report.
 
-0.3.3 QUALIFICATION UPDATE
-The raw_transitions count includes both polarities and chatter, not revolutions.
-A 250 us task-dispatched timer qualifies levels, preserving the timestamp of
-that candidate raw transition. Serial/LED are separate. Brief return-edge
-chatter cannot rearm the detection cycle. Rejected counts still refer only to
-qualified detections rejected by MIN_PULSE_INTERVAL_US; compare raw transitions
-separately. Both active and clear dwell must exceed STABLE_LEVEL_US plus
-scheduling margin; short pulses can be missed. Measure the real pulse widths
-before choosing this threshold for higher RPM. This is a bench setting.
-Test one deliberate cover/uncover: require ONE count and ONE flash. Repeat 20
-known cycles and verify no counts on clear. If there are still two flashes,
-record output levels/polarity and timing; do not mask them by halving counts.
-No physical confirmation of this update is claimed until retested.
+ACCEPTANCE / STATUS
+Previous firmware 0.3.3 passed a known 20-cycle finger test, not rotating-shaft
+qualification. The new button/off-pulse behaviour requires physical retesting.
+Host tests/build cannot prove optical accuracy, LED behaviour or safe mounting.
+Stage 0B remaining acceptance gates are still open; no combined logger implied.

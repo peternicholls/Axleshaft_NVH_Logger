@@ -2,6 +2,13 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.3.8 — 2026-10-22
+
+- Add standalone optical GPIO32 start/stop, per-run counter reset, frozen stop summary and idle gating.
+- Built-in LED stays on during a test and pulses off per accepted detection; trailing clear does not pulse.
+- Add button wiring, white-mark rotation and sensitivity-pot instructions; record this chat's code/build-only responsibility.
+- ESP32 build and sanitized host session/filter checks pass; separate physical retest pending.
+
 ## 0.3.7 — 2026-10-22
 
 - Reconcile current optical milestone and installed-firmware header with the already recorded exact-20 manual test.

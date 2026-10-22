@@ -23,3 +23,7 @@ Deliver Stage 0B in root-level `Stage0B_Recorder/`, matching `Stage0A_SD_Test/`:
 ## Commit messages
 
 Use an intent line explaining why, with narrative context and useful native trailers such as `Tested:`, `Not-tested:`, `Confidence:` and `Scope-risk:`. See `docs/development-workflow.md` for delivery rules.
+
+## Upload responsibility
+
+This chat prepares code, instructions, plans and local verification only. Do not upload firmware, operate physical hardware or claim fresh physical acceptance here. Upload/capture is performed in the user's separate workflow; consume its saved reports as evidence.

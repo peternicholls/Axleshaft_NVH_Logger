@@ -21,3 +21,5 @@ SD SPI clock: 1 MHz. Use verified 3.3 V logic/supply and common ground. Check th
 Proposed remote: button signal, two LED signals, common ground over four conductors. Confirm button S/GND behaviour before connection; provisional ESP32-side pull-up 4.7 kΩ, LED series resistors 330–470 Ω. Electrical behaviour and long-cable operation remain to be tested.
 
 Stage 1 uses module VCC to verified 3V3, GND to common GND and digital OUT to GPIO26 only after confirming 3.3 V compatibility. Pin order must follow actual module labels. Built-in LED is used; GPIO33 remains reserved. See [standalone instructions](../Stage1_Optical_Test/README.txt).
+
+Optical 0.3.8 also uses GPIO32 as a normally-open button to GND with INPUT_PULLUP, matching the recorder control wiring. Start resets session counts, stop freezes them. Built-in LED is on during the optical test with OFF pulses per detection; no external LED required. See standalone README for sensitivity-pot and white-mark procedure.

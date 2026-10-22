@@ -93,3 +93,9 @@ Reset installed Stage 1 firmware 0.3.3 and captured zero initial counters. User 
 ## 2026-10-22 — 0.3.7: reconcile exact-count evidence
 
 Read updated-code rerun and exact-20 reports, checked exact-20 raw capture initial/final counters, and reconciled stale current milestone and installed firmware header. Manual detection count passes for this test; flash count was not independently confirmed and controlled rotation remains open. Firmware unchanged. Capture assertions and whitespace checks passed; no new hardware run.
+
+## 2026-10-22 — 0.3.8: button-controlled rotating-mark test
+
+Added local Button.h using the existing Stage 0B debounce behaviour without sibling runtime dependencies. OpticalSession owns running state, reset/frozen counts and LED presentation. GPIO32 first press starts fresh, second stops with summary. ISR/qualification ignore idle input; new start over a mark requires clear before counting. Built-in indicator is steady on while running and off for 30 ms per accepted detection, off idle. README now includes exact button wiring, white mark, sensitivity adjustment, known revolutions and pulse-width considerations. No SD or IMU changes; no dependencies added.
+
+User clarified this chat only prepares programming, never uploads. Persisted that working agreement. ESP32 core 3.3.12 compile with all warnings and sanitized host session/filter tests pass, covering idle gating, reset, frozen stop, boot-covered, held button, one off pulse and no trailing pulse. Documentation/whitespace checks pass. No upload or hardware operation performed; new physical behaviour and rotating-speed accuracy remain unverified.

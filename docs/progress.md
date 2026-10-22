@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.3.7 (latest captured installed firmware: optical 0.3.3).
+Last updated: 2026-10-22. Repository version: 0.3.8 (latest captured installed firmware: optical 0.3.3).
 
 ## Current position
 
@@ -82,3 +82,7 @@ Added [wireless plan](wireless-control-plan.md) at user request: local password-
 ## Exact-count manual optical check — 2026-10-22
 
 [20-cycle report](evidence/2026-10-22-stage1-exact20-report.md): **PASS**, 20 user-confirmed finger cover/uncover cycles produced 20 accepted detections, zero qualified rejections, 138 raw transitions; counters stable after stopping. Firmware remains 0.3.3. Controlled rotation/RPM and full optical acceptance remain pending.
+
+## Rotating white-mark session controls — 0.3.8
+
+Prepared GPIO32 debounced start/stop for the standalone optical test; each start resets counters, stop freezes them and prints a summary. Built-in LED stays on during testing with a brief OFF pulse per accepted mark, off when idle/stopped. Added button wiring and sensitivity-pot/white-mark procedure to the standalone README. Code/build only in this chat; upload and physical capture belong to the separate workflow. Host tests and compile pass; latest captured hardware remains 0.3.3. New physical controls/indicator and rotating-mark qualification remain pending.
