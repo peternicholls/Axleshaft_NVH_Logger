@@ -16,6 +16,10 @@ Keep `handover_v1.md` and the original Stage 0A sketch as historical references.
 
 Complete Stage 0B acceptance before starting Stage 1 or Stage 2. Do not invent missing results, package versions or hardware measurements. No new dependencies without explicit user request.
 
+## Stage packaging
+
+Deliver Stage 0B in root-level `Stage0B_Recorder/`, matching `Stage0A_SD_Test/`: sketch named after the folder, `README.txt`, all required local firmware helpers and standalone recording validator. The folder must be independently copyable and usable, with wiring, build/upload, operation and validation instructions. Do not nest it under `firmware/` or require sibling repository files for operation. Keep project progress and development evidence in `docs/`.
+
 ## Commit messages
 
 Use an intent line explaining why, with narrative context and useful native trailers such as `Tested:`, `Not-tested:`, `Confidence:` and `Scope-risk:`. See `docs/development-workflow.md` for delivery rules.

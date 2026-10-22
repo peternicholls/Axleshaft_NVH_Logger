@@ -2,6 +2,17 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.1.2 — 2026-10-22
+
+### Changed
+
+- Stage 0B will use a standalone root-level `Stage0B_Recorder/` folder with sketch, instructions, local helpers and validator, matching Stage 0A.
+- Updated the implementation plan and project working contract to preserve this packaging requirement.
+
+### Validation
+
+- Documentation links, version alignment, plan-copy consistency and whitespace checked. No firmware implementation or hardware testing.
+
 ## 0.1.1 — 2026-10-22
 
 ### Added

@@ -1,6 +1,6 @@
 # Stage 0B implementation plan
 
-Planning version: 0.1.1, 2026-10-22. Status: ready for implementation; no Stage 0B acceptance claimed.
+Planning version: 0.1.2, 2026-10-22. Status: ready for implementation; no Stage 0B acceptance claimed.
 
 ## Requirements and inspected baseline
 
@@ -27,15 +27,29 @@ Choose a documented little-endian format version 1 with magic, lengths, rate, re
 
 Scan existing RUN0001.BIN–RUN9999.BIN before creation with one storage owner; refuse exhausted names and never truncate an existing path. Re-check absence immediately before open. Detect short writes regardless of free-space estimates. On failure halt production, close best-effort and retain the partial file. A missing/invalid footer is incomplete; a footer reporting losses is not a passing recording. On healthy storage, drain and finalise with explicit counters even after an acquisition failure. No claim of power-loss atomicity or guaranteed durability from flush/close.
 
+## Standalone stage folder
+
+Match the existing `Stage0A_SD_Test/` delivery method with one root-level folder:
+
+```text
+Stage0B_Recorder/
+├── Stage0B_Recorder.ino
+├── README.txt
+├── validate_recording.py
+└── (local headers/source files if needed)
+```
+
+The instructions must cover wiring, board/core requirements, opening the sketch, build/upload, serial diagnostics, recording operation, copying files from the card, validator invocation and expected results. Include all runtime firmware helpers in this folder and bundle the standalone host validator here so the folder can be copied and used independently. Do not require sibling repository files to operate it. Keep automated development tests under `tests/` and reference the bundled validator directly rather than maintaining duplicate implementations. Project-wide docs retain progress, rationale and acceptance evidence. Create the stage folder when implementing its actual deliverables.
+
 ## Implementation sequence and deliverables
 
 | ID | Deliverable and intended files | Dependency / verification |
 |---|---|---|
-| B1 | Capture CLI/core/FQBN and electrical preflight in `docs/development-log.md`; create `firmware/stage0b-recorder/Stage0B_Recorder/` | Verify installed APIs and board; preserve original reference |
-| B2 | Freeze byte layout/accounting in `docs/data-format.md`; implement `analysis/validate_recording.py`, `tests/test_validate_recording.py` | Independent generated fixtures; stdlib only; reject malformed lengths/versions/checksums/footer/sequence/pattern |
+| B1 | Capture CLI/core/FQBN and electrical preflight in `docs/development-log.md`; create `Stage0B_Recorder/` | Verify installed APIs and board; preserve original reference |
+| B2 | Freeze byte layout/accounting in `docs/data-format.md`; implement `Stage0B_Recorder/validate_recording.py`, `tests/test_validate_recording.py` | Independent generated fixtures; stdlib only; reject malformed lengths/versions/checksums/footer/sequence/pattern |
 | B3 | Implement portable control, synthetic scheduling and accounting helpers plus host regression tests under `tests/`; firmware files in B1 directory | Bounce, hold, boot-held, timestamp boundaries, missed slots, overflow and stop race tests |
 | B4 | Integrate producer, fixed queue, storage owner, naming, state machine, read-back and metrics in the Stage 0B sketch and local headers | B2/B3; compile actual ESP32 target; host-injected stalls/errors through a narrow storage test seam |
-| B5 | Add build/upload commands, wiring and bench run sheet to `firmware/stage0b-recorder/README.md` and `docs/test-procedures.md` | B4; run host checks and actual firmware compile; record tool versions and gaps |
+| B5 | Add build/upload commands, wiring and bench run sheet to `Stage0B_Recorder/README.txt` and `docs/test-procedures.md` | B4; run host checks and actual firmware compile; record tool versions and gaps |
 | B6 | Execute bench matrix; save serial/validator summaries in a dated `docs/evidence/` record and update progress | Hardware and B5 required; all criteria below must pass before Stage 1/2 |
 
 For each completed slice update progress, VERSION, changelog and development log together under [development-workflow.md](development-workflow.md). Use patch increments for tooling/fixes and a minor increment when the recorder capability is delivered. Keep hardware acceptance pending until B6 passes. Commit verified slices with Lore trailers; integrate usable slices into main. Do not tag a hardware-qualified release from compilation alone.
