@@ -1,0 +1,84 @@
+
+=== STAGE 1 OPTICAL TEST 0.3.8 ===
+OUT=GPIO26; stable detection cycle, clear to rearm; minimum_us=1000
+One mark/revolution assumed. Counts are accepted edges, not verified revolutions.
+IDLE: release GPIO32 button, press to start; press again to stop. LED on testing, off pulses per detection.
+running=0 raw_transitions=0 level=1 accepted=0 rejected=0 last_us=0 interval_us=0 min_us=0 max_us=0 rpm=0.00 average_rpm=0.00 stale=1
+running=0 raw_transitions=0 level=1 accepted=0 rejected=0 last_us=0 interval_us=0 min_us=0 max_us=0 rpm=0.00 average_rpm=0.00 stale=1
+running=0 raw_transitions=0 level=1 accepted=0 rejected=0 last_us=0 interval_us=0 min_us=0 max_us=0 rpm=0.00 average_rpm=0.00 stale=1
+running=0 raw_transitions=0 level=1 accepted=0 rejected=0 last_us=0 interval_us=0 min_us=0 max_us=0 rpm=0.00 average_rpm=0.00 stale=1
+running=0 raw_transitions=0 level=1 accepted=0 rejected=0 last_us=0 interval_us=0 min_us=0 max_us=0 rpm=0.00 average_rpm=0.00 stale=1
+running=0 raw_transitions=0 level=1 accepted=0 rejected=0 last_us=0 interval_us=0 min_us=0 max_us=0 rpm=0.00 average_rpm=0.00 stale=1
+running=0 raw_transitions=0 level=1 accepted=0 rejected=0 last_us=0 interval_us=0 min_us=0 max_us=0 rpm=0.00 average_rpm=0.00 stale=1
+running=0 raw_transitions=0 level=1 accepted=0 rejected=0 last_us=0 interval_us=0 min_us=0 max_us=0 rpm=0.00 average_rpm=0.00 stale=1
+running=0 raw_transitions=0 level=1 accepted=0 rejected=0 last_us=0 interval_us=0 min_us=0 max_us=0 rpm=0.00 average_rpm=0.00 stale=1
+START: counters reset; clear mark before detection if starting covered.
+running=1 raw_transitions=0 level=1 accepted=0 rejected=0 last_us=0 interval_us=0 min_us=0 max_us=0 rpm=0.00 average_rpm=0.00 stale=1
+running=1 raw_transitions=0 level=1 accepted=0 rejected=0 last_us=0 interval_us=0 min_us=0 max_us=0 rpm=0.00 average_rpm=0.00 stale=1
+running=1 raw_transitions=11 level=1 accepted=1 rejected=0 last_us=11502930 interval_us=0 min_us=0 max_us=0 rpm=0.00 average_rpm=0.00 stale=0
+running=1 raw_transitions=20 level=1 accepted=2 rejected=0 last_us=12482826 interval_us=979896 min_us=979896 max_us=979896 rpm=61.23 average_rpm=61.23 stale=0
+running=1 raw_transitions=43 level=1 accepted=3 rejected=0 last_us=13412118 interval_us=929292 min_us=929292 max_us=979896 rpm=64.57 average_rpm=62.85 stale=0
+running=1 raw_transitions=48 level=1 accepted=4 rejected=0 last_us=14370190 interval_us=958072 min_us=929292 max_us=979896 rpm=62.63 average_rpm=62.78 stale=0
+running=1 raw_transitions=52 level=1 accepted=5 rejected=0 last_us=16115404 interval_us=1745214 min_us=929292 max_us=1745214 rpm=34.38 average_rpm=52.03 stale=0
+running=1 raw_transitions=58 level=1 accepted=6 rejected=0 last_us=16954718 interval_us=839314 min_us=839314 max_us=1745214 rpm=71.49 average_rpm=55.03 stale=0
+running=1 raw_transitions=62 level=1 accepted=7 rejected=0 last_us=17762254 interval_us=807536 min_us=807536 max_us=1745214 rpm=74.30 average_rpm=57.51 stale=0
+running=1 raw_transitions=68 level=0 accepted=9 rejected=0 last_us=19240326 interval_us=688053 min_us=688053 max_us=1745214 rpm=87.20 average_rpm=62.04 stale=0
+running=1 raw_transitions=76 level=1 accepted=10 rejected=0 last_us=19943592 interval_us=703266 min_us=688053 max_us=1745214 rpm=85.32 average_rpm=63.98 stale=0
+running=1 raw_transitions=81 level=1 accepted=11 rejected=0 last_us=20706481 interval_us=762889 min_us=688053 max_us=1745214 rpm=78.65 average_rpm=65.19 stale=0
+running=1 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=83.95 average_rpm=66.54 stale=0
+running=1 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=83.95 average_rpm=66.54 stale=0
+running=1 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+STOP duration_us=14099000 accepted=12 rejected=0 raw_transitions=88
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1
+running=0 raw_transitions=88 level=1 accepted=12 rejected=0 last_us=21421197 interval_us=714716 min_us=688053 max_us=1745214 rpm=0.00 average_rpm=66.54 stale=1

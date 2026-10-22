@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.3.9 — 2026-10-22
+
+### Added
+
+- Button-controlled Stage 1 v0.3.8 bench report and serial: START/STOP observed, 14.099 s, 12 detections, 88 raw transitions. Physical LED confirmation and SD writing remain unverified; this sketch has no SD output. Documentation-only release.
+
 ## 0.3.8 — 2026-10-22
 
 - Add standalone optical GPIO32 start/stop, per-run counter reset, frozen stop summary and idle gating.
