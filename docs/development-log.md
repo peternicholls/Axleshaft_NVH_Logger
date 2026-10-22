@@ -33,3 +33,7 @@ No ESP32 USB device detected, no upload or hardware acceptance. Timing under act
 ## 2026-10-22 — 0.2.1: built-in recording indicator
 
 User confirmed no separate LED is fitted. Replaced GPIO25 with LED_BUILTIN where available or GPIO2 for the generic target, with configurable active-low polarity. Generic ESP32 variant does not define LED_BUILTIN; actual board mapping remains unconfirmed. Updated standalone and project wiring instructions. ESP32 compile, existing host controls/validator checks and whitespace checks pass. No physical LED test or upload performed.
+
+## 2026-10-22 — 0.2.2: upload retry and Arduino declaration fix
+
+Reproduced Arduino-generated declarations appearing before State after the built-in LED helper was added. Explicit getState/setState declarations fix compilation without changing recorder behavior. Python validator and C++ controls checks pass; git whitespace check passes. Compile target esp32:esp32:esp32, CLI 1.5.1, core 3.3.12. Physical board ESP32-D0WD-V3 revision 3.1, MAC 28:05:a5:35:1c:90 on /dev/cu.usbserial-410. Upload at 115200 baud verified flash hashes. Startup after user wiring check still reports SD mount/card failed. No recording started; card identity, physical LED operation and full Stage 0B acceptance remain unverified.

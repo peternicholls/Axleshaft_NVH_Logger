@@ -1,4 +1,4 @@
-PHASE 0B — RECORDING CONTROLS AND CONTINUOUS SD LOGGING — 0.2.1
+PHASE 0B — RECORDING CONTROLS AND CONTINUOUS SD LOGGING — 0.2.2
 
 Copy this entire folder. Open Stage0B_Recorder.ino in Arduino IDE.
 Board: ESP32 Dev Module (conventional ESP32-WROOM). Verified compilation with

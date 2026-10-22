@@ -2,6 +2,16 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.2.2 — 2026-10-22
+
+### Fixed
+
+- Declare State-dependent functions explicitly so Arduino preprocessing compiles the built-in LED firmware reliably.
+
+### Validation
+
+- ESP32 core 3.3.12 compile and host controls/validator checks pass. Physical ESP32-D0WD-V3 upload hashes verified at 115200 baud; startup reports SD mount/card failure after wiring recheck. Recording and LED acceptance remain pending.
+
 ## 0.2.1 — 2026-10-22
 
 - Use the built-in recording LED instead of external GPIO25 wiring; support board-defined LED pin, GPIO2 fallback and configurable polarity.

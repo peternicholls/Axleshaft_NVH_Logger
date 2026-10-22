@@ -1,4 +1,4 @@
-/* Polestar NVH Logger 0.2.1 — standalone Phase 0B. See README.txt. */
+/* Polestar NVH Logger 0.2.2 — standalone Phase 0B. See README.txt. */
 #include <Arduino.h>
 #include <SPI.h>
 #include <SD.h>
@@ -22,6 +22,9 @@ constexpr unsigned CAPACITY = 1024;
 struct Sample { int16_t channel[6]; };
 static_assert(sizeof(Sample) == 12, "sample size");
 enum class State { Starting, Idle, Recording, Saving, Error };
+// Explicit declarations prevent Arduino from placing these before State.
+static State getState();
+static void setState(State value);
 portMUX_TYPE mux = portMUX_INITIALIZER_UNLOCKED;
 State state = State::Starting;
 QueueHandle_t queueHandle;
@@ -175,7 +178,7 @@ void setup() {
   pinMode(32, INPUT_PULLUP); pinMode(RECORDING_LED_PIN, OUTPUT); pinMode(33, OUTPUT);
   recordingLed(false); digitalWrite(33, LOW);
   delay(1600);
-  Serial.println("Phase 0B 0.2.1; 1000 Hz, six int16 channels, 12 KiB queue. No auto-stop.");
+  Serial.println("Phase 0B 0.2.2; 1000 Hz, six int16 channels, 12 KiB queue. No auto-stop.");
   queueHandle = xQueueCreateStatic(CAPACITY, sizeof(Sample), queueMemory, &queueControl);
   esp_timer_create_args_t args = {};
   args.callback = sampleTimer; args.name = "samples"; args.skip_unhandled_events = true;
