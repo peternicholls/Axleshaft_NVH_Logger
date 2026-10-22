@@ -81,3 +81,7 @@ Host cycle/bounce/boot tests pass with warnings-as-errors and address/undefined 
 ## 2026-10-22 — 0.3.4: wireless planning
 
 User proposed the fitted ESP32 radio for monitoring and recording start/stop. Reviewed supplied photo and official Espressif ESP32/Wi-Fi documentation; added a SoftAP/browser-first proposal with BLE alternative, explicit idempotent commands, physical fallback, bounded telemetry and acquisition isolation. Added standalone StageWireless_Test packaging proposal and measurable network/recording/disconnect/range gates. No code, dependencies, pin changes or hardware tests. Verified documentation links, version alignment and whitespace; current acceptance gaps remain open.
+
+## 2026-10-22 — 0.3.5: updated optical firmware rerun
+
+Uploaded firmware banner 0.3.3 from repository revision 61d2fd0 (0.3.4). Compile and flash hash verification passed; host optical checks passed. Captured 110 accepted detections, 1,413 raw transitions, zero rejected qualified detections; final counters stable. User answered “yes” to combined count/LED prompt; actual physical cycle count cannot be inferred. No verified 20-cycle pass claimed. Report and raw serial under docs/evidence/2026-10-22-stage1-v0.3.3-rerun-*. Controlled optical acceptance remains pending; firmware unchanged by documentation release.

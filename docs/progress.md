@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.3.4 (latest captured installed firmware: optical 0.3.0).
+Last updated: 2026-10-22. Repository version: 0.3.5 (latest captured installed firmware: optical 0.3.0).
 
 ## Current position
 
@@ -74,3 +74,7 @@ User observed leading/trailing flashes. Stable-cycle qualification now counts on
 ## Wireless proposal — 0.3.4
 
 Added [wireless plan](wireless-control-plan.md) at user request: local password-protected Wi-Fi/browser monitoring and explicit start/stop, physical fallback, bounded networking and disconnect-safe autonomous recording. Includes independent stage packaging and host/browser/60-second/range/storage acceptance gates. Planning only; no firmware changes or additional acceptance. Current optical 0.3.3 physical retest and earlier recorder gates remain open.
+
+## Updated optical rerun — 2026-10-22
+
+[Updated-code report](evidence/2026-10-22-stage1-v0.3.3-rerun-report.md): uploaded firmware 0.3.3 from repository 0.3.4, verified flash; 110 accepted, 1,413 raw transitions, zero rejected qualified detections, stable final counters. Actual cover/uncover count ambiguous; no 20-cycle acceptance claimed. Full optical accuracy remains pending.

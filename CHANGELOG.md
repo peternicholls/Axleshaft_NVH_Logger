@@ -2,6 +2,13 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.3.5 — 2026-10-22
+
+### Added
+
+- Updated Stage 1 v0.3.3 firmware rerun report and serial: 110 accepted detections, 1,413 raw transitions, zero rejected qualified detections, stable final counters. Physical cycle count remains ambiguous; no 20-cycle acceptance claim.
+- Compile, verified upload and host optical checks passed. Documentation-only release; firmware remains 0.3.3.
+
 ## 0.3.4 — 2026-10-22
 
 - Plan optional local Wi-Fi/browser status and start/stop, standalone test packaging, physical fallback and bounded command/telemetry handling.
