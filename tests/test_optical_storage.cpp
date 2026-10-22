@@ -5,9 +5,9 @@ int main() {
   using namespace optical_storage;
   char name[96];
   assert(eventFilename("2026-10-22_14-30-00",1,name,sizeof(name)));
-  assert(std::string(name)=="OPT_2026-10-22_14-30-00_0001.BIN");
+  assert(std::string(name)=="/OPT_2026-10-22_14-30-00_0001.BIN");
   assert(eventFilename("2026-10-22_14-30-00",2,name,sizeof(name)));
-  assert(std::string(name)=="OPT_2026-10-22_14-30-00_0002.BIN");
+  assert(std::string(name)=="/OPT_2026-10-22_14-30-00_0002.BIN");
   assert(eventFilename("UNSET_aabbccdd_UP15",1,name,sizeof(name)));
   assert(!eventFilename("test",0,name,sizeof(name)));
   assert(!eventFilename("test",10000,name,sizeof(name)));

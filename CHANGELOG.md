@@ -2,6 +2,16 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.4.1 — 2026-10-22
+
+### Fixed
+
+- Prefix optical SD paths with '/' as required by ESP32 FS; regression reproduced the original create failure.
+
+### Validation
+
+- Compile, verified upload, host Python checks and C++ storage regression pass. UTC clock acknowledged; button START/STOP saved 11 events/176 bytes with zero queue drops and write/read-back/accounting PASS. User considers physical-count discrepancy potentially manual and defers count-edge cases; exact 10-cycle accuracy remains inconclusive. Physical LED confirmation and actual-file host validation remain pending.
+
 ## 0.3.9 — 2026-10-22
 
 ### Added

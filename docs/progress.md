@@ -94,3 +94,7 @@ Prepared GPIO32 debounced start/stop for the standalone optical test; each start
 ## Optical SD event logging — 0.4.0
 
 Prepared standalone Stage 1 optical+SD test by explicit user request (no IMU integration). Accepted optical timestamps/sequence numbers pass through a 4 KiB queue to a dedicated storage task. Button starts a new dated file; stop drains, closes and CRC-verifies. Serial TIME sets UTC naming; unset clock uses labelled boot/uptime fallback. Added standalone validator and SD wiring/bench instructions. ESP32 compile and host integrity/session/filter checks pass. No upload or hardware operation here; optical+storage load, 20-revolution file validation, SD-full behaviour and timestamp naming need physical qualification in the separate workflow. Earlier Stage 0B gates remain open.
+
+## Clocked optical storage bench — 2026-10-22
+
+[Report](evidence/2026-10-22-stage1-sd-button-report.md): v0.4.1 fixes missing '/' in SD paths. Verified upload and UTC clock acknowledgement; button START/STOP saved 11 events/176 bytes with zero queue drops, write/read-back/accounting PASS. Requested 10-cycle comparison is inconclusive because user reported possible manual error and deferred edge cases. Physical LED confirmation and independent actual-file validator remain open. Full optical/Stage 0B acceptance is not implied.

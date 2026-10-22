@@ -1,4 +1,4 @@
-Polestar 2 NVH Logger — Stage 1 optical rotation test — 0.4.0
+Polestar 2 NVH Logger — Stage 1 optical rotation test — 0.4.1
 ==========================================================
 Standalone sketch for a rotating axle/substitute with ONE white reference mark.
 Optical event SD logging; no IMU integration. Code preparation/build only in this chat;

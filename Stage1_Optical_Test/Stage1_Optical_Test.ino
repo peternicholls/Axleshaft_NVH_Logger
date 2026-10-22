@@ -1,4 +1,4 @@
-/* Polestar NVH Logger 0.4.0 — standalone optical sensor bench test.
+/* Polestar NVH Logger 0.4.1 — standalone optical sensor bench test.
    Read README.txt before wiring. Optical SD event logging; no IMU or sibling runtime files. */
 #include <Arduino.h>
 #include <esp_timer.h>
@@ -69,7 +69,7 @@ void setup() {
   digitalWrite(INDICATOR_PIN, INDICATOR_ACTIVE_LOW ? HIGH : LOW);
   pinMode(33, OUTPUT); digitalWrite(33, LOW); // Future external rotation LED.
   delay(1600);
-  Serial.println("\n=== STAGE 1 OPTICAL TEST 0.4.0 ===");
+  Serial.println("\n=== STAGE 1 OPTICAL TEST 0.4.1 ===");
   Serial.printf("OUT=GPIO26; stable detection cycle, clear to rearm; minimum_us=%lu\n",
                 (unsigned long)MIN_PULSE_INTERVAL_US);
   Serial.println("One mark/revolution assumed. Counts are accepted edges, not verified revolutions.");
