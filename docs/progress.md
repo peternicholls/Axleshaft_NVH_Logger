@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-22. Repository version: 0.4.4 (latest captured installed firmware: optical 0.4.1).
+Last updated: 2026-10-23. Repository version: 0.4.5 (latest captured installed firmware: optical 0.4.1).
 
 ## Current position
 
@@ -21,9 +21,7 @@ Stage 0B: standalone 1 kHz firmware, instructions and validator implemented. ESP
 
 ## Immediate next work
 
-1. Follow the standalone Stage0B_Recorder instructions to confirm wiring and upload to the actual ESP32 port.
-2. Run the 60-second button recording and several short sessions; retain Serial summaries and host validator results.
-3. Test disposable-card insufficient-space behaviour and log results before opening Stage 1/2.
+Follow [next-phase-plan.md](next-phase-plan.md): prepare the qualification run sheet and implement the first offline optical analysis bench here. Separate hardware workflow supplies white-mark rotation, recorder 60-second, naming, LED and storage-full/stall evidence. Reconcile acceptance before starting standalone Stage 2 IMU implementation. Wireless remains planned.
 
 ## Open evidence and decisions
 
@@ -110,3 +108,7 @@ Actual evidence file OPT_2026-10-22_14-45-28_0001.BIN passes the host validator:
 ## Analysis bench planning — 0.4.4
 
 Added [analysis bench software](analysis-bench-plan.md) to the roadmap: offline optical import/validation, event/interval/RPM inspection, comparison and exports first; IMU traces, spectra and order tracking later when timing/format prerequisites exist. Reuse existing validators and retain source bytes/metadata. No application implementation or new dependencies; firmware unchanged. Also reconciled the stale progress header with the captured 0.4.1 firmware evidence.
+
+## Next-phase planning — 0.4.5, 2026-10-23
+
+Added sequenced bench qualification and first offline analysis work, software/physical acceptance criteria, risks and conditional Stage 2 entry. This is a plan only; no code, dependencies, hardware operation or acceptance change. Latest captured optical firmware remains 0.4.1.

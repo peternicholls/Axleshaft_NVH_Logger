@@ -125,3 +125,7 @@ Validated actual evidence binary with validate_optical.py --expected-events 11 -
 ## 2026-10-22 — 0.4.4: analysis bench planning
 
 User requested analysis bench software as a planning item. Added a focused plan and roadmap/index links, covering offline import with integrity evidence, optical timing/RPM UI, session comparisons, parameterised exports and later IMU/synchronous analysis. Proposed Python processing engine and local UI, with framework/dependencies left for implementation evaluation. Defined existing-file and synthetic-fixture acceptance, source immutability and unknown-metadata handling. Reconciled stale progress header against existing evidence. Documentation links, version alignment and whitespace pass. No application, dependencies, firmware changes or hardware operation.
+
+## 2026-10-23 — 0.4.5: next-phase work plan
+
+Reviewed current evidence/progress and planned a qualification-and-analysis phase rather than treating incomplete hardware gates as passed. Sequenced run sheet, offline optical engine/UI, separate physical evidence, acceptance review and conditional standalone GY-521 entry. Documented exact intended Stage 2 pins, need for official register verification and independent sensor/timing qualification. Wireless deferred to separate qualification. Saved tracked plan and local .omx/plans copy; no firmware/UI implementation, dependencies, upload or hardware operation. Links, version alignment, plan-copy consistency and whitespace checks passed.

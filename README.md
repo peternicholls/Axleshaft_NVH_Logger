@@ -10,6 +10,7 @@ Stage 0A passed the hardware test reported in the [original handover](handover_v
 
 - [Progress and current evidence](docs/progress.md)
 - [Development plan and stage gates](docs/development-plan.md)
+- [Next phase: bench qualification and analysis](docs/next-phase-plan.md)
 - [Planned wireless monitoring and controls](docs/wireless-control-plan.md)
 - [Planned analysis bench software](docs/analysis-bench-plan.md)
 - [Stage 0B implementation plan](docs/stage0b-plan.md)

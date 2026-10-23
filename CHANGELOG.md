@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.4.5 — 2026-10-23
+
+- Sequence next work: qualification run sheet, first offline optical analysis engine/UI and separate physical evidence collection, followed by acceptance review and conditional Stage 2 entry.
+- Define software and hardware acceptance tests, initial file-size scope, exact stage wiring references and remaining risks.
+- Planning only; documentation links, version alignment, plan-copy consistency and whitespace checked. No implementation or hardware operation.
+
 ## 0.4.4 — 2026-10-22
 
 - Add analysis bench software to planning: offline recording validation, optical/RPM inspection, comparison and reproducible exports; later IMU, spectral and order analysis.

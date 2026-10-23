@@ -1,6 +1,6 @@
 # Development plan
 
-Use [progress.md](progress.md) for live status. Stage gates require recorded evidence, not just implementation completion.
+Use [progress.md](progress.md) for live status. Next work is sequenced in [the next-phase plan](next-phase-plan.md). Stage gates require recorded evidence, not just implementation completion.
 
 ## 0 — Foundation (0.1.0)
 
