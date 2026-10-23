@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.5.1 — 2026-10-23
+
+- Organise a separate wheel-balancer concept: no SD logging, calibrated single/two-plane sensing, pictorial correction guidance and guarded automatic positioning.
+- Define independent emergency-stop/guard requirements, unresolved mechanical inputs and staged validation. Concept documentation only; no firmware or hardware acceptance change.
+- Local links, version alignment and whitespace checked.
+
 ## 0.5.0 — 2026-10-23
 
 - Review and resolve GY-521 outline gaps: register/FIFO layout, bus address versus identity, I2C throughput/read limits, fault policy, stop accounting and timing-association gates.

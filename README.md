@@ -6,6 +6,10 @@ Project version: see [VERSION](VERSION). Changes: [CHANGELOG.md](CHANGELOG.md).
 
 Stage 0A passed the hardware test reported in the [original handover](handover_v1.md). Stage 0B firmware is implemented and compile-checked; hardware acceptance remains pending; the integrated logger is not operational.
 
+## Side projects
+
+- [Mini tyre/wheel balancer concept](side-projects/wheel-balancer/README.md) — motor-driven, graphical correction guidance and automatic positioning; no SD logging.
+
 ## Documentation
 
 - [Progress and current evidence](docs/progress.md)

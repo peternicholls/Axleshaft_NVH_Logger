@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-23. Repository version: 0.5.0 (latest captured installed firmware: optical 0.4.1).
+Last updated: 2026-10-23. Repository version: 0.5.1 (latest captured installed firmware: optical 0.4.1).
 
 ## Current position
 
@@ -130,3 +130,7 @@ Added [implementation breakdown](stage2-coding-outline.md): standalone Stage2_IM
 Resolved snapshot-versus-FIFO layout, address/identity, bounded I2C operations, bus throughput, stop/fault policy and timing/format gates in the outline and design review. Added independent Stage2_IMU_Test bring-up firmware, README and real-driver host tests: fixed configuration/read-back, fresh ~10 Hz register snapshots, raw and uncalibrated scaled axes. ESP32 core 3.3.12 build without warnings, copied-folder build, sanitized host tests, Python regressions and Clang static analysis pass; independent review found no blocker. No upload or physical sensor operation. One-second freshness and five-second health-loop scheduling lack sketch-level host coverage and remain explicit verification gaps. Installed physical evidence remains optical 0.4.1.
 
 Local I1 build/test details: [2026-10-23 verification record](evidence/2026-10-23-stage2-i1-local-checks.md). This is software evidence only.
+
+## Wheel-balancer side project — 0.5.1
+
+Added [separate concept](../side-projects/wheel-balancer/README.md) with no SD requirement, motor/encoder/vibration/display controls, calibrated correction estimates, two-plane target and guarded indexing. Sources checked for balancing principles and machinery safeguards. Target-wheel envelope, mechanics, safety design, components, implementation and all physical evidence remain open. Documentation links/version/whitespace pass; logger stage acceptance unchanged.
