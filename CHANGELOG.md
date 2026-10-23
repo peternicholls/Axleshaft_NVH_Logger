@@ -2,6 +2,11 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.5.5 — 2026-10-23
+
+- Record purchased NVH test-rig parts and expected 24 October delivery; link hardware register to the next-phase plan.
+- Keep dimensions, bearing/rod retention, drive and tap/sensor arrangement explicitly unverified. Documentation links, version alignment and whitespace checked; no hardware or firmware changes.
+
 ## 0.5.4 — 2026-10-23
 
 - Archive the user-supplied completed wheel-balancer research in unchanged Markdown and PDF exports, with provenance and checksum manifest; retain the downloaded supporting balancing handbook.

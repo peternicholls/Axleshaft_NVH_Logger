@@ -92,3 +92,7 @@ Use [NVH-TIME-01](experiments/timing-protocol.md), with its [illustrated printab
 ## Coding breakdown — 0.4.8
 
 [Stage 2 coding outline](stage2-coding-outline.md) defines folder/file responsibilities, interfaces, hardware/ISR/FIFO/SD ownership, lifecycle, format decisions and five implementation slices. Begin with a working I2C identity/configuration/raw-response bring-up sketch (I1), then FIFO, anchors and storage; no empty final-logger skeletons or premature combined claims.
+
+## Rig hardware ordered — 2026-10-23
+
+User purchased motor mount, pulley wheel, bearings, bearing mounts and a steel rod, with a washer/screw end-retention arrangement described. Expected delivery 2026-10-24. See [hardware register](bench-rig-hardware.md) for unverified interfaces and arrival checks. This supports G3 preparation; motor/drive details, sensor bracket, cam/tap and actual operating range remain unconfirmed. No mechanical or timing acceptance inferred.

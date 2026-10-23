@@ -16,6 +16,7 @@ Stage 0A passed the hardware test reported in the [original handover](handover_v
 - [Development plan and stage gates](docs/development-plan.md)
 - [Next phase: GY-521 and synchronisation rig](docs/next-phase-plan.md)
 - [GY-521 coding outline](docs/stage2-coding-outline.md)
+- [Experiment rig hardware and delivery status](docs/bench-rig-hardware.md)
 - [Illustrated timing experiment protocol (PDF)](output/pdf/NVH-TIME-01-experiment-protocol.pdf)
 - [Timing protocol source and rebuild instructions](docs/experiments/README.md)
 - [Planned wireless monitoring and controls](docs/wireless-control-plan.md)

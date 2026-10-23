@@ -167,3 +167,7 @@ Updated the wheel-balancer README following angle/drive discussion and the reque
 ## 2026-10-23 — 0.5.4: completed research archive
 
 Transferred the corrected user-supplied research from its embedded completed report in the original ChatGPT conversation. Retained unchanged Markdown/PDF exports, provenance, byte counts and SHA-256 manifest; supporting B&K PDF from earlier transfer retained and labelled separately. Verified source/destination equality, PDF signature, Markdown title/ending, PDF text extraction, links/version/whitespace. Exported citation tokens may require original conversation; no independent fact-check, visual PDF audit, hardware operation or gate closure. Failed sensor-datasheet downloads not represented as available.
+
+## 2026-10-23 — 0.5.5: purchased timing-rig hardware
+
+Recorded user-purchased motor mount, pulley wheel, bearings/mounts and steel rod, expected tomorrow (2026-10-24). Documented washer/screw retention as user-described, with supply/assembly details still unverified. Added arrival/interface and mark/cam/IMU-mount planning checks; did not infer motor, drive component availability or approved operating speeds. Preserved existing side-project work. Links/version/whitespace pass; no firmware, hardware operation or physical acceptance.

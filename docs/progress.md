@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-23. Repository version: 0.5.4 (latest captured installed firmware: optical 0.4.1).
+Last updated: 2026-10-23. Repository version: 0.5.5 (latest captured installed firmware: optical 0.4.1).
 
 ## Current position
 
@@ -146,3 +146,7 @@ Updated the [side-project README](../side-projects/wheel-balancer/README.md) wit
 ## Wheel-balancer research transfer — 0.5.4
 
 Archived [completed research and provenance](../side-projects/wheel-balancer/research/README.md) as unchanged Markdown/PDF exports with checksum manifest and supporting B&K handbook. Copy integrity and basic content checks pass. Original citation tokens retained; no independent findings verification, design decision closure or physical acceptance implied.
+
+## Timing rig hardware ordered — 0.5.5
+
+[Hardware register](bench-rig-hardware.md) records user-purchased motor mount, pulley, bearings/mounts and steel rod, with expected delivery 2026-10-24. User-described washer/screw retention remains to be checked against actual parts. Dimensions, fit, drive arrangement, cam/tap and sensor mounting remain unverified. No firmware, assembly, upload or test performed.
