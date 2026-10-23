@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-23. Repository version: 0.5.3 (latest captured installed firmware: optical 0.4.1).
+Last updated: 2026-10-23. Repository version: 0.5.4 (latest captured installed firmware: optical 0.4.1).
 
 ## Current position
 
@@ -142,3 +142,7 @@ Expanded the [side-project concept](../side-projects/wheel-balancer/README.md) w
 ## Wheel-balancer research register — 0.5.3
 
 Updated the [side-project README](../side-projects/wheel-balancer/README.md) with angle-sensing alternatives, provisional belt-driven servo layout and drive-sizing inputs. Added R01–R14 open questions, required closure evidence and research ordering covering mechanics, sensing, calibration, safety, PCB/CAD, UI and independent validation. These are research tasks, not resolved specifications; all implementation and physical gates remain open. Local links/version/whitespace pass.
+
+## Wheel-balancer research transfer — 0.5.4
+
+Archived [completed research and provenance](../side-projects/wheel-balancer/research/README.md) as unchanged Markdown/PDF exports with checksum manifest and supporting B&K handbook. Copy integrity and basic content checks pass. Original citation tokens retained; no independent findings verification, design decision closure or physical acceptance implied.

@@ -2,6 +2,11 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.5.4 — 2026-10-23
+
+- Archive the user-supplied completed wheel-balancer research in unchanged Markdown and PDF exports, with provenance and checksum manifest; retain the downloaded supporting balancing handbook.
+- Verify copied bytes, PDF signature, extracted title/content, local links, version alignment and whitespace. No independent engineering validation or acceptance change.
+
 ## 0.5.3 — 2026-10-23
 
 - Expand wheel-balancer README with angle-sensing options, provisional belt-driven servo architecture and powered/coast-down measurement tradeoffs.

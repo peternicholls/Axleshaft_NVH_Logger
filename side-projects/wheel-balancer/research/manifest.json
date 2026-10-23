@@ -1,0 +1,20 @@
+{
+  "retrieved": "2026-10-23",
+  "files": [
+    {
+      "path": "2026-10-23-deep-research-report.md",
+      "bytes": 66125,
+      "sha256": "c58ad68f9a940471178c45b3d21c888d8bfbb3c8a969a05d90fb466c1395949c"
+    },
+    {
+      "path": "2026-10-23-deep-research-report.pdf",
+      "bytes": 414199,
+      "sha256": "814f3204d37e338253c2025c4200ecb57e48e324e517b8c8fa3333f283001c6c"
+    },
+    {
+      "path": "references/bksv-static-and-dynamic-balancing.pdf",
+      "bytes": 2183335,
+      "sha256": "b91573ae5235350251485b7bde77f4b70fc9c578251b48147d7b0e33f3b837a7"
+    }
+  ]
+}

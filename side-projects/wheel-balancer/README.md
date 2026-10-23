@@ -177,6 +177,10 @@ Before either design is released for fabrication, agree the enclosure envelope, 
 
 Immediate next design deliverable: target-wheel requirements, initial CAD assembly layout, electronics block diagram and shared mechanical/electrical interface drawing, alongside a dependency-free offline calculation model. No purchase list or energized wiring specification yet.
 
+## Research archive
+
+The [downloaded research report and provenance](research/README.md) contain the full Markdown and PDF exports from the supplied ChatGPT research conversation. Research recommendations remain subject to review; no design or hardware gate is closed by importing the report.
+
 ## Sources
 
 - [Brüel & Kjær, Static and Dynamic Balancing](https://www.bksv.com/media/doc/17-227.pdf): trial-weight vectors and coupled two-plane correction.

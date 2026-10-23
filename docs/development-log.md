@@ -163,3 +163,7 @@ Added user-required CAD and PCB development to the wheel-balancer scope. Defined
 ## 2026-10-23 — 0.5.3: drive, sensing and explicit research
 
 Updated the wheel-balancer README following angle/drive discussion and the request to spell out research. Recorded sensor and drive alternatives, provisional spindle-mounted absolute magnetic encoder and belt-driven servo, common drive-cycle behaviour and unresolved motor sizing. Added 14 explicit research areas with questions and closure evidence; no technical choice promoted to an approved design. Linked references consulted in the preceding discussion; no fresh research campaign, dependencies, firmware, fabrication or physical operations. Local Markdown links, version alignment and whitespace checks pass.
+
+## 2026-10-23 — 0.5.4: completed research archive
+
+Transferred the corrected user-supplied research from its embedded completed report in the original ChatGPT conversation. Retained unchanged Markdown/PDF exports, provenance, byte counts and SHA-256 manifest; supporting B&K PDF from earlier transfer retained and labelled separately. Verified source/destination equality, PDF signature, Markdown title/ending, PDF text extraction, links/version/whitespace. Exported citation tokens may require original conversation; no independent fact-check, visual PDF audit, hardware operation or gate closure. Failed sensor-datasheet downloads not represented as available.
