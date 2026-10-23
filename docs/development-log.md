@@ -159,3 +159,7 @@ Created a separately indexed side-project concept at user request. Defined RAM-o
 ## 2026-10-23 — 0.5.2: CAD and circuit-board workstreams
 
 Added user-required CAD and PCB development to the wheel-balancer scope. Defined assemblies, tolerances/load assumptions, schematics, harnesses, PCB outputs, source/export revision matching, mechanical/electrical interface review and fabrication gates. Kept independent safety engineering and measured as-built/board acceptance explicit. No tools selected, dependencies installed, design sources created, fabrication or hardware operation. Local Markdown links, version alignment and whitespace pass.
+
+## 2026-10-23 — 0.5.3: drive, sensing and explicit research
+
+Updated the wheel-balancer README following angle/drive discussion and the request to spell out research. Recorded sensor and drive alternatives, provisional spindle-mounted absolute magnetic encoder and belt-driven servo, common drive-cycle behaviour and unresolved motor sizing. Added 14 explicit research areas with questions and closure evidence; no technical choice promoted to an approved design. Linked references consulted in the preceding discussion; no fresh research campaign, dependencies, firmware, fabrication or physical operations. Local Markdown links, version alignment and whitespace checks pass.

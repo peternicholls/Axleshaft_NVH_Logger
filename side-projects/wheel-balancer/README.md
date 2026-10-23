@@ -37,6 +37,68 @@ flowchart LR
 
 One pulse per revolution supports steady-speed phase measurement. It cannot resolve arbitrary angle or reverse motion at rest: use a spindle encoder or equivalent angle sensor for positioning. A motor encoder alone is insufficient if a belt can slip. Freeze index zero, viewing side, rotation sign and the fixed application pointer in one documented coordinate convention.
 
+## Angle sensing: options and provisional direction
+
+One suitable spindle encoder can provide angle, direction and speed. Separate accelerometers measure vibration; guard and safety sensors serve different functions. Multiple rotation sensors are optional, not an established requirement, and extra sensors do not automatically provide independent safety protection.
+
+| Method | Capability | Limitation / research needed |
+|---|---|---|
+| Single Hall switch and magnet | Once-per-revolution phase reference and RPM | Cannot resolve angle between pulses at standstill |
+| Single optical mark | Once-per-revolution phase reference and RPM; related to existing optical experiments | Mark contrast, contamination and edge timing; insufficient alone for positioning |
+| Quadrature encoder with index (A/B/Z) | Tracks movement and direction through stopping | Needs a reference operation after startup; detect lost counts |
+| Absolute magnetic encoder | Reports angle at rest and during motion | Magnet alignment, air gap, eccentricity, stray fields, latency and accuracy need qualification |
+| Absolute optical encoder | Reports coded angular position | Disc alignment, enclosure, contamination and mechanical integration need evaluation |
+
+Provisional direction: an absolute magnetic encoder at the rear of the wheel spindle, potentially with both absolute serial and incremental outputs. Reserve CAD space for a retained magnet, stationary sensor board, alignment adjustment and cover. A compatible device is not selected. Check actual accuracy separately from bit resolution, including installation error and dynamic delay. The AS5047P datasheet in Sources illustrates an interface architecture, not an approved BOM item.
+
+## Spin drive: options and provisional direction
+
+Evaluate a servo-controlled motor driving a dedicated wheel spindle through a belt. Here servo means feedback-controlled motion, not a specific motor technology. The wheel loads are carried by spindle bearings; belt tension also loads the spindle and affects bearing/support design. The encoder measures the wheel spindle directly, even if the motor has its own feedback.
+
+```mermaid
+flowchart LR
+  M[Motor and separate drive module] --> T[Belt reduction]
+  T --> S[Spindle on two bearing supports]
+  S --> H[Wheel mounting hub]
+  S --> E[Spindle encoder]
+  E --> C[Controller]
+  C --> M
+```
+
+| Arrangement | Reason to consider | Tradeoff to research |
+|---|---|---|
+| Belt-driven servo | Flexible layout, selectable ratio, spin and indexing with one drive | Belt forces, compliance, transmission vibration and tension repeatability |
+| Direct-drive servo | Fewer transmission components | Motor/spindle integration, torque requirements and transmitted motor disturbance |
+| Retractable tyre-contact roller | Can disengage for measurement | Slip, tyre deformation, contact force and re-engagement for indexing |
+| Separate spin and indexing drives | Independently optimised operating modes | Additional coupling/clutch, engagement state, backlash and control complexity |
+
+Normal cycle: smooth acceleration → stable-speed measurement or qualified coast-down → controlled deceleration → slow indexing → verified standstill and restraint before access. Compare powered and coast-down acquisition experimentally. With a permanently connected belt, a coasting wheel still turns the motor/transmission; zero commanded torque does not remove their mechanical disturbance.
+
+Initially evaluate a separate motor-drive module, leaving the custom PCB responsible for sensing, UI and commands. Motor technology, supply voltage, power, ratio, braking arrangement and operating RPM remain open. Size using wheel/fixture inertia, target angular acceleration, friction/transmission loads, peak and continuous torque, duty cycle, stopping energy and stable load-inertia capability. At the spindle, acceleration torque is approximately J × angular acceleration plus load torque; stored rotational energy is ½ J × angular speed². Refer quantities through the chosen transmission before motor selection. Do not size from wheel mass or nominal watts alone.
+
+## Research register and open questions
+
+All items below are open. The provisional directions above are hypotheses to evaluate, not completed research or authority to fabricate/operate a machine. Record each resolution with dated sources, assumptions, calculations, design revision and, where needed, measured evidence. Datasheet review, simulation and physical qualification are separate evidence types.
+
+| ID / research area | Explicit open questions | Evidence needed to close the decision |
+|---|---|---|
+| R01 — Target and accuracy | Passenger-car wheels only? Maximum mass, diameter, width and inertia? Hub interfaces? Required residual balance, gram increments, angular accuracy and cycle time? | Agreed requirements sheet and representative wheel/fixture dimensions and inertia estimate with uncertainty |
+| R02 — Spindle and retention | Horizontal layout? Bearing spacing/type? Hub-centric or other adapters? How is clamping verified? Permitted runout and remount variation? | CAD options, load/deflection calculations, tolerance drawings, retention review and later measured runout/remount results |
+| R03 — Drive architecture | Belt, direct or roller? One drive or separate indexing? Which motor technology and feedback? Is disengagement worth its complexity? | Comparative layout, disturbance/control analysis and small-rig trial results |
+| R04 — Powertrain sizing | Measurement/indexing speeds? Acceleration and stop times? Belt ratio/tension? Peak/RMS torque, thermal duty, reflected inertia and supply capacity? | Inertia/load model, motion profile and documented motor/drive operating-envelope checks |
+| R05 — Stopping and access | Where does braking energy go? What occurs on power loss, failed drive or broken belt? How is standstill established and drift prevented? | Competent safety assessment, stop/brake/guard architecture, energy calculations and later worst-case stop/fault measurements |
+| R06 — Angle sensing | Absolute magnetic or A/B/Z? Accessible shaft end? Required accuracy, update rate, latency and cable interface? How are lost index/counts or magnet faults detected? | Datasheet/interface comparison, CAD alignment budget and measured static/dynamic angle errors against an independent reference |
+| R07 — Vibration sensing | Are two bearing-mounted accelerometers sufficiently sensitive and independent? Is the GY-521 adequate, or are other accelerometer/force-sensing arrangements needed? | Noise/bandwidth/timing budget and controlled trial-mass response, cross-coupling, saturation and repeatability evidence |
+| R08 — Acquisition and drive interference | Powered or coast-down measurement? How much do motor, belt and bearings contribute at 1×? What sampling/filter delay corrections are necessary? | Common-timebase design, frequency/order analysis, speed-dependent phase checks and powered/coasting comparison |
+| R09 — Calibration and validity | Can calibration be reused across wheel sizes/remounts? Which trial masses/radii are effective? When is the two-plane matrix too ill-conditioned? | Synthetic solver checks, controlled two-plane trials, uncertainty/rejection rules and blind known-mass verification |
+| R10 — Machinery protection | What containment, guard locking, independent overspeed protection and emergency-stop architecture are required for the intended use? | Risk assessment and specialist design review followed by documented inspection and fault validation; applicability/compliance assessment remains open |
+| R11 — Electronics and PCB | Which controller/sensor interfaces and power rails? Cable lengths and grounding? Separate sensor boards? Which drive commands/status and safety monitoring signals? | Block diagram, power/noise budget, interface table, schematic review and later board/harness bring-up with motor running |
+| R12 — CAD and manufacture | Which CAD/EDA tools and fabrication methods? Material, tolerances, mounting, enclosure/cooling and service access? | Agreed source/export workflow, coordinated CAD/PCB assembly, reviewed drawings/BOM and fabrication readiness record |
+| R13 — Operator guidance | Which viewing side and pointer? How are inner/outer planes, rounded masses, uncertain results and next-plane positioning presented? | Labelled interface prototype, coordinate tests and observed workflow checks before enabling motion |
+| R14 — Independent validation | What reference machine/method is available? How will residual balance, repeatability and indexing error be measured? What are pass/fail limits? | Written validation protocol with independent reference capability and agreed thresholds before acceptance trials |
+
+Next research package: resolve R01 requirements first, then develop R02/R03 mechanical options and R06/R07 sensing budgets together. These feed R04 sizing, R05/R10 safety design and R11 PCB interfaces. Begin offline calculation tests without waiting for hardware selection. Do not treat unresolved questions as default specifications.
+
 ## Measurement and calibration
 
 Extract the vibration component synchronous with one wheel revolution (1×), including amplitude and phase relative to the index. Timestamp acquisition and encoder events on a common timebase; account for sensor/filter delay. Average multiple stable revolutions and reject missing phase references, clipping, unstable speed, insufficient signal and nonrepeatable readings. Motor, belt, bearings, fixture runout and structural resonances can contaminate results; qualify the selected measurement speed and drive strategy experimentally.
@@ -121,3 +183,7 @@ Immediate next design deliverable: target-wheel requirements, initial CAD assemb
 - [UiTM experimental single/two-plane study](https://ir.uitm.edu.my/id/eprint/17643/): influence-coefficient experiments with known trial masses.
 - [HSE machinery safety introduction](https://www.hse.gov.uk/work-equipment-machinery/introduction.htm): guarding, access control, isolation and emergency controls.
 - [Machinery safety regulations, Annex I](https://www.legislation.gov.uk/uksi/2008/1597): emergency-stop reset must not restart machinery; emergency stops supplement safeguarding. Applicability and current compliance need assessment for the eventual build/use.
+
+- [AS5047P manufacturer datasheet](https://look.ams-osram.com/m/d05ee39221f9857/original/AS5047P-DS000324.pdf): example absolute SPI plus incremental encoder architecture.
+- [TI encoder overview](https://www.ti.com/document-viewer/lit/html/SSZTC91/GUID-9AA0DC8B-AEEF-430B-B1B0-EC40E48EE2E5): incremental versus absolute position feedback.
+- [Motor-sizing calculation guidance](https://www.orientalmotor.com.sg/sg/tech/calculation/sizing-motor04): acceleration/load torque and effective duty calculations; does not select a motor for this machine.
