@@ -1,77 +1,86 @@
-# Next phase: qualify the bench and inspect recordings
+# Next phase: GY-521 setup, then a marked-shaft synchronisation rig
 
-Plan version 0.4.5, 2026-10-23. Planning only: no firmware or application implementation in this deliverable.
+Plan version 0.4.6, 2026-10-23. Supersedes the 0.4.5 analysis-first sequence at the user's direction. Planning only; no new firmware, uploads or physical qualification in this deliverable.
 
-## Requirements and starting evidence
+## Goal and sequence override
 
-Prepare a dependable recording/inspection workflow before moving to real six-axis acquisition. Keep each firmware stage independently usable, preserve original data and version every coherent deliverable. This chat writes code, instructions and local checks; the separate upload/capture workflow executes hardware tests.
+Set up the GY-521 first. Then use a small motor, rotating shaft with one white mark, IR detector and a repeatable mechanical click/tap once per revolution to compare optical events with the IMU response. The user explicitly advances standalone Stage 2 preparation/development despite outstanding Stage 0B checks. Keep those earlier checks open; the rig is a bench synchronisation experiment, not vehicle or release acceptance.
 
-Current evidence: [optical SD report](evidence/2026-10-22-stage1-sd-button-report.md) establishes host-validated storage of 11 accepted events, 176 bytes and CRC d0aa5ebe. It was an informal finger test, not controlled rotation. [Phase 0B statistics](evidence/2026-10-22-stage0b-v0.2.4-statistics.md) establish only a 7.65-second synthetic recording, not the planned 60-second gate. [Progress](progress.md) records the open physical tests. No new qualification is inferred from planning.
+The analysis bench remains planned, initially providing only the decoding/plots needed for this experiment. Full UI, comparisons and wireless control are deferred. [Existing optical storage evidence](evidence/2026-10-22-stage1-sd-button-report.md) proves preservation of accepted events, not rotation accuracy or IMU timing.
 
-## Recommended order
+## Work packages
 
-| Work item | Deliverable / intended location | Dependency and completion evidence |
+| Step | Deliverable | Exit evidence |
 |---|---|---|
-| N1: execution pack | A short run sheet in `docs/test-procedures.md`, referencing the existing stage READMEs | Preserve separate firmware versions and record which stage is installed; no fresh upload here |
-| N2: offline import engine | `analysis-bench/` with README and tested Python import/validation/export code | Existing optical format and fixture; reuse standalone validation rules without requiring firmware changes |
-| N3: first analysis UI | Local event/interval/RPM view and file/Serial metadata import under `analysis-bench/` | N2; select a UI approach using available runtimes, no new dependency without explicit request |
-| N4: physical qualification | New Serial captures, binaries and reports in `docs/evidence/` from separate workflow | Can run alongside N2/N3; matrix below; failures stay open and lead to bounded fixes |
-| N5: acceptance review | Update `docs/progress.md` against every gate and publish a precise remaining-gap list | N2–N4 results; do not mark stages accepted based on short/finger-only tests |
-| N6: Stage 2 entry | Detailed standalone GY-521 implementation specification, then code only when prerequisites pass | Recorder Stage 0B acceptance required; no IMU/optical integration in this phase |
+| G1: GY-521 bring-up | Standalone `Stage2_IMU_Test/` with matching sketch, README.txt and all local helpers | Compiles here; separate workflow confirms actual module identity, register read-back, stationary/orientation response and tap response |
+| G2: FIFO acquisition and storage | Raw six-axis sampling targeting 1000 Hz, data-ready timing anchors, sequence/counters, independent storage task and host validator in that folder | Separate 60-second acquisition has no unexplained missing samples, FIFO overflow, queue drops or resets; file integrity verified on host |
+| G3: rig setup | Document shaft/mark, sensor gap, pot setting, tap arrangement, IMU orientation and mark-to-tap geometry | Independently counted revolutions produce one accepted optical event and one useful impulse per revolution; no unexplained false pulses/clipping |
+| G4: combined timing test | New standalone `Stage3_Sync_Bench/` after G1–G3 checks, retaining independently usable earlier stages | Raw samples, optical timestamps and timing anchors can be mapped into one monotonic domain; no FIFO-read-time substitution |
+| G5: analysis and repeatability | Small reproducible Python decoding/overlay/phase report, then expand the planned analysis bench | Optical intervals, acceleration response, phase, delay variation and drift can be inspected and independently reproduced |
 
-N2/N3 are the next substantive code work available in this chat. Offline analysis can proceed while physical qualification is outstanding. Wireless implementation follows later as a separately measured change; [its plan](wireless-control-plan.md) remains on the roadmap.
+Implement each bounded slice with local tests/build and updated VERSION/progress/changelog/development log. Uploads, wiring and captures remain in the separate hardware workflow. Combined testing starts only after standalone IMU acquisition is demonstrated and this rig's optical detection is checked. This does not declare all older Stage 0B gates passed.
 
-## First analysis bench scope
+## GY-521 wiring and initial setup
 
-Follow [analysis-bench-plan.md](analysis-bench-plan.md), limited initially to current optical files:
+| GY-521 / peripheral | ESP32 |
+|---|---|
+| VCC | Verified 3V3, subject to actual module verification |
+| GND | Common GND |
+| SDA | GPIO21 |
+| SCL | GPIO22 |
+| INT / data ready | GPIO27 |
+| AD0 | Define/document actual level and resulting I2C address; do not leave address ambiguous |
+| Optical digital OUT | GPIO26 (only used for combined rig test) |
+| Start/stop button | GPIO32 to GND, input pull-up |
+| Indicator | Built-in programmable LED; GPIO2 fallback remains board-specific |
+| SD | CS13, SCK18, MISO19, MOSI23, 1 MHz; verified 3V3/common ground, 5V disconnected |
 
-- Explicit optical format selection; file plus Serial evidence or expected count/CRC input. Show filename, source SHA-256, expected/actual size/count, CRC, firmware identity and unknown metadata.
-- Read-only source handling; table of sequence, elapsed microseconds, interval and derived RPM. Explain the detections-per-revolution assumption and distinguish finger spacing from verified shaft speed.
-- One interval/RPM plot with zoom/range selection, plus decoded CSV and an evidence summary export. Session comparison, IMU processing, FFT/order analysis and live telemetry remain later increments.
-- Validation failures stay visible; no silent repairs, fabricated timestamps or automatic physical fault diagnosis. Offline operation requires no ESP32 connection.
+Keep I2C short, confirm actual labels/pull-ups and voltage behaviour, and mount the IMU rigidly on the stationary structure receiving the tap. Do not place the ESP32 or IMU electronics on the rotating shaft. No assumptions about photo-identified module schematics.
 
-Before UI selection, inspect installed libraries/runtimes and propose the smallest viable local approach. Existing validators remain independently runnable in their stage folders. Implementation must avoid letting bench code and firmware validators drift; lock format/CRC rules with shared fixtures and cross-checks.
+Initial proposed ranges remain ±8 g / ±500 degrees/s, with raw signed 16-bit values and explicit scale metadata. Read identity/configuration back and record all register choices. Verify FIFO channel order, complete frames and overflow/reset handling against the [official MPU-6000/6050 register map](https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Register-Map.pdf). Hardware output rate depends on sample divider and filter setting; acquisition code must prove its actual cadence rather than use delay(1).
 
-### Software acceptance
+Separate baseline gravity/orientation/noise checks from later calibration claims. A modest manual tap must appear on the expected acceleration axes without saturating; it need not produce strong gyro readings.
 
-1. Actual retained optical fixture imports as 11 events/176 bytes, CRC d0aa5ebe; source SHA-256 remains unchanged.
-2. Decoded minimum/maximum/final intervals equal 47260/1473034/681691 us; empty and single-event sessions show no invented RPM.
-3. Synthetic 100000 us event intervals yield 600 RPM for one detection/revolution and 300 for two; every plot/export records the assumption.
-4. Missing/duplicate records, non-increasing timestamps, truncation, wrong count/CRC and unsupported format are rejected or explicitly labelled diagnostic-only.
-5. Exported CSV exactly preserves event sequence/timestamps; summary includes source hash, inputs and software version. Export never overwrites the source.
-6. Run import, selection and export through the UI locally; inspect behaviour/errors with the actual fixture and malformed fixtures. Record host test and UI evidence separately.
-7. Initial supported file size: up to 10 MiB optical files. Use bounded parsing; larger files receive an actionable limit message. Record import time and responsiveness on the development Mac and set an evidence-based performance gate before claiming larger-file support.
+## Motor/shaft/mark/click arrangement
 
-## Separate hardware qualification run sheet
+Use an available small motor or equivalent slow rotating setup first; no specific purchase is required by this plan. Secure the shaft and sensing bracket, keep cables clear, and begin with slow manual rotation before motor operation.
 
-| Stage / test | Required evidence | Pass condition |
-|---|---|---|
-| Optical white mark | Fixed mount, one mark, measured gap, lighting/pot setting, independent physical count, saved Serial/file | Exactly 20 complete manual revolutions produce 20 accepted/persisted records, zero queue drops, firmware and host validation PASS; repeat three sessions |
-| Optical speed | Independently measured RPM at low/mid/high points across a declared intended range; mark/clear pulse-width evidence | No unexplained missing/extra indices; measured RPM agreement within reference uncertainty; freeze numeric tolerance after documenting reference accuracy, before tests |
-| Indicator/controls | Explicit observation, not inferred from completion replies | One off pulse per detection at observable speed; idle off, running on, saving/error indications; held/boot-held button behaviour and frozen stop counts confirmed |
-| Stage 0B sustained | Three approximately 60-second runs with raw files/Serial, at least one run after restart | Zero missed/dropped slots; count agrees with recorded acquisition duration to one boundary slot; file size/pattern validators PASS |
-| Names and clock | Several short optical sessions, same-second collision where practical, restart with and without clock, prior file hashes | UTC names after clock set, explicit UNSET otherwise, no overwrite, every saved file matches its own summary |
-| Insufficient storage | Preserve wanted recordings; disposable card contents/controlled lack of space, partial output and Serial | Explicit error, acquisition stops, earlier files unchanged, no false saved/PASS; document recovery by reset |
-| Stalls and buffering | Controlled write-delay tests according to existing Stage 0B plan, with fault injection clearly enabled/disabled | Sufficient-buffer stalls show no loss; exhaustion fails observably, counters reconcile; no silent overwrites |
+- Put one white reference mark on a stable dark shaft/disc surface. Fix the IR sensor position and pot setting so mark and background are distinguishable. Record active polarity, gap, mark width and speed-dependent dwell times.
+- Use a small cam/tab or equivalent once-per-turn feature to actuate a light repeatable tap against the stationary IMU bracket. The audible click is useful feedback; the test signal is the mechanical acceleration impulse, since the GY-521 is not a microphone.
+- Arrange the tap at the mark passage initially, and allow its angle to be changed deliberately for a later phase check. Document real alignment rather than assuming perfectly simultaneous events.
+- Avoid uncontrolled multiple contacts/rebounds and clipping. Keep motor background vibration identifiable by recording motor-on/no-tap and tap-enabled baselines. Use the same IMU mount between runs.
 
-Use [test-procedures.md](test-procedures.md) and the standalone READMEs for exact wiring and commands. A nominal speed range or tolerance is not invented here: lack of an independent reference/pulse-width measurement leaves that optical gate pending. User-deferred finger-count edge cases are not reclassified as defects.
+First confirm 20 known complete revolutions manually, starting/ending clear. Require 20 accepted optical events and 20 distinguishable tap cycles in the complete capture. A tap can ring across several samples; do not count each ringing peak as another revolution. Physical contact repeatability must be inspected before interpreting sub-millisecond offsets.
 
-## Stage 2 after recorder acceptance
+## Timing model and what the rig can prove
 
-Create `Stage2_IMU_Test/` with matching sketch, README.txt, all local helpers and host validator, following earlier stage packaging. Planned connections: GY-521 SDA21, SCL22, data-ready INT27, verified 3V3/common ground; retain button32 and existing SD CS13/SCK18/MISO19/MOSI23 at 1 MHz. Verify actual module labels, electrical behaviour and pull-ups before hardware use.
+Use ESP32 monotonic microseconds for optical candidate-edge times and data-ready anchors. Preserve the optical filter settings/qualification separately from the candidate timestamp. Preserve raw IMU samples, sample index, FIFO/reset epochs and actual timing anchors; FIFO read completion is not acquisition time. Estimate sample-clock period/drift and anchor residuals, with any ambiguous or lost segments explicitly marked.
 
-First increment: device identity/register read-back and stationary/orientation checks. Next: hardware/FIFO-based six-axis acquisition targeting 1000 Hz, raw signed 16-bit samples, explicit configuration, timing anchors and overflow/reset accounting, with SD serviced separately. Proposed ±8 g / ±500 degrees per second and filter bandwidths remain subject to official device register documentation and measured qualification before implementation. Do not timestamp FIFO samples as though acquired at I2C-read time. Use a documented new format rather than interpreting old synthetic files as IMU data.
+The optical event is a phase reference, not an external clock locking the MPU-6050. At nominal 1000 Hz, samples are about 1 ms apart. Digital filtering adds response delay: the register-map table lists about 3 ms accelerometer delay for its 94 Hz bandwidth setting. Do not shift samples until a plot looks aligned or claim the tap peak should occur at zero delay. Save filter/range metadata and distinguish fixed delay, sample timing uncertainty, mechanical phase offset and contact jitter.
 
-Optical speed acceptance may proceed in parallel with standalone IMU only after the recorder prerequisite passes; combined logging requires both sensors independently qualified and a separate timing design review. No Stage 2 implementation is started by this planning request.
+A repeatable impulse near each index lets us inspect phase consistency and drift. It cannot by itself separate every source of delay. To claim digital timing accuracy independently, corroborate data-ready/optical anchor timing with a suitable measured reference if available; otherwise state the combined measurement uncertainty.
 
-## Risks and mitigations
+## Combined record and analysis requirements
 
-- Misreading short/finger success as full qualification: preserve evidence authority and gate status in each report.
-- UI/library overhead or extra dependencies: inspect environment first, keep processing headless/testable and approval requirement intact for new dependencies.
-- Unknown pulse widths/speed reference: measure before reducing stable-level filtering or asserting RPM accuracy.
-- Data-format ambiguity: require format selection and Serial metadata; retain unknowns, hashes and original bytes.
-- Physical workflow unavailable: complete software checks and prepare run sheets; leave hardware gates pending without uploading or operating hardware here.
+Define a new explicit versioned combined format before G4; do not mix the existing headerless optical and synthetic sample formats. Persist firmware/configuration, raw six-axis samples with indices, optical event sequence/timestamps, data-ready anchors, start/stop boundaries, FIFO resets/overflows, queue/storage errors and completion/checksum evidence. Use dated filenames with explicit UNSET fallback and retain host validation/provenance.
 
-## Delivery and review
+Initial analysis outputs:
 
-Implement each bounded slice with its progress, VERSION, changelog and development-log updates in one coherent Lore commit. Preserve unrelated changes, run relevant host/build/UI checks and integrate verified slices into main. No release tags or remote publication are needed. Final phase report must separate completed software, captured hardware evidence and all unpassed gates.
+1. Raw acceleration/gyro traces with optical-event lines on the recovered time axis.
+2. Optical period/RPM and event-to-impulse lag per revolution, using a documented onset/peak rule; show ambiguous/missing impulses rather than forcing a match.
+3. Per-revolution acceleration overlays aligned to the optical event, and mean waveform with variation.
+4. Lag/jitter/drift summary, raw versus expected mark-to-tap phase and baseline/no-tap comparison.
+5. Source hashes, configuration, timing model/fit, exclusions and software version, so results can be repeated.
+
+Moving the tap angle by known Δtheta gives expected lag change Δtheta/360 times the revolution period under approximately steady rotation. This controlled change is more informative than assuming the initial impact is exactly simultaneous with the optical edge. Keep physical angle uncertainty and speed variation in that comparison.
+
+## Acceptance plan and remaining uncertainty
+
+- G1: identity and configuration read-back match; stationary orientation and manual tap data are plausible, with axes/ranges documented.
+- G2: independently verify a 60-second raw acquisition and count/timing anchors, no unexplained losses, FIFO resets, overflows or clipping. Record actual rate and drift; set a numerical rate tolerance against the chosen reference before collection.
+- G3: known-count manual 20-revolution test passes, then test three documented motor speeds against an independent revolution/RPM reference. Establish dwell time margin for the current 1 ms optical stable-level filter; never silently shorten it to achieve a result.
+- G4: host validates complete combined records and recoverable timing across SD writes and stop. Test optical event count, IMU continuity and loss flags; stress tests must expose failures rather than conceal them.
+- G5: acquire at least 100 complete revolutions at each of three steady speed settings, plus no-tap baseline; report event-to-impulse distributions and start-to-end drift. Repeat a known tap-angle change and compare measured phase change with geometry/reference uncertainty.
+- Before the first motor dataset, record a numerical lag-repeatability target based on measured contact repeatability and sampling/filter limits. If no independent timing/angle reference exists, report observed repeatability only; do not label it absolute synchronisation accuracy.
+
+Retain the older recorder 60-second, storage-full, stall, LED and reboot/name-preservation checks as open until executed and evidenced; [progress](progress.md) remains the status authority. No calibrated rotation, absolute clock synchronisation, or final NVH readiness is claimed by this plan.

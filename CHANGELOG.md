@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.4.6 — 2026-10-23
+
+- Reorder next work at user direction: standalone GY-521 setup/acquisition, then motor/white-mark/mechanical-tap synchronisation bench.
+- Plan common-timebase anchors, mechanically coupled impulse tests, phase/delay/drift analysis and qualified acceptance without assuming simultaneous optical/acceleration peaks.
+- Preserve unpassed recorder checks; defer full analysis UI and wireless. Documentation/source review, links, version alignment, plan copy and whitespace checked; no implementation or hardware operation.
+
 ## 0.4.5 — 2026-10-23
 
 - Sequence next work: qualification run sheet, first offline optical analysis engine/UI and separate physical evidence collection, followed by acceptance review and conditional Stage 2 entry.

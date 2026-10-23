@@ -55,3 +55,7 @@ User explicitly requested standalone Stage 1 next while Phase 0B acceptance rema
 ## Planned analysis bench software
 
 [Analysis bench plan](analysis-bench-plan.md): local offline workbench for importing and validating recordings, inspecting optical events/RPM, comparing sessions and exporting reproducible results. Begin with existing optical evidence; add six-axis/FFT/spectrogram and rotational-order tools when their formats and timing are qualified. Wireless telemetry is an optional later extension. No application implementation or dependencies added yet.
+
+## Revised next phase — 2026-10-23 user direction
+
+GY-521 setup/development now comes first, followed by the motor/marked-shaft/mechanical-tap synchronisation rig described in [next-phase-plan.md](next-phase-plan.md). This supersedes the analysis-first ordering and permits Stage 2 development while preserving unpassed recorder gates. Demonstrate standalone IMU acquisition and rig optical response before combined bench testing. Analysis work initially serves the timing experiment; wireless and full analysis UI remain later.

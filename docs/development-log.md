@@ -129,3 +129,7 @@ User requested analysis bench software as a planning item. Added a focused plan 
 ## 2026-10-23 — 0.4.5: next-phase work plan
 
 Reviewed current evidence/progress and planned a qualification-and-analysis phase rather than treating incomplete hardware gates as passed. Sequenced run sheet, offline optical engine/UI, separate physical evidence, acceptance review and conditional standalone GY-521 entry. Documented exact intended Stage 2 pins, need for official register verification and independent sensor/timing qualification. Wireless deferred to separate qualification. Saved tracked plan and local .omx/plans copy; no firmware/UI implementation, dependencies, upload or hardware operation. Links, version alignment, plan-copy consistency and whitespace checks passed.
+
+## 2026-10-23 — 0.4.6: GY-521-first synchronisation rig plan
+
+User steered next work to GY-521 setup, then a motor/shaft with white mark and once-per-revolution click. Replaced the analysis-first sequence with standalone sensor bring-up/FIFO acquisition, mechanical tap rig, combined anchor-based timing and analysis. Distinguished mechanically transmitted acceleration from audible click, physical phase offset from digital timing, and filter delay from sample timestamps. Reviewed official MPU register-map sample-rate/filter documentation. Updated sequence authority while retaining older gates. Links, version alignment, local plan copy and whitespace pass. No firmware, new dependencies, hardware operations or qualification results.

@@ -14,7 +14,7 @@ For every coherent deliverable that changes tracked code, documentation, tests o
 
 Keep `handover_v1.md` and the original Stage 0A sketch as historical references. Preserve CS=13, SCK=18, MISO=19, MOSI=23 and 1 MHz SPI unless measured evidence justifies a change.
 
-User explicitly authorised standalone Stage 1 optical development before outstanding Stage 0B checks were completed. Keep those checks open; this exception does not authorise integration or Stage 2 before its prerequisites. Do not invent missing results, package versions or hardware measurements. No new dependencies without explicit user request.
+User explicitly authorised advancing standalone Stage 1 and, on 2026-10-23, GY-521 setup/development followed by a marked-shaft mechanical-tap synchronisation bench despite outstanding Stage 0B checks. Keep those checks open. Qualify standalone IMU acquisition and rig optical detection before combined bench captures; this does not imply vehicle or release acceptance. Do not invent missing results, package versions or hardware measurements. No new dependencies without explicit user request.
 
 ## Stage packaging
 

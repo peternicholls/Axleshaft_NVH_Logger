@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-23. Repository version: 0.4.5 (latest captured installed firmware: optical 0.4.1).
+Last updated: 2026-10-23. Repository version: 0.4.6 (latest captured installed firmware: optical 0.4.1).
 
 ## Current position
 
@@ -15,13 +15,13 @@ Stage 0B: standalone 1 kHz firmware, instructions and validator implemented. ESP
 | Stage 0B planning | Complete | Version 0.1.2; design, test matrix and standalone Stage0B_Recorder folder contract |
 | Stage 0B recorder | Implemented, bench pending | Core 3.3.12 compile passes; host controls/validator checks pass; ESP32 upload verified; [RUN0003 short-run capture](evidence/2026-10-22-stage0b-v0.2.4-statistics.md): 7647 samples, zero misses/drops, all four checks PASS; full acceptance pending |
 | Stage 1 optical | Known-count manual test passed; rotation acceptance pending | [Exact 20-cycle report](evidence/2026-10-22-stage1-exact20-report.md): 20 cycles / 20 detections; physical LED count and controlled RPM unverified |
-| Stage 2 IMU | Gated | Requires Stage 0B acceptance, then standalone acquisition evidence |
+| Stage 2 IMU | Next, explicitly authorised | GY-521 bring-up and FIFO acquisition first; hardware acceptance pending |
 | Stage 3 integration | Gated | Requires accepted optical and IMU stages |
 | Vehicle trials | Not started | Requires integrated bench acceptance and secured mounting/wiring |
 
 ## Immediate next work
 
-Follow [next-phase-plan.md](next-phase-plan.md): prepare the qualification run sheet and implement the first offline optical analysis bench here. Separate hardware workflow supplies white-mark rotation, recorder 60-second, naming, LED and storage-full/stall evidence. Reconcile acceptance before starting standalone Stage 2 IMU implementation. Wireless remains planned.
+Follow [next-phase-plan.md](next-phase-plan.md): prepare standalone Stage2_IMU_Test with GY-521 wiring/identity/orientation checks, then FIFO/SD acquisition and timing anchors. Next, use a motor-driven marked shaft with a repeatable mechanical tap into the IMU bracket to test optical/IMU phase and timing. User explicitly advances this sequence; earlier recorder gates stay open. This chat prepares code/local checks; separate workflow uploads and records physical evidence.
 
 ## Open evidence and decisions
 
@@ -112,3 +112,7 @@ Added [analysis bench software](analysis-bench-plan.md) to the roadmap: offline 
 ## Next-phase planning — 0.4.5, 2026-10-23
 
 Added sequenced bench qualification and first offline analysis work, software/physical acceptance criteria, risks and conditional Stage 2 entry. This is a plan only; no code, dependencies, hardware operation or acceptance change. Latest captured optical firmware remains 0.4.1.
+
+## Revised next-phase planning — 0.4.6
+
+User wants GY-521 first, then marked rotating shaft and mechanical click/tap for optical/IMU synchronisation. Revised the plan, including mechanical coupling, precise intended pins, separate acquisition/combined gates, timing/filter/physical delay limits, known-angle phase-change experiment and evidence criteria. Analysis-first ordering superseded. No new code, hardware operation or acceptance; latest captured firmware stays 0.4.1.
