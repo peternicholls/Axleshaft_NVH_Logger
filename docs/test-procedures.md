@@ -35,3 +35,16 @@ Use [Stage 1 instructions](../Stage1_Optical_Test/README.txt) to set UTC over Se
 ## Timing and response experiments — procedure prepared, not executed
 
 Follow [NVH-TIME-01](experiments/timing-protocol.md) and the [illustrated PDF](../output/pdf/NVH-TIME-01-experiment-protocol.pdf). Run prerequisites first: Stage 2 and combined instrumentation are not yet implemented. Record reference capabilities and numerical tolerances before acceptance runs. Preserve candidate and qualified-event timestamps separately and never substitute SD/FIFO read time for sample time. Independent references are required for claims about isolated/absolute component delay; the basic motor/tap rig supports combined repeatability first. No upload/hardware operation is performed in this chat.
+
+## Stage 2 I1 bring-up — local checks and separate physical gates
+
+Follow [Stage2_IMU_Test README](../Stage2_IMU_Test/README.txt). Local tests cover the actual portable driver and Wire adapter, including NACK/timeout/short read and register-layout/configuration regressions. Compile without warnings for esp32:esp32:esp32. Independent copied-folder build proves runtime self-containment. Physical identity/config/orientation and readout stability remain pending; slow snapshots may miss a short tap and cannot qualify impulse timing or 1 kHz continuity. The sketch's one-second freshness watchdog/five-second health-loop scheduling need separate fault verification; driver tests alone do not exercise that loop.
+
+Host command from repository root:
+
+```sh
+c++ -std=c++17 -Wall -Wextra -Werror -pedantic -fsanitize=address,undefined -I tests/imu_stubs tests/test_imu_bringup.cpp -o /tmp/polestar-imu-bringup-tests
+/tmp/polestar-imu-bringup-tests
+```
+
+See [review resolutions](stage2-design-review.md) for the mandatory I2/I3/I4 boundary, throughput and format tests before continuous sensor recording.

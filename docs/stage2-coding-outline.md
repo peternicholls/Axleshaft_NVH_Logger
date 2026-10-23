@@ -1,12 +1,12 @@
 # Stage 2 GY-521 coding outline
 
-Version 0.4.8 | 2026-10-23 | Design outline, not implemented firmware
+Version 0.5.0 | 2026-10-23 | Reviewed design; I1 implemented, hardware verification pending
 
 ## Scope and first coding slice
 
 Begin with the GY-521/MPU-6050 alone. First prove communication, configuration and raw acceleration/gyro response. Then add FIFO acquisition, timing anchors and SD storage. Optical integration follows separately, using [NVH-TIME-01](experiments/timing-protocol.md); do not fold everything into the first sketch.
 
-The first implementation deliverable is a compile-checked, independently copyable `Stage2_IMU_Test/` folder with a working bring-up sketch and README.txt, not empty stubs for the final logger. Implement only files actually needed by each slice. No upload or physical operation in this chat; no new dependencies.
+The first implementation deliverable is now a compile-checked, independently copyable `Stage2_IMU_Test/` folder with a working bring-up sketch and README.txt, not empty stubs for the final logger. Implement only files actually needed by each slice. No upload or physical operation in this chat; no new dependencies.
 
 ## Intended folder and responsibilities
 
@@ -30,7 +30,7 @@ GY-521: verified compatible 3V3/GND; SDA21, SCL22, INT27. Fix/document AD0 and a
 
 Use installed Arduino Wire/ESP32 facilities; check their actual APIs/timeouts at implementation time. No sensor library dependency is required. Every bus operation must return explicit success/short-read/timeout status. Register configuration is verified against the [official register map](https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Register-Map.pdf), then read back from the real device; a successful I2C ACK is not identity/configuration proof.
 
-Proposed initial measurement configuration: raw six-axis, target 1000 Hz, ±8 g, ±500 degrees/s, and documented filter setting. Retain the exact range/filter/divider/clock registers in diagnostics and recordings. Final register constants and supported identity policy are part of slice I1 review, not guessed from breakout-board appearance. Temperature may be read for diagnostics but is excluded from a six-axis-only FIFO frame unless explicitly added to the format.
+Proposed initial measurement configuration: raw six-axis, target 1000 Hz, ±8 g, ±500 degrees/s, and documented filter setting. Retain the exact range/filter/divider/clock registers in diagnostics and recordings. I1 now fixes the actual register table in Stage2_IMU_Test/Imu6050.h and expects WHO_AM_I=0x68 for either supported bus address; see the [design review](stage2-design-review.md). FIFO and generated interrupts are explicitly disabled for bring-up. Temperature may be read for diagnostics but is excluded from a six-axis-only FIFO frame unless explicitly added to the format.
 
 ## Data path and ownership
 
@@ -65,7 +65,8 @@ struct DataReadyObservation { uint64_t ordinal, espUs; };
 // Each operation returns a bounded, explicit status, never a plausible fake frame.
 BusStatus readRegisters(uint8_t first, uint8_t* out, size_t bytes);
 BusStatus configureAndReadBack(const ImuConfig& requested, ImuConfig& actual);
-DecodeStatus decodeSixAxisFrame(const uint8_t* bytes, size_t count, RawImuFrame& out);
+DecodeStatus decodeSnapshot14(const uint8_t* bytes, size_t count, Snapshot& out);
+DecodeStatus decodeFifo12(const uint8_t* bytes, size_t count, RawImuFrame& out);
 AcquisitionStatus serviceFifo();
 void captureDataReadyTimestamp();  // ISR-safe only
 void requestStart();
@@ -90,9 +91,9 @@ I1 diagnostic snapshots intentionally print slowly; they do not demonstrate cont
 
 Boot: initialise subsystems, report real configuration or latched actionable error, then idle. Start: reserve unique file and write actual metadata, establish a fresh sensor/FIFO epoch with explicit boundary/interrupt acknowledgement rules, arm acquisition, then show recording. Discarded warm-up samples must be declared; do not reuse stale FIFO data as new session data.
 
-Stop: capture the request time, command acquisition quiescence, establish the final complete-frame boundary and record remaining sensor/queue accounting. Drain all accepted complete frames, write completion/counters/checksum, flush/close/read back, then idle. A frame straddling stop or residual FIFO bytes need a documented policy and test; no silent truncation or synthetic catch-up.
+Stop: capture the request time, command acquisition quiescence, establish the final complete-frame boundary and record remaining sensor/queue accounting. Drain all accepted complete frames, write completion/counters/checksum, flush/close/read back, then idle. Record requested stop separately from the acknowledgement that FIFO channel writes were disabled, then drain every complete frame through that effective boundary. Retain residual-byte/transition ambiguity in accounting; no silent truncation or synthetic catch-up. The readback-stable final count and interrupt association must be qualified before timing acceptance.
 
-On bus/FIFO/ring/queue failure: halt or start a new explicitly invalid/uncertain epoch according to the frozen policy. Never invent the number or values of lost sensor samples. On storage failure: stop acquisition, retain partial data and Serial diagnostics, latch error. If the footer cannot be written, host validation labels the file incomplete.
+On bus/FIFO/ring/queue failure: stop and latch error; do not recover automatically within a session. A later explicit restart after fault correction creates a new session/epoch. Never invent the number or values of lost sensor samples. On storage failure: stop acquisition, retain partial data and Serial diagnostics, latch error. If the footer cannot be written, host validation labels the file incomplete.
 
 ## Timing and format decisions to freeze before I3/I4
 
@@ -111,3 +112,7 @@ This intentionally adds metadata for real sensor timing; it does not change exis
 I1 can be implemented now under the user's GY-521-first sequence override. Continue through locally verifiable increments while leaving physical gates explicit; do not call device response verified from a compiled sketch. Before combined mark/tap experiments, obtain standalone raw acquisition and timing evidence, plus reliable rig optical detection. Follow the [next-phase plan](next-phase-plan.md) and [illustrated timing procedure](experiments/timing-protocol.md).
 
 No exact filter-delay correction, phase alignment or absolute timing guarantee is embedded in acquisition. The analysis bench will estimate periods and inspect taps using the saved evidence. Motor, optical, wireless and vehicle integration stay out of the initial sensor bring-up slice.
+
+## Review and implemented slice — 0.5.0
+
+[Design review](stage2-design-review.md) resolves layout, identity, bus throughput, fault policy, timing-association and lifecycle gaps, with explicit gates before later slices. I1 code is present in [Stage2_IMU_Test](../Stage2_IMU_Test/README.txt): fixed configuration/read-back, bounded Wire adapter, fresh 14-byte register snapshots, raw/uncalibrated units and health diagnostics. FIFO12 decoder is unit-tested but FIFO acquisition is not implemented. No sensor identity/response claim is made without hardware evidence. Reader byte layout and first-sample anchor semantics remain required I3/I4 design deliverables, not implied by I1 success.

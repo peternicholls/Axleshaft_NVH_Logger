@@ -59,3 +59,7 @@ User explicitly requested standalone Stage 1 next while Phase 0B acceptance rema
 ## Revised next phase — 2026-10-23 user direction
 
 GY-521 setup/development now comes first, followed by the motor/marked-shaft/mechanical-tap synchronisation rig described in [next-phase-plan.md](next-phase-plan.md). This supersedes the analysis-first ordering and permits Stage 2 development while preserving unpassed recorder gates. Demonstrate standalone IMU acquisition and rig optical response before combined bench testing. Analysis work initially serves the timing experiment; wireless and full analysis UI remain later.
+
+## Stage 2 first slice — 0.5.0
+
+[Reviewed design](stage2-design-review.md) now closes the initial coding-outline gaps. [Standalone bring-up](../Stage2_IMU_Test/README.txt) is implemented and locally checked. It verifies register communication/configuration and prints slow raw snapshots, with no FIFO/SD/anchor claim. Obtain physical GY-521 evidence separately, then proceed through the remaining [I2–I5 slices](stage2-coding-outline.md).

@@ -25,3 +25,7 @@ Stage 1 uses module VCC to verified 3V3, GND to common GND and digital OUT to GP
 Optical 0.3.8 also uses GPIO32 as a normally-open button to GND with INPUT_PULLUP, matching the recorder control wiring. Start resets session counts, stop freezes them. Built-in LED is on during the optical test with OFF pulses per detection; no external LED required. See standalone README for sensitivity-pot and white-mark procedure.
 
 Optical 0.4.0 additionally uses the same SD connections and 1 MHz SPI as Stage 0A. No optical/button pin changes: GPIO26 input, GPIO32 button and built-in status LED. See [standalone instructions](../Stage1_Optical_Test/README.txt) for full wiring and clock/file validation procedure.
+
+## Stage 2 I1 bring-up — 0.5.0
+
+GY-521 VCC to verified compatible 3V3, GND common, SDA21, SCL22; AD0 to GND for default 0x68 address. If AD0 is verified HIGH, configure address 0x69; WHO_AM_I expectation remains 0x68. INT27 is reserved/wireable but not read in I1. No XDA/XCL connections. Button32/SD/optical are unused by this first diagnostic sketch. Confirm actual module pin labels and 3V3 pull-ups. See [standalone README](../Stage2_IMU_Test/README.txt); physical electrical/sensor verification remains pending.

@@ -2,6 +2,13 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.5.0 — 2026-10-23
+
+- Review and resolve GY-521 outline gaps: register/FIFO layout, bus address versus identity, I2C throughput/read limits, fault policy, stop accounting and timing-association gates.
+- Add standalone Stage2_IMU_Test I1 code and wiring/test README: identity/configuration read-back, bounded I2C and fresh slow raw/scaled six-axis snapshots. No FIFO, SD or optical integration yet.
+- Add actual driver/adapter host tests; ESP32 build without warnings, copied-folder build, sanitizers, Clang static analysis and Python regressions pass. Independent review found no blocker.
+- No upload/hardware test; physical sensor behaviour and sketch-level watchdog/health scheduling remain unverified.
+
 ## 0.4.8 — 2026-10-23
 
 - Outline GY-521 coding: standalone folder/modules, interfaces, ISR/FIFO/storage ownership, start/stop/error lifecycle and five implementation slices with tests.

@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-23. Repository version: 0.4.8 (latest captured installed firmware: optical 0.4.1).
+Last updated: 2026-10-23. Repository version: 0.5.0 (latest captured installed firmware: optical 0.4.1).
 
 ## Current position
 
@@ -15,13 +15,13 @@ Stage 0B: standalone 1 kHz firmware, instructions and validator implemented. ESP
 | Stage 0B planning | Complete | Version 0.1.2; design, test matrix and standalone Stage0B_Recorder folder contract |
 | Stage 0B recorder | Implemented, bench pending | Core 3.3.12 compile passes; host controls/validator checks pass; ESP32 upload verified; [RUN0003 short-run capture](evidence/2026-10-22-stage0b-v0.2.4-statistics.md): 7647 samples, zero misses/drops, all four checks PASS; full acceptance pending |
 | Stage 1 optical | Known-count manual test passed; rotation acceptance pending | [Exact 20-cycle report](evidence/2026-10-22-stage1-exact20-report.md): 20 cycles / 20 detections; physical LED count and controlled RPM unverified |
-| Stage 2 IMU | Next, explicitly authorised | GY-521 bring-up and FIFO acquisition first; hardware acceptance pending |
+| Stage 2 IMU | I1 bring-up code ready; physical evidence pending | Standalone folder compiles; driver/frame/bus tests and static analysis pass; FIFO/anchors/SD not implemented |
 | Stage 3 integration | Gated | Requires accepted optical and IMU stages |
 | Vehicle trials | Not started | Requires integrated bench acceptance and secured mounting/wiring |
 
 ## Immediate next work
 
-Follow [next-phase-plan.md](next-phase-plan.md): prepare standalone Stage2_IMU_Test with GY-521 wiring/identity/orientation checks, then FIFO/SD acquisition and timing anchors. Next, use a motor-driven marked shaft with a repeatable mechanical tap into the IMU bracket to test optical/IMU phase and timing. User explicitly advances this sequence; earlier recorder gates stay open. This chat prepares code/local checks; separate workflow uploads and records physical evidence.
+Use [Stage2_IMU_Test instructions](../Stage2_IMU_Test/README.txt) in the separate upload/capture workflow to obtain identity/configuration and slow raw orientation/motion evidence. This chat remains programming-only. Bring-up is I1 only; prepare I2 FIFO acquisition next with the throughput/fault policies in the [design review](stage2-design-review.md), then I3 anchors and I4 storage. No combined timing/continuous-rate acceptance yet. Older recorder/optical gates remain open.
 
 ## Open evidence and decisions
 
@@ -124,3 +124,9 @@ Prepared [NVH-TIME-01](experiments/timing-protocol.md) and a seven-page [printab
 ## GY-521 coding outline — 0.4.8
 
 Added [implementation breakdown](stage2-coding-outline.md): standalone Stage2_IMU_Test folder, bring-up first, then FIFO, timing observations, SD owner and host inspection. Defined bounded bus errors, raw-frame types, lifecycle and format decisions to freeze. I1 sensor bring-up is next. Outline only; no firmware placeholders, compilation claim or physical operation. Latest captured optical firmware remains 0.4.1.
+
+## Reviewed design and first GY-521 code — 0.5.0
+
+Resolved snapshot-versus-FIFO layout, address/identity, bounded I2C operations, bus throughput, stop/fault policy and timing/format gates in the outline and design review. Added independent Stage2_IMU_Test bring-up firmware, README and real-driver host tests: fixed configuration/read-back, fresh ~10 Hz register snapshots, raw and uncalibrated scaled axes. ESP32 core 3.3.12 build without warnings, copied-folder build, sanitized host tests, Python regressions and Clang static analysis pass; independent review found no blocker. No upload or physical sensor operation. One-second freshness and five-second health-loop scheduling lack sketch-level host coverage and remain explicit verification gaps. Installed physical evidence remains optical 0.4.1.
+
+Local I1 build/test details: [2026-10-23 verification record](evidence/2026-10-23-stage2-i1-local-checks.md). This is software evidence only.
