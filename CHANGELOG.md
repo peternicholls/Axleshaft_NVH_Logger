@@ -2,6 +2,11 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.5.2 — 2026-10-23
+
+- Add required mechanical CAD and PCB workstreams to the wheel-balancer side project, with editable sources, manufacturing outputs, shared interfaces and fabrication/physical validation gates.
+- Documentation only; no CAD/EDA tool selected, design files fabricated or hardware acceptance changed. Local links, version alignment and whitespace checked.
+
 ## 0.5.1 — 2026-10-23
 
 - Organise a separate wheel-balancer concept: no SD logging, calibrated single/two-plane sensing, pictorial correction guidance and guarded automatic positioning.

@@ -75,17 +75,45 @@ Removing motor power does not remove stored wheel energy. Determine safe stoppin
 
 This section is a design requirement, not an approved safety circuit or a claim of regulatory compliance. All uploads and physical operation remain in the separate user hardware workflow.
 
+## Mechanical CAD and circuit-board development
+
+Both are required project workstreams, developed together with sensing, control software and safety engineering. CAD/EDA applications and fabrication suppliers are not selected yet; no new software dependencies or purchases are authorised by this concept update.
+
+### Mechanical CAD
+
+Develop a parametric assembly covering the base/frame, spindle, bearings and supports, wheel centring/retention adapters, motor mount/transmission, encoder target and bracket, sensor mounting faces, brake/restraint, guard/containment, enclosure, display and controls. Include wheel loading/removal clearance, weight-fitting access, cable routing, strain relief and maintenance access. Locate the emergency stop within easy reach.
+
+Define datums and tolerances for spindle runout, bearing alignment, wheel remount repeatability and sensor orientation. Assess stiffness, vibration modes, mounting loads, maximum wheel inertia, drive torque, braking loads and containment requirements. Record calculations and assumptions; a CAD model or simulation alone does not establish physical safety or measurement accuracy.
+
+Deliver editable assembly/part sources, neutral STEP exports, dimensioned manufacturing/assembly drawings, material/fastener specifications, mechanical BOM and an interface drawing shared with PCB development. Fabrication gate: reviewed capacity/load/stop assumptions, clearances, retention, guards, tolerances and assembly procedure. As-built dimensional and runout checks remain separate evidence.
+
+### Electronics and PCB
+
+Develop the system block diagram, power budget, connector/pin schedule, wiring harness drawings and schematics before layout. Cover controller, encoder inputs, vibration acquisition interfaces, display/selector/buttons, motor-drive command/status, brake interfaces, guard/safety status feedback and service/debug connections. Evaluate whether sensors need local boards near the bearings rather than mounting them on the control PCB.
+
+Define supply rails, logic levels, grounding/shielding, sensor timing interfaces, cable lengths, connector keying, input protection, fusing, transients, motor interference and thermal/current limits. Select the motor drive and power/safety architecture before assigning power-stage PCB requirements; do not assume the controller board will carry motor current or mains voltage.
+
+Keep the independently engineered emergency-stop/guard safety function outside ordinary firmware control. The PCB may monitor safety status; monitoring does not replace the safety function. Any safety-related electronics require their own architecture review and validation.
+
+Deliver editable schematic/layout sources and libraries, annotated PDF schematics, BOM with manufacturer part identities and substitution constraints, connector/harness tables, assembly drawings, fabrication outputs (Gerbers and drill files), placement files where applicable, and a test-point/bring-up procedure. Fabrication gate: electrical rules and design rules checked, footprints/pinouts verified against selected part documentation, power/thermal/noise review and mechanical fit review completed. Board bring-up, acquisition noise/timing, drive interference and fault response need measured evidence after fabrication.
+
+### Shared interfaces and file organisation
+
+Keep this side project under `side-projects/wheel-balancer/`. Add `cad/`, `electronics/`, `firmware/` and `verification/` when actual sources or evidence exist. Keep editable design sources versioned alongside revision-matched exports; avoid empty placeholder projects. Maintain separate mechanical and PCB revision identifiers and record which revisions were assembled/tested.
+
+Before either design is released for fabrication, agree the enclosure envelope, board outline, mounting holes, connector positions, display/button cut-outs, cable bend space, cooling, sensor axes and spindle/index coordinate convention. Exchange a PCB STEP model with the mechanical assembly and check fit/access. Revise drawings and harness tables together when interfaces change.
+
 ## Development sequence and evidence gates
 
-1. Freeze target wheel envelope, mounting concept, operator workflow, coordinate convention and risk assessment. Select no powertrain until inertia/stop/containment requirements are established.
+1. Freeze target wheel envelope, mounting concept, operator workflow, coordinate convention and risk assessment. Develop initial mechanical CAD, electronics architecture and their shared interface drawing. Select no powertrain until inertia/stop/containment requirements are established.
 2. Offline mathematics with synthetic vectors: known mass/angle recovery, radius changes, sign/mirroring, two-plane coupling, singular/noisy calibration, rounding and rejected data. No motor required.
-3. Separate small-rotor rig: qualify encoder and vibration acquisition, timing, repeatability and known trial-mass detection. Establish a safe rig-specific speed envelope through mechanical review.
+3. Review and fabricate the small-rotor CAD and prototype electronics under the workstream gates above. Separate small-rotor rig: qualify encoder and vibration acquisition, timing, repeatability and known trial-mass detection. Establish a safe rig-specific speed envelope through mechanical review.
 4. Single-plane calibration and pictorial guidance; verify with blind known added masses and repeated remounts. Report errors and residuals.
 5. Two-plane sensing/calibration and independent verification of static and couple corrections. Establish useful uncertainty and gram/angle limits.
 6. Guarded motor control, fault response, stop/standstill and automatic indexing with recorded position error and repeatability. Fault-inject lost index, stalled motor, sensor failure, reboot, E-stop and guard requests.
 7. Full-wheel progression only after mechanical/safety review and preceding gates. Compare repeatability and residual correction with an independent qualified wheel-balancing reference. Bench results do not establish roadworthiness or release acceptance.
 
-Immediate next design deliverable: target-wheel requirements and a mechanical/sensor layout, followed by a dependency-free offline calculation model. No purchase list or energized wiring specification yet.
+Immediate next design deliverable: target-wheel requirements, initial CAD assembly layout, electronics block diagram and shared mechanical/electrical interface drawing, alongside a dependency-free offline calculation model. No purchase list or energized wiring specification yet.
 
 ## Sources
 

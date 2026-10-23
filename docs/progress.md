@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-23. Repository version: 0.5.1 (latest captured installed firmware: optical 0.4.1).
+Last updated: 2026-10-23. Repository version: 0.5.2 (latest captured installed firmware: optical 0.4.1).
 
 ## Current position
 
@@ -134,3 +134,7 @@ Local I1 build/test details: [2026-10-23 verification record](evidence/2026-10-2
 ## Wheel-balancer side project — 0.5.1
 
 Added [separate concept](../side-projects/wheel-balancer/README.md) with no SD requirement, motor/encoder/vibration/display controls, calibrated correction estimates, two-plane target and guarded indexing. Sources checked for balancing principles and machinery safeguards. Target-wheel envelope, mechanics, safety design, components, implementation and all physical evidence remain open. Documentation links/version/whitespace pass; logger stage acceptance unchanged.
+
+## Wheel-balancer CAD and PCB scope — 0.5.2
+
+Expanded the [side-project concept](../side-projects/wheel-balancer/README.md) with required mechanical CAD and electronics/PCB development, manufacturing outputs, revision control and shared fit/wiring interfaces. Defined review gates before fabrication and separate as-built/board qualification. Requirements and design work remain pending; no CAD, circuit design, firmware or hardware implementation delivered. Local links/version/whitespace checks pass.

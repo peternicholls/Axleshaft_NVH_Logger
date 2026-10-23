@@ -155,3 +155,7 @@ Host tests exercise both layouts, signed bounds, both bus addresses with WHO_AM_
 ## 2026-10-23 — 0.5.1: wheel-balancer concept
 
 Created a separately indexed side-project concept at user request. Defined RAM-only acquisition, spindle angle feedback, trial-mass calibration, single-plane learning then two-plane wheel correction, pictorial inner/outer placement and guarded indexing. Reviewed primary balancing references and HSE/machinery safety sources. Recorded wheel envelope and powertrain as unknown; no component purchases, dependencies, firmware edits, uploads or hardware operation. Independent emergency-stop/guard/standstill design and all measurement/positioning qualification remain pending. Checked local Markdown links, repository version alignment and git diff whitespace.
+
+## 2026-10-23 — 0.5.2: CAD and circuit-board workstreams
+
+Added user-required CAD and PCB development to the wheel-balancer scope. Defined assemblies, tolerances/load assumptions, schematics, harnesses, PCB outputs, source/export revision matching, mechanical/electrical interface review and fabrication gates. Kept independent safety engineering and measured as-built/board acceptance explicit. No tools selected, dependencies installed, design sources created, fabrication or hardware operation. Local Markdown links, version alignment and whitespace pass.
