@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.4.8 — 2026-10-23
+
+- Outline GY-521 coding: standalone folder/modules, interfaces, ISR/FIFO/storage ownership, start/stop/error lifecycle and five implementation slices with tests.
+- Prioritise working identity/configuration/raw-response bring-up, preserving later timing/format and hardware gates. No implementation, dependencies or firmware changes.
+- Documentation links, version alignment and whitespace checked.
+
 ## 0.4.7 — 2026-10-23
 
 - Add NVH-TIME-01 illustrated timing/response experiment protocol: rig, wiring and timeline diagrams, component-delay references, five test sequences, uncertainty and run worksheet.

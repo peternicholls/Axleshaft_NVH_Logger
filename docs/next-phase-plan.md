@@ -88,3 +88,7 @@ Retain the older recorder 60-second, storage-full, stall, LED and reboot/name-pr
 ## Experiment protocol — 0.4.7
 
 Use [NVH-TIME-01](experiments/timing-protocol.md), with its [illustrated printable PDF](../output/pdf/NVH-TIME-01-experiment-protocol.pdf), as the detailed procedure for G1–G5 timing work. It defines component-delay references, Level A/B capabilities, electrical/optical/IMU/phase/SD tests, data requirements, uncertainty and worksheets. Implement the listed instrumentation before trying to execute unsupported measurements. Current optical logs cannot isolate all delays.
+
+## Coding breakdown — 0.4.8
+
+[Stage 2 coding outline](stage2-coding-outline.md) defines folder/file responsibilities, interfaces, hardware/ISR/FIFO/SD ownership, lifecycle, format decisions and five implementation slices. Begin with a working I2C identity/configuration/raw-response bring-up sketch (I1), then FIFO, anchors and storage; no empty final-logger skeletons or premature combined claims.

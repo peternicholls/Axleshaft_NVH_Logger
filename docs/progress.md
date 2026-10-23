@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-23. Repository version: 0.4.7 (latest captured installed firmware: optical 0.4.1).
+Last updated: 2026-10-23. Repository version: 0.4.8 (latest captured installed firmware: optical 0.4.1).
 
 ## Current position
 
@@ -120,3 +120,7 @@ User wants GY-521 first, then marked rotating shaft and mechanical click/tap for
 ## Illustrated timing protocol — 0.4.7
 
 Prepared [NVH-TIME-01](experiments/timing-protocol.md) and a seven-page [printable PDF](../output/pdf/NVH-TIME-01-experiment-protocol.pdf), with four vector figures, five test sequences, delay/reference ledger, uncertainty rules and a run worksheet. Covers optical input/qualification, GY-521 sampling/filter response, marked-shaft contact phase, drift, SD/FIFO and button response. Clearly distinguishes combined repeatability from independently verified component latency. Stage 2/combined instrumentation still pending; no experiments executed. PDF text checks, all-page visual review, source syntax, arithmetic, links and version/whitespace checks passed. No dependencies installed or firmware changed.
+
+## GY-521 coding outline — 0.4.8
+
+Added [implementation breakdown](stage2-coding-outline.md): standalone Stage2_IMU_Test folder, bring-up first, then FIFO, timing observations, SD owner and host inspection. Defined bounded bus errors, raw-frame types, lifecycle and format decisions to freeze. I1 sensor bring-up is next. Outline only; no firmware placeholders, compilation claim or physical operation. Latest captured optical firmware remains 0.4.1.
