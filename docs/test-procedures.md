@@ -31,3 +31,7 @@ Host checks: `python3 -m unittest discover -s tests -v`; compile/run `tests/test
 ## Optical SD test — 0.4.0 (physical execution pending)
 
 Use [Stage 1 instructions](../Stage1_Optical_Test/README.txt) to set UTC over Serial, record a known 20-revolution session, stop and require accepted=persisted=20, 320 bytes, zero queue drops and all checks PASS. Copy the file and run validate_optical.py with Serial count/CRC. Repeat dated-file collisions/restarts, controlled speeds and disposable-card insufficient-space cases; preserve Serial and recording hashes. Code-preparation chat does not upload or operate hardware.
+
+## Timing and response experiments — procedure prepared, not executed
+
+Follow [NVH-TIME-01](experiments/timing-protocol.md) and the [illustrated PDF](../output/pdf/NVH-TIME-01-experiment-protocol.pdf). Run prerequisites first: Stage 2 and combined instrumentation are not yet implemented. Record reference capabilities and numerical tolerances before acceptance runs. Preserve candidate and qualified-event timestamps separately and never substitute SD/FIFO read time for sample time. Independent references are required for claims about isolated/absolute component delay; the basic motor/tap rig supports combined repeatability first. No upload/hardware operation is performed in this chat.

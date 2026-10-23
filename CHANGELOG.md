@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.4.7 — 2026-10-23
+
+- Add NVH-TIME-01 illustrated timing/response experiment protocol: rig, wiring and timeline diagrams, component-delay references, five test sequences, uncertainty and run worksheet.
+- Include editable Markdown, reproducible vector/PDF builder and seven-page printable PDF; link from plans, tests and project index.
+- Validate PDF content and visually inspect every rendered page, plus source syntax, numerical examples, links, version alignment and whitespace. No firmware/hardware changes or experiment results.
+
 ## 0.4.6 — 2026-10-23
 
 - Reorder next work at user direction: standalone GY-521 setup/acquisition, then motor/white-mark/mechanical-tap synchronisation bench.

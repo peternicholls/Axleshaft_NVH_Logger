@@ -84,3 +84,7 @@ Moving the tap angle by known Δtheta gives expected lag change Δtheta/360 time
 - Before the first motor dataset, record a numerical lag-repeatability target based on measured contact repeatability and sampling/filter limits. If no independent timing/angle reference exists, report observed repeatability only; do not label it absolute synchronisation accuracy.
 
 Retain the older recorder 60-second, storage-full, stall, LED and reboot/name-preservation checks as open until executed and evidenced; [progress](progress.md) remains the status authority. No calibrated rotation, absolute clock synchronisation, or final NVH readiness is claimed by this plan.
+
+## Experiment protocol — 0.4.7
+
+Use [NVH-TIME-01](experiments/timing-protocol.md), with its [illustrated printable PDF](../output/pdf/NVH-TIME-01-experiment-protocol.pdf), as the detailed procedure for G1–G5 timing work. It defines component-delay references, Level A/B capabilities, electrical/optical/IMU/phase/SD tests, data requirements, uncertainty and worksheets. Implement the listed instrumentation before trying to execute unsupported measurements. Current optical logs cannot isolate all delays.
