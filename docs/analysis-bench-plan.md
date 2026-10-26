@@ -46,3 +46,7 @@ Keep offline analysis useful before live monitoring exists. The bench does not i
 Record software version/commit, environment, fixture hashes, test outputs and UI checks in development evidence. Keep progress/version/changelog current per the project workflow. No firmware changes or physical acceptance are part of this planning deliverable.
 
 References: [current formats](data-format.md), [verified optical recording report](evidence/2026-10-22-stage1-sd-button-report.md), [wireless control plan](wireless-control-plan.md), [overall development plan](development-plan.md).
+
+## First delivered reader — 0.6.0, 2026-10-26
+
+Implemented [basic optical GUI](../analysis-bench/README.md) using stdlib Python plus local browser assets, reusing the standalone optical validator. Includes counts, relative timing, count/RPM plots, event table/range, adjustable ratio/window/review thresholds, integrity/reference checks and CSV export. No accelerometer or wall-clock dependency. Initial scope is one file at a time and 1 MiB (65536 events), with explicit errors beyond that; the earlier 10 MiB target is deferred pending broader qualification. Comparison, saved sessions/settings and plot exports remain future work. [Local software evidence](evidence/2026-10-26-reader-local-checks.md) does not qualify physical rotation.

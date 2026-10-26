@@ -8,3 +8,6 @@ build/
 # Raw recordings remain local unless deliberately added as fixtures.
 *.BIN
 *.bin
+
+# Local browser verification artifacts
+.playwright-mcp/

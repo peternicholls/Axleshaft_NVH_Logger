@@ -2,6 +2,14 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.6.0 — 2026-10-26
+
+- Add dependency-free local rotation-reader GUI for output/runs, relative-time revolution/RPM plots, event inspection and CSV export.
+- Add tunable detections/revolution, median RPM window, interval-review ratio, short-interval threshold and time range; preserve raw events and expose questionable data.
+- Reuse optical validator with separate structural and optional independent-reference results; no wall-clock or accelerometer requirement.
+- Eleven Python tests, 22 browser checks, CSV round-trip, maximum-size display timing and desktop/mobile visual review pass. Fix reviewer-identified stale-file attribution under invalid settings.
+- First version supports one optical file at a time up to 1 MiB; comparison/advanced analysis/hardware acceptance remain open.
+
 ## 0.5.5 — 2026-10-23
 
 - Record purchased NVH test-rig parts and expected 24 October delivery; link hardware register to the next-phase plan.

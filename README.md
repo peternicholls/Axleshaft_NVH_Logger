@@ -48,3 +48,7 @@ Optical firmware 0.4.0 adds buffered SD event files, UTC date/time filenames (or
 ## Stage 2 GY-521 bring-up (I1)
 
 [Stage2_IMU_Test](Stage2_IMU_Test/README.txt) now provides standalone code and exact wiring for identity/configuration read-back and ~10 Hz raw six-axis diagnostic snapshots. See the [design review](docs/stage2-design-review.md) for resolved gaps and later gates. FIFO, data-ready timing and SD recording remain separate increments. No hardware response is inferred from compilation.
+
+## Basic revolution reader — 0.6.0
+
+Run `python3 analysis-bench/reader.py --open` from the repository root, or double-click [StartReader.command](analysis-bench/StartReader.command) on macOS. The local GUI reads output/runs, shows revolution counts/RPM and raw events, offers tunable analysis controls and exports decoded CSV. No date code is required: files use their relative event timings. See [reader instructions](analysis-bench/README.md). Optical data only; original files remain read-only and questionable events are retained for inspection.

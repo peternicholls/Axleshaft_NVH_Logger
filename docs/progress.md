@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-23. Repository version: 0.5.5 (latest captured installed firmware: optical 0.4.1).
+Last updated: 2026-10-26. Repository version: 0.6.0 (latest captured installed firmware: optical 0.4.1).
 
 ## Current position
 
@@ -150,3 +150,7 @@ Archived [completed research and provenance](../side-projects/wheel-balancer/res
 ## Timing rig hardware ordered — 0.5.5
 
 [Hardware register](bench-rig-hardware.md) records user-purchased motor mount, pulley, bearings/mounts and steel rod, with expected delivery 2026-10-24. User-described washer/screw retention remains to be checked against actual parts. Dimensions, fit, drive arrangement, cam/tap and sensor mounting remain unverified. No firmware, assembly, upload or test performed.
+
+## Basic revolution reader — 0.6.0
+
+Delivered [analysis-bench reader](../analysis-bench/README.md) for the six raw recordings in output/runs. Shows counts, elapsed timing, RPM, review flags, raw table/plots, tunable display parameters and CSV export. Dates are unknown; no computer clock is required. Empty/poor records remain inspectable; structural/reference checks are separate from physical accuracy. Eleven Python tests, 22 browser checks, CSV raw-field comparison, desktop/mobile review and independent code review pass; see [evidence](evidence/2026-10-26-reader-local-checks.md). No new dependencies, firmware changes or hardware operations; accelerometer/advanced analysis remain out of scope.

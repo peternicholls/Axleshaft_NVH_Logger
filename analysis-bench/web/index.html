@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Polestar · Rotation bench</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<header class="masthead"><div class="identity"><span class="brand">POLESTAR NVH</span><span class="divider">/</span><span>Rotation bench</span></div><span class="local">LOCAL READER <span class="dot"></span> OPTICAL EVENTS V1</span></header>
+<div class="workspace">
+<aside class="library"><div class="section-label">RECORDINGS <span id="runCount">—</span></div><p class="muted">From output/runs. Original files remain read-only.</p><button id="refresh" class="secondary">Refresh recordings</button><div id="runs" class="runs" aria-label="Recordings"></div><p class="footnote">No clock required.<br>Plots use relative event timing.<br>Accelerometer data is not included.</p></aside>
+<main>
+<div id="empty" class="empty"><h1>Open a revolution recording.</h1><p>Choose a file on the left. Empty and questionable runs are welcome: nothing is silently repaired.</p></div>
+<section id="reader" hidden>
+<div class="title-row"><div><div class="section-label">OPTICAL RECORDING</div><h1 id="filename"></h1><p id="timeNote" class="muted">Recording date unknown · relative microsecond timestamps</p></div><button id="export" class="secondary">Export events CSV ↓</button></div>
+<div id="status" class="status" role="status"></div>
+<div class="stats"><div><span>Detected revolutions*</span><strong id="revolutions">—</strong></div><div><span>Raw detections</span><strong id="detections">—</strong></div><div><span>Event span</span><strong id="span">—</strong></div><div><span>Mean RPM*</span><strong id="rpm">—</strong></div><div><span>Intervals to review</span><strong id="flags">—</strong></div></div>
+<div class="analysis-header"><div><h2>Analysis settings</h2><p class="muted">Tune the view. Source data and firmware settings are unchanged.</p></div><button id="reset" class="text-button">Reset settings</button></div>
+<form id="settings" class="settings">
+<label>Detections / revolution<input id="ppr" type="number" min="1" max="100" step="1" value="1" required><small>*RPM and revolutions assume this ratio.</small></label>
+<label>RPM median window<input id="window" type="number" min="1" max="101" step="2" value="1" required><small>Odd event count. 1 = raw.</small></label>
+<label>Unusual interval ratio<input id="ratio" type="number" min="1.1" max="100" step="0.1" value="3" required><small>Flag &lt; median / ratio or &gt; median × ratio.</small></label>
+<label>Short interval below (ms)<input id="floor" type="number" min="0" max="60000" step="0.1" value="0" required><small>Review only. 0 disables this flag.</small></label>
+</form>
+<div id="settingsError" class="error" role="alert"></div>
+<section class="plot-section"><div class="plot-header"><h2 id="chartTitle">Revolutions over time</h2><div class="tabs" role="group" aria-label="Plot view"><button id="countView" class="selected" aria-pressed="true">Revolutions</button><button id="rpmView" aria-pressed="false">RPM</button></div></div>
+<div class="legend"><span class="raw-key"></span>Raw events <span class="smooth-key"></span>Median RPM <span class="flag-key"></span>Review flag <span id="chartNote"></span></div>
+<div class="chart-scroll"><svg id="chart" viewBox="0 0 1000 320" role="img" aria-label="Revolution plot"></svg></div>
+<p id="selection" class="selection" aria-live="polite">Select a plotted event or table row to inspect it.</p>
+<div class="range"><span>Display range (seconds)</span><label>From <input id="from" type="number" min="0" step="0.000001" value="0"></label><label>To <input id="to" type="number" min="0" step="0.000001"></label><button id="applyRange" class="secondary">Apply range</button><button id="fullRange" class="text-button">Full range</button></div></section>
+<section class="events-section"><div class="plot-header"><div><h2>Event inspection</h2><p class="muted">Flags suggest a closer look; they do not prove a missed or extra revolution.</p></div><label class="checkbox"><input type="checkbox" id="flaggedOnly">Flagged intervals only</label></div>
+<div class="table-scroll"><table><thead><tr><th>Event</th><th>Sequence</th><th>Elapsed (s)</th><th>Interval (ms)</th><th>Raw RPM*</th><th>Median RPM*</th><th>Review</th></tr></thead><tbody id="events"></tbody></table></div><div class="pagination"><button id="previous" class="secondary">← Previous</button><span id="pageInfo"></span><button id="next" class="secondary">Next →</button></div></section>
+<details class="provenance"><summary>File integrity &amp; reference checks</summary><p id="fileInfo"></p><p class="muted">A readable sequence is not independent proof of clean saving or physical revolution accuracy. Compare count and CRC with the original Serial summary when available.</p><div class="reference"><label>Expected event count<input id="expectedCount" type="number" min="0" step="1" placeholder="From Serial PASS"></label><label>Expected CRC32<input id="expectedCrc" type="text" maxlength="8" placeholder="8 hex digits"></label><button id="checkReference" class="secondary">Check reference</button></div><p id="referenceResult" role="status"></p><p id="hash" class="hash"></p></details>
+</section>
+<div id="error" class="error" role="alert"></div>
+<footer>Event span covers first to last detection, not the complete recording duration. RPM is derived from event intervals; no physical accuracy claim is inferred.</footer>
+</main></div></body></html>
