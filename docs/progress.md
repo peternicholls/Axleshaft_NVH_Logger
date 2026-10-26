@@ -162,3 +162,9 @@ Reader now defaults to RPM with draggable/resizable/movable focus and keyboard s
 Optical firmware 0.6.1 reserves a persistent shared NVS run index for both date and sequential fallback filenames. Untimed names are OPT_0002.BIN etc; timed names include the same sequence suffix. Read/write failure is explicit, collisions bounded, existing files retained. Firmware compilation and host naming tests pass; no upload or physical NVS/reset/card-swap test. Latest captured physical firmware remains optical 0.4.1. Earlier qualification gates remain open.
 
 Detailed [0.6.1 software evidence and screenshots](evidence/2026-10-26-reader-focus-numbering-checks.md) retained. All six original binary hashes remain unchanged.
+
+## RPM ripple investigation — 0.6.2
+
+Prepared [short report and analysis checklist](experiments/rpm-ripple-diagnosis.md), [printable PDF](../output/pdf/RPM-ripple-short-report-and-procedure.pdf) and [reproducible investigation](evidence/2026-10-26-rpm-ripple-investigation.md). Raw timestamps contain the pattern; UP74/UP484 show stronger exploratory five-event recurrence than short UP471. Cause remains unresolved between actual drive variation, optical edge selection and capture latency. Speed dispersion is not a measured timestamp error.
+
+The user has already designed the next aligned mechanical-tap/GY test; no further rig design is required here. Combined acquisition implementation, standalone IMU qualification, actual tap captures and earlier hardware gates remain open. Original binaries unchanged; three byte-identical evidence snapshots retained. Host tests, numeric/provenance checks and printable report review passed; no upload, physical operation or new dependencies.

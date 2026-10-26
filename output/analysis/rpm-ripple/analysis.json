@@ -1,0 +1,1961 @@
+{
+  "method": "Unsmoothed intervals, linear detrend; lag5 selected exploratorily, quadratic detrend sensitivity check. Not a causal or statistical-significance test.",
+  "hardware_context": {
+    "motor": "user-reported 12 V DC motor",
+    "speed_control": "voltage adjusted; values not recorded",
+    "drive": "motor pulley to measured shaft; ratio/belt type unknown"
+  },
+  "runs": [
+    {
+      "file": "OPT_UNSET_cd77abcc_UP74_0001.BIN",
+      "sha256": "280aa9f466e3039167b9ed3d88f8a703c88c2f408dc97428cc22eea8b1489400",
+      "crc32": "a2c9b496",
+      "size": 272,
+      "events": 17,
+      "interval_count": 16,
+      "structure": "pass",
+      "independent_completion_reference": "not supplied",
+      "first_event_us": 252782,
+      "last_event_us": 6894154,
+      "event_span_s": 6.641372,
+      "mean_interval_us": 415085.75,
+      "overall_rpm_assuming_one_mark": 144.5484457127232,
+      "interval_cv_percent": 0.6874118928550105,
+      "interval_std_us": 2853.348811046417,
+      "mean_raw_rpm": 144.5553202085816,
+      "std_raw_rpm": 1.0000734655728274,
+      "cv_raw_rpm_percent": 0.6918275052967975,
+      "min_interval_us": 409332,
+      "max_interval_us": 418834,
+      "five_event_approx_seconds": 2.07542875,
+      "lag5_linear_correlation": 0.7152821766457964,
+      "lag5_quadratic_correlation": 0.8988483992623393,
+      "intervals_exactly_multiple_of_250us": 0,
+      "lags": [
+        {
+          "lag_events": 1,
+          "pairs": 15,
+          "correlation": -0.08956641187731271
+        },
+        {
+          "lag_events": 2,
+          "pairs": 14,
+          "correlation": -0.3550659735677418
+        },
+        {
+          "lag_events": 3,
+          "pairs": 13,
+          "correlation": -0.23124649855730242
+        },
+        {
+          "lag_events": 4,
+          "pairs": 12,
+          "correlation": 0.026805578173028352
+        },
+        {
+          "lag_events": 5,
+          "pairs": 11,
+          "correlation": 0.7152821766457964
+        }
+      ],
+      "phase5": [
+        {
+          "phase": 1,
+          "count": 4,
+          "mean_residual_us": 809.2499999997672
+        },
+        {
+          "phase": 2,
+          "count": 3,
+          "mean_residual_us": 1530.2102941174137
+        },
+        {
+          "phase": 3,
+          "count": 3,
+          "mean_residual_us": 1825.5700980389763
+        },
+        {
+          "phase": 4,
+          "count": 3,
+          "mean_residual_us": 779.2632352938914
+        },
+        {
+          "phase": 5,
+          "count": 3,
+          "mean_residual_us": -5214.043627451213
+        }
+      ],
+      "records": [
+        {
+          "interval_number": 1,
+          "sequence_end": 2,
+          "elapsed_end_us": 665717,
+          "interval_us": 412935,
+          "raw_rpm_assuming_one_mark": 145.3013186094664,
+          "linear_trend_us": 414980.9485294121,
+          "linear_residual_us": -2045.9485294120968,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 2,
+          "sequence_end": 3,
+          "elapsed_end_us": 1080351,
+          "interval_us": 414634,
+          "raw_rpm_assuming_one_mark": 144.70593342562356,
+          "linear_trend_us": 414994.9220588238,
+          "linear_residual_us": -360.9220588238095,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 3,
+          "sequence_end": 4,
+          "elapsed_end_us": 1497183,
+          "interval_us": 416832,
+          "raw_rpm_assuming_one_mark": 143.94288346384155,
+          "linear_trend_us": 415008.8955882356,
+          "linear_residual_us": 1823.1044117644196,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 4,
+          "sequence_end": 5,
+          "elapsed_end_us": 1912360,
+          "interval_us": 415177,
+          "raw_rpm_assuming_one_mark": 144.5166760201071,
+          "linear_trend_us": 415022.86911764735,
+          "linear_residual_us": 154.13088235264877,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 5,
+          "sequence_end": 6,
+          "elapsed_end_us": 2321748,
+          "interval_us": 409388,
+          "raw_rpm_assuming_one_mark": 146.56023136975193,
+          "linear_trend_us": 415036.8426470591,
+          "linear_residual_us": -5648.842647059122,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 6,
+          "sequence_end": 7,
+          "elapsed_end_us": 2738401,
+          "interval_us": 416653,
+          "raw_rpm_assuming_one_mark": 144.00472335492603,
+          "linear_trend_us": 415050.81617647083,
+          "linear_residual_us": 1602.1838235291652,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 7,
+          "sequence_end": 8,
+          "elapsed_end_us": 3156190,
+          "interval_us": 417789,
+          "raw_rpm_assuming_one_mark": 143.61316358257397,
+          "linear_trend_us": 415064.7897058826,
+          "linear_residual_us": 2724.2102941173944,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 8,
+          "sequence_end": 9,
+          "elapsed_end_us": 3575024,
+          "interval_us": 418834,
+          "raw_rpm_assuming_one_mark": 143.25484559515226,
+          "linear_trend_us": 415078.7632352944,
+          "linear_residual_us": 3755.2367647056235,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 9,
+          "sequence_end": 10,
+          "elapsed_end_us": 3991847,
+          "interval_us": 416823,
+          "raw_rpm_assuming_one_mark": 143.9459914640027,
+          "linear_trend_us": 415092.7367647061,
+          "linear_residual_us": 1730.2632352939108,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 10,
+          "sequence_end": 11,
+          "elapsed_end_us": 4402805,
+          "interval_us": 410958,
+          "raw_rpm_assuming_one_mark": 146.00032120070665,
+          "linear_trend_us": 415106.71029411786,
+          "linear_residual_us": -4148.71029411786,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 11,
+          "sequence_end": 12,
+          "elapsed_end_us": 4820098,
+          "interval_us": 417293,
+          "raw_rpm_assuming_one_mark": 143.78386409549165,
+          "linear_trend_us": 415120.68382352963,
+          "linear_residual_us": 2172.316176470369,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 12,
+          "sequence_end": 13,
+          "elapsed_end_us": 5237460,
+          "interval_us": 417362,
+          "raw_rpm_assuming_one_mark": 143.76009315654036,
+          "linear_trend_us": 415134.65735294134,
+          "linear_residual_us": 2227.3426470586564,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 13,
+          "sequence_end": 14,
+          "elapsed_end_us": 5652507,
+          "interval_us": 415047,
+          "raw_rpm_assuming_one_mark": 144.56194117774612,
+          "linear_trend_us": 415148.6308823531,
+          "linear_residual_us": -101.63088235311443,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 14,
+          "sequence_end": 15,
+          "elapsed_end_us": 6068123,
+          "interval_us": 415616,
+          "raw_rpm_assuming_one_mark": 144.36402833384662,
+          "linear_trend_us": 415162.6044117649,
+          "linear_residual_us": 453.3955882351147,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 15,
+          "sequence_end": 16,
+          "elapsed_end_us": 6477455,
+          "interval_us": 409332,
+          "raw_rpm_assuming_one_mark": 146.58028202046262,
+          "linear_trend_us": 415176.57794117666,
+          "linear_residual_us": -5844.577941176656,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 16,
+          "sequence_end": 17,
+          "elapsed_end_us": 6894154,
+          "interval_us": 416699,
+          "raw_rpm_assuming_one_mark": 143.98882646706616,
+          "linear_trend_us": 415190.55147058837,
+          "linear_residual_us": 1508.4485294116312,
+          "phase_mod5": 1
+        }
+      ]
+    },
+    {
+      "file": "OPT_UNSET_e3fab4b9_UP471_0001.BIN",
+      "sha256": "5b55c8b925c67c82d6833e1134b0a3851a152994cfc6597fc9e286e1ccc655eb",
+      "crc32": "049eab66",
+      "size": 752,
+      "events": 47,
+      "interval_count": 46,
+      "structure": "pass",
+      "independent_completion_reference": "not supplied",
+      "first_event_us": 60740,
+      "last_event_us": 3091086,
+      "event_span_s": 3.030346,
+      "mean_interval_us": 65877.08695652174,
+      "overall_rpm_assuming_one_mark": 910.7870850391341,
+      "interval_cv_percent": 0.1860401821180488,
+      "interval_std_us": 122.55785254797843,
+      "mean_raw_rpm": 910.7902370814348,
+      "std_raw_rpm": 1.6942852540985578,
+      "cv_raw_rpm_percent": 0.18602365123365608,
+      "min_interval_us": 65626,
+      "max_interval_us": 66165,
+      "five_event_approx_seconds": 0.3293854347826087,
+      "lag5_linear_correlation": 0.3192565761392743,
+      "lag5_quadratic_correlation": 0.29482764002607514,
+      "intervals_exactly_multiple_of_250us": 0,
+      "lags": [
+        {
+          "lag_events": 1,
+          "pairs": 45,
+          "correlation": 0.2622733369553351
+        },
+        {
+          "lag_events": 2,
+          "pairs": 44,
+          "correlation": 0.33054693923976697
+        },
+        {
+          "lag_events": 3,
+          "pairs": 43,
+          "correlation": 0.18712004890192763
+        },
+        {
+          "lag_events": 4,
+          "pairs": 42,
+          "correlation": -0.24052470243469837
+        },
+        {
+          "lag_events": 5,
+          "pairs": 41,
+          "correlation": 0.3192565761392743
+        },
+        {
+          "lag_events": 6,
+          "pairs": 40,
+          "correlation": -0.2926240332140463
+        },
+        {
+          "lag_events": 7,
+          "pairs": 39,
+          "correlation": -0.16513674639816858
+        },
+        {
+          "lag_events": 8,
+          "pairs": 38,
+          "correlation": -0.1519730478956204
+        },
+        {
+          "lag_events": 9,
+          "pairs": 37,
+          "correlation": -0.42391039313855783
+        },
+        {
+          "lag_events": 10,
+          "pairs": 36,
+          "correlation": 0.15205721848227824
+        },
+        {
+          "lag_events": 11,
+          "pairs": 35,
+          "correlation": -0.3859378367537185
+        },
+        {
+          "lag_events": 12,
+          "pairs": 34,
+          "correlation": -0.2645816947707025
+        },
+        {
+          "lag_events": 13,
+          "pairs": 33,
+          "correlation": -0.27482782298564296
+        },
+        {
+          "lag_events": 14,
+          "pairs": 32,
+          "correlation": -0.4377811560975368
+        },
+        {
+          "lag_events": 15,
+          "pairs": 31,
+          "correlation": 0.21276119697910906
+        }
+      ],
+      "phase5": [
+        {
+          "phase": 1,
+          "count": 10,
+          "mean_residual_us": -57.48695652174356
+        },
+        {
+          "phase": 2,
+          "count": 9,
+          "mean_residual_us": 97.15814574981859
+        },
+        {
+          "phase": 3,
+          "count": 9,
+          "mean_residual_us": -30.96821872751429
+        },
+        {
+          "phase": 4,
+          "count": 9,
+          "mean_residual_us": 36.12763901736051
+        },
+        {
+          "phase": 5,
+          "count": 9,
+          "mean_residual_us": -38.44316990441681
+        }
+      ],
+      "records": [
+        {
+          "interval_number": 1,
+          "sequence_end": 2,
+          "elapsed_end_us": 126838,
+          "interval_us": 66098,
+          "raw_rpm_assuming_one_mark": 907.7430482011558,
+          "linear_trend_us": 66016.74375578169,
+          "linear_residual_us": 81.25624421831162,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 2,
+          "sequence_end": 3,
+          "elapsed_end_us": 193003,
+          "interval_us": 66165,
+          "raw_rpm_assuming_one_mark": 906.823849467241,
+          "linear_trend_us": 66010.53678692569,
+          "linear_residual_us": 154.46321307431208,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 3,
+          "sequence_end": 4,
+          "elapsed_end_us": 258938,
+          "interval_us": 65935,
+          "raw_rpm_assuming_one_mark": 909.9871085159627,
+          "linear_trend_us": 66004.32981806969,
+          "linear_residual_us": -69.32981806968746,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 4,
+          "sequence_end": 5,
+          "elapsed_end_us": 324925,
+          "interval_us": 65987,
+          "raw_rpm_assuming_one_mark": 909.2700077287951,
+          "linear_trend_us": 65998.1228492137,
+          "linear_residual_us": -11.122849213701556,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 5,
+          "sequence_end": 6,
+          "elapsed_end_us": 390862,
+          "interval_us": 65937,
+          "raw_rpm_assuming_one_mark": 909.9595068019473,
+          "linear_trend_us": 65991.9158803577,
+          "linear_residual_us": -54.9158803577011,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 6,
+          "sequence_end": 7,
+          "elapsed_end_us": 456750,
+          "interval_us": 65888,
+          "raw_rpm_assuming_one_mark": 910.6362311801846,
+          "linear_trend_us": 65985.7089115017,
+          "linear_residual_us": -97.70891150170064,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 7,
+          "sequence_end": 8,
+          "elapsed_end_us": 522840,
+          "interval_us": 66090,
+          "raw_rpm_assuming_one_mark": 907.8529278256923,
+          "linear_trend_us": 65979.5019426457,
+          "linear_residual_us": 110.49805735429982,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 8,
+          "sequence_end": 9,
+          "elapsed_end_us": 588750,
+          "interval_us": 65910,
+          "raw_rpm_assuming_one_mark": 910.3322712790168,
+          "linear_trend_us": 65973.2949737897,
+          "linear_residual_us": -63.294973789699725,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 9,
+          "sequence_end": 10,
+          "elapsed_end_us": 654712,
+          "interval_us": 65962,
+          "raw_rpm_assuming_one_mark": 909.6146266031958,
+          "linear_trend_us": 65967.08800493371,
+          "linear_residual_us": -5.088004933713819,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 10,
+          "sequence_end": 11,
+          "elapsed_end_us": 720626,
+          "interval_us": 65914,
+          "raw_rpm_assuming_one_mark": 910.277027642079,
+          "linear_trend_us": 65960.88103607771,
+          "linear_residual_us": -46.88103607771336,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 11,
+          "sequence_end": 12,
+          "elapsed_end_us": 786453,
+          "interval_us": 65827,
+          "raw_rpm_assuming_one_mark": 911.4800917556626,
+          "linear_trend_us": 65954.67406722171,
+          "linear_residual_us": -127.6740672217129,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 12,
+          "sequence_end": 13,
+          "elapsed_end_us": 852482,
+          "interval_us": 66029,
+          "raw_rpm_assuming_one_mark": 908.6916354934953,
+          "linear_trend_us": 65948.46709836571,
+          "linear_residual_us": 80.53290163428755,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 13,
+          "sequence_end": 14,
+          "elapsed_end_us": 918447,
+          "interval_us": 65965,
+          "raw_rpm_assuming_one_mark": 909.5732585461988,
+          "linear_trend_us": 65942.26012950971,
+          "linear_residual_us": 22.739870490288013,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 14,
+          "sequence_end": 15,
+          "elapsed_end_us": 984484,
+          "interval_us": 66037,
+          "raw_rpm_assuming_one_mark": 908.5815527658737,
+          "linear_trend_us": 65936.05316065373,
+          "linear_residual_us": 100.94683934627392,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 15,
+          "sequence_end": 16,
+          "elapsed_end_us": 1050480,
+          "interval_us": 65996,
+          "raw_rpm_assuming_one_mark": 909.1460088490212,
+          "linear_trend_us": 65929.84619179773,
+          "linear_residual_us": 66.15380820227438,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 16,
+          "sequence_end": 17,
+          "elapsed_end_us": 1116458,
+          "interval_us": 65978,
+          "raw_rpm_assuming_one_mark": 909.3940404377216,
+          "linear_trend_us": 65923.63922294173,
+          "linear_residual_us": 54.360777058274834,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 17,
+          "sequence_end": 18,
+          "elapsed_end_us": 1182539,
+          "interval_us": 66081,
+          "raw_rpm_assuming_one_mark": 907.9765742043855,
+          "linear_trend_us": 65917.43225408572,
+          "linear_residual_us": 163.5677459142753,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 18,
+          "sequence_end": 19,
+          "elapsed_end_us": 1248459,
+          "interval_us": 65920,
+          "raw_rpm_assuming_one_mark": 910.1941747572815,
+          "linear_trend_us": 65911.22528522972,
+          "linear_residual_us": 8.77471477027575,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 19,
+          "sequence_end": 20,
+          "elapsed_end_us": 1314400,
+          "interval_us": 65941,
+          "raw_rpm_assuming_one_mark": 909.9043083969002,
+          "linear_trend_us": 65905.01831637374,
+          "linear_residual_us": 35.981683626261656,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 20,
+          "sequence_end": 21,
+          "elapsed_end_us": 1380204,
+          "interval_us": 65804,
+          "raw_rpm_assuming_one_mark": 911.7986748525925,
+          "linear_trend_us": 65898.81134751774,
+          "linear_residual_us": -94.81134751773789,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 21,
+          "sequence_end": 22,
+          "elapsed_end_us": 1445967,
+          "interval_us": 65763,
+          "raw_rpm_assuming_one_mark": 912.367136535742,
+          "linear_trend_us": 65892.60437866174,
+          "linear_residual_us": -129.60437866173743,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 22,
+          "sequence_end": 23,
+          "elapsed_end_us": 1511866,
+          "interval_us": 65899,
+          "raw_rpm_assuming_one_mark": 910.484225860787,
+          "linear_trend_us": 65886.39740980574,
+          "linear_residual_us": 12.60259019426303,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 23,
+          "sequence_end": 24,
+          "elapsed_end_us": 1577732,
+          "interval_us": 65866,
+          "raw_rpm_assuming_one_mark": 910.9403941335439,
+          "linear_trend_us": 65880.19044094974,
+          "linear_residual_us": -14.190440949736512,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 24,
+          "sequence_end": 25,
+          "elapsed_end_us": 1643649,
+          "interval_us": 65917,
+          "raw_rpm_assuming_one_mark": 910.2355993142892,
+          "linear_trend_us": 65873.98347209375,
+          "linear_residual_us": 43.016527906249394,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 25,
+          "sequence_end": 26,
+          "elapsed_end_us": 1709447,
+          "interval_us": 65798,
+          "raw_rpm_assuming_one_mark": 911.881820116113,
+          "linear_trend_us": 65867.77650323775,
+          "linear_residual_us": -69.77650323775015,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 26,
+          "sequence_end": 27,
+          "elapsed_end_us": 1775216,
+          "interval_us": 65769,
+          "raw_rpm_assuming_one_mark": 912.283902750536,
+          "linear_trend_us": 65861.56953438175,
+          "linear_residual_us": -92.56953438174969,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 27,
+          "sequence_end": 28,
+          "elapsed_end_us": 1841079,
+          "interval_us": 65863,
+          "raw_rpm_assuming_one_mark": 910.9818866434872,
+          "linear_trend_us": 65855.36256552575,
+          "linear_residual_us": 7.637434474250767,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 28,
+          "sequence_end": 29,
+          "elapsed_end_us": 1906747,
+          "interval_us": 65668,
+          "raw_rpm_assuming_one_mark": 913.6870317353962,
+          "linear_trend_us": 65849.15559666975,
+          "linear_residual_us": -181.15559666974877,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 29,
+          "sequence_end": 30,
+          "elapsed_end_us": 1972504,
+          "interval_us": 65757,
+          "raw_rpm_assuming_one_mark": 912.4503855102879,
+          "linear_trend_us": 65842.94862781376,
+          "linear_residual_us": -85.94862781376287,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 30,
+          "sequence_end": 31,
+          "elapsed_end_us": 2038130,
+          "interval_us": 65626,
+          "raw_rpm_assuming_one_mark": 914.2717825252187,
+          "linear_trend_us": 65836.74165895776,
+          "linear_residual_us": -210.7416589577624,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 31,
+          "sequence_end": 32,
+          "elapsed_end_us": 2103790,
+          "interval_us": 65660,
+          "raw_rpm_assuming_one_mark": 913.7983551629607,
+          "linear_trend_us": 65830.53469010176,
+          "linear_residual_us": -170.53469010176195,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 32,
+          "sequence_end": 33,
+          "elapsed_end_us": 2169680,
+          "interval_us": 65890,
+          "raw_rpm_assuming_one_mark": 910.6085900743664,
+          "linear_trend_us": 65824.32772124576,
+          "linear_residual_us": 65.6722787542385,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 33,
+          "sequence_end": 34,
+          "elapsed_end_us": 2235481,
+          "interval_us": 65801,
+          "raw_rpm_assuming_one_mark": 911.8402455889728,
+          "linear_trend_us": 65818.12075238976,
+          "linear_residual_us": -17.120752389761037,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 34,
+          "sequence_end": 35,
+          "elapsed_end_us": 2301399,
+          "interval_us": 65918,
+          "raw_rpm_assuming_one_mark": 910.2217907096696,
+          "linear_trend_us": 65811.91378353378,
+          "linear_residual_us": 106.08621646622487,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 35,
+          "sequence_end": 36,
+          "elapsed_end_us": 2367224,
+          "interval_us": 65825,
+          "raw_rpm_assuming_one_mark": 911.5077857956703,
+          "linear_trend_us": 65805.70681467777,
+          "linear_residual_us": 19.293185322225327,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 36,
+          "sequence_end": 37,
+          "elapsed_end_us": 2433051,
+          "interval_us": 65827,
+          "raw_rpm_assuming_one_mark": 911.4800917556626,
+          "linear_trend_us": 65799.49984582177,
+          "linear_residual_us": 27.500154178225785,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 37,
+          "sequence_end": 38,
+          "elapsed_end_us": 2499021,
+          "interval_us": 65970,
+          "raw_rpm_assuming_one_mark": 909.5043201455206,
+          "linear_trend_us": 65793.29287696577,
+          "linear_residual_us": 176.70712303422624,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 38,
+          "sequence_end": 39,
+          "elapsed_end_us": 2564852,
+          "interval_us": 65831,
+          "raw_rpm_assuming_one_mark": 911.4247087238535,
+          "linear_trend_us": 65787.08590810977,
+          "linear_residual_us": 43.9140918902267,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 39,
+          "sequence_end": 40,
+          "elapsed_end_us": 2630740,
+          "interval_us": 65888,
+          "raw_rpm_assuming_one_mark": 910.6362311801846,
+          "linear_trend_us": 65780.87893925379,
+          "linear_residual_us": 107.1210607462126,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 40,
+          "sequence_end": 41,
+          "elapsed_end_us": 2696588,
+          "interval_us": 65848,
+          "raw_rpm_assuming_one_mark": 911.1894059045073,
+          "linear_trend_us": 65774.67197039779,
+          "linear_residual_us": 73.32802960221306,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 41,
+          "sequence_end": 42,
+          "elapsed_end_us": 2762322,
+          "interval_us": 65734,
+          "raw_rpm_assuming_one_mark": 912.7696473666596,
+          "linear_trend_us": 65768.46500154179,
+          "linear_residual_us": -34.46500154178648,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 42,
+          "sequence_end": 43,
+          "elapsed_end_us": 2828187,
+          "interval_us": 65865,
+          "raw_rpm_assuming_one_mark": 910.9542245502164,
+          "linear_trend_us": 65762.25803268579,
+          "linear_residual_us": 102.74196731421398,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 43,
+          "sequence_end": 44,
+          "elapsed_end_us": 2893934,
+          "interval_us": 65747,
+          "raw_rpm_assuming_one_mark": 912.589167566581,
+          "linear_trend_us": 65756.05106382979,
+          "linear_residual_us": -9.051063829785562,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 44,
+          "sequence_end": 45,
+          "elapsed_end_us": 2959718,
+          "interval_us": 65784,
+          "raw_rpm_assuming_one_mark": 912.0758847136082,
+          "linear_trend_us": 65749.8440949738,
+          "linear_residual_us": 34.155905026200344,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 45,
+          "sequence_end": 46,
+          "elapsed_end_us": 3025434,
+          "interval_us": 65716,
+          "raw_rpm_assuming_one_mark": 913.0196603566864,
+          "linear_trend_us": 65743.6371261178,
+          "linear_residual_us": -27.6371261177992,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 46,
+          "sequence_end": 47,
+          "elapsed_end_us": 3091086,
+          "interval_us": 65652,
+          "raw_rpm_assuming_one_mark": 913.9097057210747,
+          "linear_trend_us": 65737.4301572618,
+          "linear_residual_us": -85.43015726179874,
+          "phase_mod5": 1
+        }
+      ]
+    },
+    {
+      "file": "OPT_UNSET_e3fab4b9_UP484_0001.BIN",
+      "sha256": "db6bc170ce5dbbfd37716a6c87b9ceaaf2af7fafdd58df6cf407484ef7aff137",
+      "crc32": "6587ae40",
+      "size": 1472,
+      "events": 92,
+      "interval_count": 91,
+      "structure": "pass",
+      "independent_completion_reference": "not supplied",
+      "first_event_us": 202254,
+      "last_event_us": 19545529,
+      "event_span_s": 19.343275,
+      "mean_interval_us": 212563.46153846153,
+      "overall_rpm_assuming_one_mark": 282.2686437534492,
+      "interval_cv_percent": 0.4573818528562785,
+      "interval_std_us": 972.2266988800583,
+      "mean_raw_rpm": 282.27454697858286,
+      "std_raw_rpm": 1.2906730736827503,
+      "cv_raw_rpm_percent": 0.45724033126538965,
+      "min_interval_us": 210045,
+      "max_interval_us": 214375,
+      "five_event_approx_seconds": 1.0628173076923078,
+      "lag5_linear_correlation": 0.7029669041385384,
+      "lag5_quadratic_correlation": 0.6396504325341041,
+      "intervals_exactly_multiple_of_250us": 1,
+      "lags": [
+        {
+          "lag_events": 1,
+          "pairs": 90,
+          "correlation": 0.4816892231407976
+        },
+        {
+          "lag_events": 2,
+          "pairs": 89,
+          "correlation": 0.6303615221879112
+        },
+        {
+          "lag_events": 3,
+          "pairs": 88,
+          "correlation": 0.5801241816701351
+        },
+        {
+          "lag_events": 4,
+          "pairs": 87,
+          "correlation": 0.3299732866034404
+        },
+        {
+          "lag_events": 5,
+          "pairs": 86,
+          "correlation": 0.7029669041385384
+        },
+        {
+          "lag_events": 6,
+          "pairs": 85,
+          "correlation": 0.20642515443584702
+        },
+        {
+          "lag_events": 7,
+          "pairs": 84,
+          "correlation": 0.3591828061368255
+        },
+        {
+          "lag_events": 8,
+          "pairs": 83,
+          "correlation": 0.3295556124870601
+        },
+        {
+          "lag_events": 9,
+          "pairs": 82,
+          "correlation": 0.07679932051474755
+        },
+        {
+          "lag_events": 10,
+          "pairs": 81,
+          "correlation": 0.4546440336740427
+        },
+        {
+          "lag_events": 11,
+          "pairs": 80,
+          "correlation": -0.012738417745179446
+        },
+        {
+          "lag_events": 12,
+          "pairs": 79,
+          "correlation": 0.14593915670748153
+        },
+        {
+          "lag_events": 13,
+          "pairs": 78,
+          "correlation": 0.12081029656529686
+        },
+        {
+          "lag_events": 14,
+          "pairs": 77,
+          "correlation": -0.13812061551283988
+        },
+        {
+          "lag_events": 15,
+          "pairs": 76,
+          "correlation": 0.21094960956562012
+        },
+        {
+          "lag_events": 16,
+          "pairs": 75,
+          "correlation": -0.2262218884833362
+        },
+        {
+          "lag_events": 17,
+          "pairs": 74,
+          "correlation": -0.07492891617020032
+        },
+        {
+          "lag_events": 18,
+          "pairs": 73,
+          "correlation": -0.0805501407182305
+        },
+        {
+          "lag_events": 19,
+          "pairs": 72,
+          "correlation": -0.3314335402813712
+        },
+        {
+          "lag_events": 20,
+          "pairs": 71,
+          "correlation": 0.034040853482748705
+        },
+        {
+          "lag_events": 21,
+          "pairs": 70,
+          "correlation": -0.4059726334327958
+        },
+        {
+          "lag_events": 22,
+          "pairs": 69,
+          "correlation": -0.2610157893816034
+        },
+        {
+          "lag_events": 23,
+          "pairs": 68,
+          "correlation": -0.25381270042089843
+        },
+        {
+          "lag_events": 24,
+          "pairs": 67,
+          "correlation": -0.45142194708682004
+        },
+        {
+          "lag_events": 25,
+          "pairs": 66,
+          "correlation": -0.024027352524478157
+        },
+        {
+          "lag_events": 26,
+          "pairs": 65,
+          "correlation": -0.44203511411779123
+        },
+        {
+          "lag_events": 27,
+          "pairs": 64,
+          "correlation": -0.2457184471545459
+        },
+        {
+          "lag_events": 28,
+          "pairs": 63,
+          "correlation": -0.26099936189829925
+        },
+        {
+          "lag_events": 29,
+          "pairs": 62,
+          "correlation": -0.5073935792997692
+        },
+        {
+          "lag_events": 30,
+          "pairs": 61,
+          "correlation": -0.08924764893738656
+        }
+      ],
+      "phase5": [
+        {
+          "phase": 1,
+          "count": 19,
+          "mean_residual_us": 614.3279352226788
+        },
+        {
+          "phase": 2,
+          "count": 18,
+          "mean_residual_us": 13.922291235333736
+        },
+        {
+          "phase": 3,
+          "count": 18,
+          "mean_residual_us": -129.25952115516054
+        },
+        {
+          "phase": 4,
+          "count": 18,
+          "mean_residual_us": 258.6697775654304
+        },
+        {
+          "phase": 5,
+          "count": 18,
+          "mean_residual_us": -791.7898126028417
+        }
+      ],
+      "records": [
+        {
+          "interval_number": 1,
+          "sequence_end": 2,
+          "elapsed_end_us": 414716,
+          "interval_us": 212462,
+          "raw_rpm_assuming_one_mark": 282.4034415566078,
+          "linear_trend_us": 212045.27998088865,
+          "linear_residual_us": 416.7200191113516,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 2,
+          "sequence_end": 3,
+          "elapsed_end_us": 626420,
+          "interval_us": 211704,
+          "raw_rpm_assuming_one_mark": 283.4145788459358,
+          "linear_trend_us": 212056.7951266125,
+          "linear_residual_us": -352.7951266125019,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 3,
+          "sequence_end": 4,
+          "elapsed_end_us": 837956,
+          "interval_us": 211536,
+          "raw_rpm_assuming_one_mark": 283.6396641706376,
+          "linear_trend_us": 212068.31027233633,
+          "linear_residual_us": -532.3102723363263,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 4,
+          "sequence_end": 5,
+          "elapsed_end_us": 1049987,
+          "interval_us": 212031,
+          "raw_rpm_assuming_one_mark": 282.97748914073884,
+          "linear_trend_us": 212079.82541806018,
+          "linear_residual_us": -48.8254180601798,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 5,
+          "sequence_end": 6,
+          "elapsed_end_us": 1261475,
+          "interval_us": 211488,
+          "raw_rpm_assuming_one_mark": 283.70403994552885,
+          "linear_trend_us": 212091.34056378403,
+          "linear_residual_us": -603.3405637840333,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 6,
+          "sequence_end": 7,
+          "elapsed_end_us": 1473935,
+          "interval_us": 212460,
+          "raw_rpm_assuming_one_mark": 282.4060999717594,
+          "linear_trend_us": 212102.85570950786,
+          "linear_residual_us": 357.1442904921423,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 7,
+          "sequence_end": 8,
+          "elapsed_end_us": 1685585,
+          "interval_us": 211650,
+          "raw_rpm_assuming_one_mark": 283.48688873139616,
+          "linear_trend_us": 212114.3708552317,
+          "linear_residual_us": -464.3708552317112,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 8,
+          "sequence_end": 9,
+          "elapsed_end_us": 1897798,
+          "interval_us": 212213,
+          "raw_rpm_assuming_one_mark": 282.7347994703435,
+          "linear_trend_us": 212125.88600095554,
+          "linear_residual_us": 87.11399904446444,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 9,
+          "sequence_end": 10,
+          "elapsed_end_us": 2110329,
+          "interval_us": 212531,
+          "raw_rpm_assuming_one_mark": 282.311756873115,
+          "linear_trend_us": 212137.4011466794,
+          "linear_residual_us": 393.59885332061094,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 10,
+          "sequence_end": 11,
+          "elapsed_end_us": 2322254,
+          "interval_us": 211925,
+          "raw_rpm_assuming_one_mark": 283.119027958004,
+          "linear_trend_us": 212148.91629240324,
+          "linear_residual_us": -223.91629240324255,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 11,
+          "sequence_end": 12,
+          "elapsed_end_us": 2535436,
+          "interval_us": 213182,
+          "raw_rpm_assuming_one_mark": 281.44965334784365,
+          "linear_trend_us": 212160.43143812707,
+          "linear_residual_us": 1021.5685618729331,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 12,
+          "sequence_end": 13,
+          "elapsed_end_us": 2747803,
+          "interval_us": 212367,
+          "raw_rpm_assuming_one_mark": 282.52977157467967,
+          "linear_trend_us": 212171.94658385092,
+          "linear_residual_us": 195.05341614907957,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 13,
+          "sequence_end": 14,
+          "elapsed_end_us": 2960211,
+          "interval_us": 212408,
+          "raw_rpm_assuming_one_mark": 282.4752363376144,
+          "linear_trend_us": 212183.46172957474,
+          "linear_residual_us": 224.53827042525518,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 14,
+          "sequence_end": 15,
+          "elapsed_end_us": 3172803,
+          "interval_us": 212592,
+          "raw_rpm_assuming_one_mark": 282.23075186272297,
+          "linear_trend_us": 212194.9768752986,
+          "linear_residual_us": 397.0231247014017,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 15,
+          "sequence_end": 16,
+          "elapsed_end_us": 3384163,
+          "interval_us": 211360,
+          "raw_rpm_assuming_one_mark": 283.8758516275549,
+          "linear_trend_us": 212206.49202102242,
+          "linear_residual_us": -846.4920210224227,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 16,
+          "sequence_end": 17,
+          "elapsed_end_us": 3596914,
+          "interval_us": 212751,
+          "raw_rpm_assuming_one_mark": 282.01982599376737,
+          "linear_trend_us": 212218.00716674628,
+          "linear_residual_us": 532.9928332537238,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 17,
+          "sequence_end": 18,
+          "elapsed_end_us": 3808200,
+          "interval_us": 211286,
+          "raw_rpm_assuming_one_mark": 283.97527521937093,
+          "linear_trend_us": 212229.52231247013,
+          "linear_residual_us": -943.5223124701297,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 18,
+          "sequence_end": 19,
+          "elapsed_end_us": 4019688,
+          "interval_us": 211488,
+          "raw_rpm_assuming_one_mark": 283.70403994552885,
+          "linear_trend_us": 212241.03745819395,
+          "linear_residual_us": -753.0374581939541,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 19,
+          "sequence_end": 20,
+          "elapsed_end_us": 4231329,
+          "interval_us": 211641,
+          "raw_rpm_assuming_one_mark": 283.4989439664337,
+          "linear_trend_us": 212252.5526039178,
+          "linear_residual_us": -611.5526039178076,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 20,
+          "sequence_end": 21,
+          "elapsed_end_us": 4441374,
+          "interval_us": 210045,
+          "raw_rpm_assuming_one_mark": 285.6530743412126,
+          "linear_trend_us": 212264.06774964163,
+          "linear_residual_us": -2219.067749641632,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 21,
+          "sequence_end": 22,
+          "elapsed_end_us": 4652974,
+          "interval_us": 211600,
+          "raw_rpm_assuming_one_mark": 283.5538752362949,
+          "linear_trend_us": 212275.5828953655,
+          "linear_residual_us": -675.5828953654855,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 22,
+          "sequence_end": 23,
+          "elapsed_end_us": 4864184,
+          "interval_us": 211210,
+          "raw_rpm_assuming_one_mark": 284.0774584536717,
+          "linear_trend_us": 212287.09804108934,
+          "linear_residual_us": -1077.098041089339,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 23,
+          "sequence_end": 24,
+          "elapsed_end_us": 5075184,
+          "interval_us": 211000,
+          "raw_rpm_assuming_one_mark": 284.3601895734597,
+          "linear_trend_us": 212298.61318681316,
+          "linear_residual_us": -1298.6131868131633,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 24,
+          "sequence_end": 25,
+          "elapsed_end_us": 5287036,
+          "interval_us": 211852,
+          "raw_rpm_assuming_one_mark": 283.21658516322714,
+          "linear_trend_us": 212310.12833253702,
+          "linear_residual_us": -458.12833253701683,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 25,
+          "sequence_end": 26,
+          "elapsed_end_us": 5497815,
+          "interval_us": 210779,
+          "raw_rpm_assuming_one_mark": 284.6583388288207,
+          "linear_trend_us": 212321.64347826084,
+          "linear_residual_us": -1542.6434782608412,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 26,
+          "sequence_end": 27,
+          "elapsed_end_us": 5710182,
+          "interval_us": 212367,
+          "raw_rpm_assuming_one_mark": 282.52977157467967,
+          "linear_trend_us": 212333.1586239847,
+          "linear_residual_us": 33.841376015305286,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 27,
+          "sequence_end": 28,
+          "elapsed_end_us": 5922289,
+          "interval_us": 212107,
+          "raw_rpm_assuming_one_mark": 282.8760955555451,
+          "linear_trend_us": 212344.67376970855,
+          "linear_residual_us": -237.6737697085482,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 28,
+          "sequence_end": 29,
+          "elapsed_end_us": 6133654,
+          "interval_us": 211365,
+          "raw_rpm_assuming_one_mark": 283.8691363281527,
+          "linear_trend_us": 212356.18891543237,
+          "linear_residual_us": -991.1889154323726,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 29,
+          "sequence_end": 30,
+          "elapsed_end_us": 6345558,
+          "interval_us": 211904,
+          "raw_rpm_assuming_one_mark": 283.14708547266684,
+          "linear_trend_us": 212367.70406115623,
+          "linear_residual_us": -463.7040611562261,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 30,
+          "sequence_end": 31,
+          "elapsed_end_us": 6556615,
+          "interval_us": 211057,
+          "raw_rpm_assuming_one_mark": 284.28339263800774,
+          "linear_trend_us": 212379.21920688005,
+          "linear_residual_us": -1322.2192068800505,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 31,
+          "sequence_end": 32,
+          "elapsed_end_us": 6768784,
+          "interval_us": 212169,
+          "raw_rpm_assuming_one_mark": 282.7934335364733,
+          "linear_trend_us": 212390.7343526039,
+          "linear_residual_us": -221.73435260390397,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 32,
+          "sequence_end": 33,
+          "elapsed_end_us": 6980584,
+          "interval_us": 211800,
+          "raw_rpm_assuming_one_mark": 283.28611898017,
+          "linear_trend_us": 212402.24949832776,
+          "linear_residual_us": -602.2494983277575,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 33,
+          "sequence_end": 34,
+          "elapsed_end_us": 7192186,
+          "interval_us": 211602,
+          "raw_rpm_assuming_one_mark": 283.5511951682876,
+          "linear_trend_us": 212413.76464405158,
+          "linear_residual_us": -811.7646440515819,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 34,
+          "sequence_end": 35,
+          "elapsed_end_us": 7404722,
+          "interval_us": 212536,
+          "raw_rpm_assuming_one_mark": 282.3051153686905,
+          "linear_trend_us": 212425.27978977544,
+          "linear_residual_us": 110.72021022456465,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 35,
+          "sequence_end": 36,
+          "elapsed_end_us": 7616410,
+          "interval_us": 211688,
+          "raw_rpm_assuming_one_mark": 283.43600015116584,
+          "linear_trend_us": 212436.79493549926,
+          "linear_residual_us": -748.7949354992597,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 36,
+          "sequence_end": 37,
+          "elapsed_end_us": 7829765,
+          "interval_us": 213355,
+          "raw_rpm_assuming_one_mark": 281.22143844765765,
+          "linear_trend_us": 212448.3100812231,
+          "linear_residual_us": 906.6899187768868,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 37,
+          "sequence_end": 38,
+          "elapsed_end_us": 8042848,
+          "interval_us": 213083,
+          "raw_rpm_assuming_one_mark": 281.5804170205976,
+          "linear_trend_us": 212459.82522694697,
+          "linear_residual_us": 623.1747730530333,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 38,
+          "sequence_end": 39,
+          "elapsed_end_us": 8255776,
+          "interval_us": 212928,
+          "raw_rpm_assuming_one_mark": 281.785392245266,
+          "linear_trend_us": 212471.3403726708,
+          "linear_residual_us": 456.6596273292089,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 39,
+          "sequence_end": 40,
+          "elapsed_end_us": 8468861,
+          "interval_us": 213085,
+          "raw_rpm_assuming_one_mark": 281.57777412769553,
+          "linear_trend_us": 212482.85551839464,
+          "linear_residual_us": 602.1444816053554,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 40,
+          "sequence_end": 41,
+          "elapsed_end_us": 8680524,
+          "interval_us": 211663,
+          "raw_rpm_assuming_one_mark": 283.46947742401835,
+          "linear_trend_us": 212494.37066411847,
+          "linear_residual_us": -831.370664118469,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 41,
+          "sequence_end": 42,
+          "elapsed_end_us": 8894297,
+          "interval_us": 213773,
+          "raw_rpm_assuming_one_mark": 280.6715534702699,
+          "linear_trend_us": 212505.88580984232,
+          "linear_residual_us": 1267.1141901576775,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 42,
+          "sequence_end": 43,
+          "elapsed_end_us": 9107430,
+          "interval_us": 213133,
+          "raw_rpm_assuming_one_mark": 281.5143595782915,
+          "linear_trend_us": 212517.40095556618,
+          "linear_residual_us": 615.599044433824,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 43,
+          "sequence_end": 44,
+          "elapsed_end_us": 9321805,
+          "interval_us": 214375,
+          "raw_rpm_assuming_one_mark": 279.88338192419826,
+          "linear_trend_us": 212528.91610129,
+          "linear_residual_us": 1846.0838987099996,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 44,
+          "sequence_end": 45,
+          "elapsed_end_us": 9536096,
+          "interval_us": 214291,
+          "raw_rpm_assuming_one_mark": 279.99309350369356,
+          "linear_trend_us": 212540.43124701385,
+          "linear_residual_us": 1750.5687529861461,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 45,
+          "sequence_end": 46,
+          "elapsed_end_us": 9748704,
+          "interval_us": 212608,
+          "raw_rpm_assuming_one_mark": 282.2095123419627,
+          "linear_trend_us": 212551.94639273768,
+          "linear_residual_us": 56.05360726232175,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 46,
+          "sequence_end": 47,
+          "elapsed_end_us": 9962824,
+          "interval_us": 214120,
+          "raw_rpm_assuming_one_mark": 280.21670091537453,
+          "linear_trend_us": 212563.46153846153,
+          "linear_residual_us": 1556.5384615384683,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 47,
+          "sequence_end": 48,
+          "elapsed_end_us": 10177048,
+          "interval_us": 214224,
+          "raw_rpm_assuming_one_mark": 280.08066323101053,
+          "linear_trend_us": 212574.97668418539,
+          "linear_residual_us": 1649.0233158146148,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 48,
+          "sequence_end": 49,
+          "elapsed_end_us": 10390470,
+          "interval_us": 213422,
+          "raw_rpm_assuming_one_mark": 281.1331540328551,
+          "linear_trend_us": 212586.4918299092,
+          "linear_residual_us": 835.5081700907904,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 49,
+          "sequence_end": 50,
+          "elapsed_end_us": 10604119,
+          "interval_us": 213649,
+          "raw_rpm_assuming_one_mark": 280.8344527706659,
+          "linear_trend_us": 212598.00697563306,
+          "linear_residual_us": 1050.9930243669369,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 50,
+          "sequence_end": 51,
+          "elapsed_end_us": 10816539,
+          "interval_us": 212420,
+          "raw_rpm_assuming_one_mark": 282.45927878730816,
+          "linear_trend_us": 212609.5221213569,
+          "linear_residual_us": -189.5221213568875,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 51,
+          "sequence_end": 52,
+          "elapsed_end_us": 11030708,
+          "interval_us": 214169,
+          "raw_rpm_assuming_one_mark": 280.152589777232,
+          "linear_trend_us": 212621.03726708074,
+          "linear_residual_us": 1547.962732919259,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 52,
+          "sequence_end": 53,
+          "elapsed_end_us": 11244462,
+          "interval_us": 213754,
+          "raw_rpm_assuming_one_mark": 280.6965015859352,
+          "linear_trend_us": 212632.5524128046,
+          "linear_residual_us": 1121.4475871954055,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 53,
+          "sequence_end": 54,
+          "elapsed_end_us": 11457632,
+          "interval_us": 213170,
+          "raw_rpm_assuming_one_mark": 281.4654970211568,
+          "linear_trend_us": 212644.06755852842,
+          "linear_residual_us": 525.9324414715811,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 54,
+          "sequence_end": 55,
+          "elapsed_end_us": 11671185,
+          "interval_us": 213553,
+          "raw_rpm_assuming_one_mark": 280.9606982809888,
+          "linear_trend_us": 212655.58270425227,
+          "linear_residual_us": 897.4172957477276,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 55,
+          "sequence_end": 56,
+          "elapsed_end_us": 11883764,
+          "interval_us": 212579,
+          "raw_rpm_assuming_one_mark": 282.2480113275535,
+          "linear_trend_us": 212667.0978499761,
+          "linear_residual_us": -88.09784997609677,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 56,
+          "sequence_end": 57,
+          "elapsed_end_us": 12097932,
+          "interval_us": 214168,
+          "raw_rpm_assuming_one_mark": 280.15389787456576,
+          "linear_trend_us": 212678.61299569995,
+          "linear_residual_us": 1489.3870043000497,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 57,
+          "sequence_end": 58,
+          "elapsed_end_us": 12311424,
+          "interval_us": 213492,
+          "raw_rpm_assuming_one_mark": 281.0409757742679,
+          "linear_trend_us": 212690.1281414238,
+          "linear_residual_us": 801.8718585761962,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 58,
+          "sequence_end": 59,
+          "elapsed_end_us": 12523800,
+          "interval_us": 212376,
+          "raw_rpm_assuming_one_mark": 282.51779862131315,
+          "linear_trend_us": 212701.64328714763,
+          "linear_residual_us": -325.64328714762814,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 59,
+          "sequence_end": 60,
+          "elapsed_end_us": 12736530,
+          "interval_us": 212730,
+          "raw_rpm_assuming_one_mark": 282.0476660555634,
+          "linear_trend_us": 212713.15843287148,
+          "linear_residual_us": 16.841567128518363,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 60,
+          "sequence_end": 61,
+          "elapsed_end_us": 12948863,
+          "interval_us": 212333,
+          "raw_rpm_assuming_one_mark": 282.5750118916984,
+          "linear_trend_us": 212724.6735785953,
+          "linear_residual_us": -391.673578595306,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 61,
+          "sequence_end": 62,
+          "elapsed_end_us": 13163173,
+          "interval_us": 214310,
+          "raw_rpm_assuming_one_mark": 279.9682702627036,
+          "linear_trend_us": 212736.18872431916,
+          "linear_residual_us": 1573.8112756808405,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 62,
+          "sequence_end": 63,
+          "elapsed_end_us": 13376922,
+          "interval_us": 213749,
+          "raw_rpm_assuming_one_mark": 280.7030676166906,
+          "linear_trend_us": 212747.703870043,
+          "linear_residual_us": 1001.296129956987,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 63,
+          "sequence_end": 64,
+          "elapsed_end_us": 13590859,
+          "interval_us": 213937,
+          "raw_rpm_assuming_one_mark": 280.45639604182537,
+          "linear_trend_us": 212759.21901576684,
+          "linear_residual_us": 1177.7809842331626,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 64,
+          "sequence_end": 65,
+          "elapsed_end_us": 13805077,
+          "interval_us": 214218,
+          "raw_rpm_assuming_one_mark": 280.08850796851806,
+          "linear_trend_us": 212770.7341614907,
+          "linear_residual_us": 1447.265838509309,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 65,
+          "sequence_end": 66,
+          "elapsed_end_us": 14018424,
+          "interval_us": 213347,
+          "raw_rpm_assuming_one_mark": 281.2319835760522,
+          "linear_trend_us": 212782.24930721452,
+          "linear_residual_us": 564.7506927854847,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 66,
+          "sequence_end": 67,
+          "elapsed_end_us": 14232417,
+          "interval_us": 213993,
+          "raw_rpm_assuming_one_mark": 280.38300318234707,
+          "linear_trend_us": 212793.76445293837,
+          "linear_residual_us": 1199.2355470616312,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 67,
+          "sequence_end": 68,
+          "elapsed_end_us": 14446349,
+          "interval_us": 213932,
+          "raw_rpm_assuming_one_mark": 280.4629508441935,
+          "linear_trend_us": 212805.27959866222,
+          "linear_residual_us": 1126.7204013377777,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 68,
+          "sequence_end": 69,
+          "elapsed_end_us": 14660109,
+          "interval_us": 213760,
+          "raw_rpm_assuming_one_mark": 280.688622754491,
+          "linear_trend_us": 212816.79474438605,
+          "linear_residual_us": 943.2052556139533,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 69,
+          "sequence_end": 70,
+          "elapsed_end_us": 14873625,
+          "interval_us": 213516,
+          "raw_rpm_assuming_one_mark": 281.00938571348286,
+          "linear_trend_us": 212828.3098901099,
+          "linear_residual_us": 687.6901098900998,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 70,
+          "sequence_end": 71,
+          "elapsed_end_us": 15086408,
+          "interval_us": 212783,
+          "raw_rpm_assuming_one_mark": 281.9774136091699,
+          "linear_trend_us": 212839.82503583372,
+          "linear_residual_us": -56.82503583372454,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 71,
+          "sequence_end": 72,
+          "elapsed_end_us": 15299943,
+          "interval_us": 213535,
+          "raw_rpm_assuming_one_mark": 280.98438195143655,
+          "linear_trend_us": 212851.34018155758,
+          "linear_residual_us": 683.659818442422,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 72,
+          "sequence_end": 73,
+          "elapsed_end_us": 15512599,
+          "interval_us": 212656,
+          "raw_rpm_assuming_one_mark": 282.1458129561357,
+          "linear_trend_us": 212862.85532728143,
+          "linear_residual_us": -206.85532728143153,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 73,
+          "sequence_end": 74,
+          "elapsed_end_us": 15724846,
+          "interval_us": 212247,
+          "raw_rpm_assuming_one_mark": 282.68950797891137,
+          "linear_trend_us": 212874.37047300526,
+          "linear_residual_us": -627.3704730052559,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 74,
+          "sequence_end": 75,
+          "elapsed_end_us": 15938021,
+          "interval_us": 213175,
+          "raw_rpm_assuming_one_mark": 281.45889527383605,
+          "linear_trend_us": 212885.8856187291,
+          "linear_residual_us": 289.1143812708906,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 75,
+          "sequence_end": 76,
+          "elapsed_end_us": 16150053,
+          "interval_us": 212032,
+          "raw_rpm_assuming_one_mark": 282.97615454271056,
+          "linear_trend_us": 212897.40076445293,
+          "linear_residual_us": -865.4007644529338,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 76,
+          "sequence_end": 77,
+          "elapsed_end_us": 16363171,
+          "interval_us": 213118,
+          "raw_rpm_assuming_one_mark": 281.53417355643353,
+          "linear_trend_us": 212908.9159101768,
+          "linear_residual_us": 209.0840898232127,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 77,
+          "sequence_end": 78,
+          "elapsed_end_us": 16575430,
+          "interval_us": 212259,
+          "raw_rpm_assuming_one_mark": 282.6735262109027,
+          "linear_trend_us": 212920.43105590064,
+          "linear_residual_us": -661.4310559006408,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 78,
+          "sequence_end": 79,
+          "elapsed_end_us": 16787531,
+          "interval_us": 212101,
+          "raw_rpm_assuming_one_mark": 282.8840976704495,
+          "linear_trend_us": 212931.94620162447,
+          "linear_residual_us": -830.9462016244652,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 79,
+          "sequence_end": 80,
+          "elapsed_end_us": 17000666,
+          "interval_us": 213135,
+          "raw_rpm_assuming_one_mark": 281.51171792525867,
+          "linear_trend_us": 212943.46134734832,
+          "linear_residual_us": 191.53865265168133,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 80,
+          "sequence_end": 81,
+          "elapsed_end_us": 17212170,
+          "interval_us": 211504,
+          "raw_rpm_assuming_one_mark": 283.6825781072698,
+          "linear_trend_us": 212954.97649307214,
+          "linear_residual_us": -1450.976493072143,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 81,
+          "sequence_end": 82,
+          "elapsed_end_us": 17424782,
+          "interval_us": 212612,
+          "raw_rpm_assuming_one_mark": 282.20420296126275,
+          "linear_trend_us": 212966.491638796,
+          "linear_residual_us": -354.49163879599655,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 82,
+          "sequence_end": 83,
+          "elapsed_end_us": 17636725,
+          "interval_us": 211943,
+          "raw_rpm_assuming_one_mark": 283.0949830850748,
+          "linear_trend_us": 212978.00678451982,
+          "linear_residual_us": -1035.006784519821,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 83,
+          "sequence_end": 84,
+          "elapsed_end_us": 17848482,
+          "interval_us": 211757,
+          "raw_rpm_assuming_one_mark": 283.34364389370836,
+          "linear_trend_us": 212989.52193024367,
+          "linear_residual_us": -1232.5219302436744,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 84,
+          "sequence_end": 85,
+          "elapsed_end_us": 18060363,
+          "interval_us": 211881,
+          "raw_rpm_assuming_one_mark": 283.1778215130191,
+          "linear_trend_us": 213001.03707596753,
+          "linear_residual_us": -1120.037075967528,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 85,
+          "sequence_end": 86,
+          "elapsed_end_us": 18271234,
+          "interval_us": 210871,
+          "raw_rpm_assuming_one_mark": 284.53414646869413,
+          "linear_trend_us": 213012.55222169135,
+          "linear_residual_us": -2141.5522216913523,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 86,
+          "sequence_end": 87,
+          "elapsed_end_us": 18483593,
+          "interval_us": 212359,
+          "raw_rpm_assuming_one_mark": 282.54041505186973,
+          "linear_trend_us": 213024.0673674152,
+          "linear_residual_us": -665.0673674152058,
+          "phase_mod5": 1
+        },
+        {
+          "interval_number": 87,
+          "sequence_end": 88,
+          "elapsed_end_us": 18695326,
+          "interval_us": 211733,
+          "raw_rpm_assuming_one_mark": 283.37576098199145,
+          "linear_trend_us": 213035.58251313903,
+          "linear_residual_us": -1302.5825131390302,
+          "phase_mod5": 2
+        },
+        {
+          "interval_number": 88,
+          "sequence_end": 89,
+          "elapsed_end_us": 18907353,
+          "interval_us": 212027,
+          "raw_rpm_assuming_one_mark": 282.9828276587416,
+          "linear_trend_us": 213047.09765886288,
+          "linear_residual_us": -1020.0976588628837,
+          "phase_mod5": 3
+        },
+        {
+          "interval_number": 89,
+          "sequence_end": 90,
+          "elapsed_end_us": 19119935,
+          "interval_us": 212582,
+          "raw_rpm_assuming_one_mark": 282.24402818677027,
+          "linear_trend_us": 213058.61280458674,
+          "linear_residual_us": -476.6128045867372,
+          "phase_mod5": 4
+        },
+        {
+          "interval_number": 90,
+          "sequence_end": 91,
+          "elapsed_end_us": 19331654,
+          "interval_us": 211719,
+          "raw_rpm_assuming_one_mark": 283.39449931276835,
+          "linear_trend_us": 213070.12795031056,
+          "linear_residual_us": -1351.1279503105616,
+          "phase_mod5": 5
+        },
+        {
+          "interval_number": 91,
+          "sequence_end": 92,
+          "elapsed_end_us": 19545529,
+          "interval_us": 213875,
+          "raw_rpm_assuming_one_mark": 280.53769725306836,
+          "linear_trend_us": 213081.64309603442,
+          "linear_residual_us": 793.3569039655849,
+          "phase_mod5": 1
+        }
+      ]
+    }
+  ]
+}

@@ -14,3 +14,9 @@ python3 docs/tools/build_timing_protocol.py
 ```
 
 The script resolves paths from its own location. The command above assumes the repository root; otherwise use its absolute path. This deliverable used the existing bundled Python/ReportLab runtime, with no dependency installation. Re-render all PDF pages with Poppler and visually check them after any source/layout update. Preserve protocol revisions and evidence references; a changed procedure is not a changed measured result.
+
+## RPM ripple investigation
+
+[Short report and data/analysis checklist](rpm-ripple-diagnosis.md) | [Printable PDF](../../output/pdf/RPM-ripple-short-report-and-procedure.pdf) | [Reproducible analysis](../../analysis-bench/investigations/README.md).
+
+Rebuild the short report with `python3 docs/tools/build_rpm_ripple_report.py` using the existing ReportLab runtime. The user's aligned-tap setup is already designed; this checklist concerns evidence and interpretation. No experiment is represented as executed.

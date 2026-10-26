@@ -1,0 +1,4 @@
+run_label,filename,firmware_or_unknown,actual_test_mode,motor_voltage_V_or_unknown,supply_controller_type,pulley_ratio_or_unknown,belt_type_or_unknown,sensor_gap_mm_or_unknown,pot_setting_or_photo,IMU_capture_enabled,duration_s_or_unknown,expected_physical_count_or_unknown,saved_event_count,CRC32_or_unknown,SHA256,notes
+RUN_01,,,,,,,,,,,,,,,,Template only - no measurement recorded
+RUN_02,,,,,,,,,,,,,,,,Template only - no measurement recorded
+RUN_03,,,,,,,,,,,,,,,,Template only - no measurement recorded

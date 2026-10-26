@@ -2,6 +2,12 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.6.2 — 2026-10-26
+
+- Investigate RPM ripple in three archived optical recordings, with reproducible interval analysis, notebook, vector plots and source hashes.
+- Add a short report and data/analysis checklist for the user's already designed aligned-tap test. Existing observations do not establish motor or capture latency as the cause.
+- Preserve original recordings and open hardware gates; no firmware change or upload. Host checks and PDF review recorded in the investigation evidence.
+
 ## 0.6.1 — 2026-10-26
 
 - Default reader to RPM; add movable left/right focus and raw RPM mean/SD/population variance/CV/min/max/median/rate for complete intervals in the window.
