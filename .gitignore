@@ -11,3 +11,6 @@ build/
 
 # Local browser verification artifacts
 .playwright-mcp/
+
+# Local reader organisation state
+.reader-state.json

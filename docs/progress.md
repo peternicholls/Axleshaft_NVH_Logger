@@ -1,6 +1,6 @@
 # Progress
 
-Last updated: 2026-10-26. Repository version: 0.6.0 (latest captured installed firmware: optical 0.4.1).
+Last updated: 2026-10-26. Repository version: 0.6.1 (latest captured installed firmware: optical 0.4.1).
 
 ## Current position
 
@@ -154,3 +154,11 @@ Archived [completed research and provenance](../side-projects/wheel-balancer/res
 ## Basic revolution reader — 0.6.0
 
 Delivered [analysis-bench reader](../analysis-bench/README.md) for the six raw recordings in output/runs. Shows counts, elapsed timing, RPM, review flags, raw table/plots, tunable display parameters and CSV export. Dates are unknown; no computer clock is required. Empty/poor records remain inspectable; structural/reference checks are separate from physical accuracy. Eleven Python tests, 22 browser checks, CSV raw-field comparison, desktop/mobile review and independent code review pass; see [evidence](evidence/2026-10-26-reader-local-checks.md). No new dependencies, firmware changes or hardware operations; accelerometer/advanced analysis remain out of scope.
+
+## Reader focus/library and logger numbering — 0.6.1
+
+Reader now defaults to RPM with draggable/resizable/movable focus and keyboard sliders. Focus statistics report raw arithmetic mean, SD, population variance, CV, min/max/median and time-weighted rate, with complete-interval boundaries and no silent removal of flagged events. Labels/marks/hidden state persist outside binaries and hidden runs are recoverable. Unit/browser/API checks pass; raw data remains intact.
+
+Optical firmware 0.6.1 reserves a persistent shared NVS run index for both date and sequential fallback filenames. Untimed names are OPT_0002.BIN etc; timed names include the same sequence suffix. Read/write failure is explicit, collisions bounded, existing files retained. Firmware compilation and host naming tests pass; no upload or physical NVS/reset/card-swap test. Latest captured physical firmware remains optical 0.4.1. Earlier qualification gates remain open.
+
+Detailed [0.6.1 software evidence and screenshots](evidence/2026-10-26-reader-focus-numbering-checks.md) retained. All six original binary hashes remain unchanged.

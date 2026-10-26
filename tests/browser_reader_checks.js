@@ -2,7 +2,7 @@ async (page) => {
   const checks=[];
   const ensure=(condition,label)=>{if(!condition)throw Error(label);checks.push(label);};
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto('http://127.0.0.1:8765');
+  await page.goto('http://127.0.0.1:8766');
   await page.waitForFunction(()=>document.getElementById('detections').textContent==='346');
   ensure(await page.locator('.run').count()===6,'six real recordings listed');
   ensure(await page.locator('#to').evaluate(e=>e.validity.valid),'full-precision range input valid');

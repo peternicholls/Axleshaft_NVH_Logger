@@ -1,4 +1,4 @@
-Polestar 2 NVH Logger — Stage 1 optical rotation test — 0.4.1
+Polestar 2 NVH Logger — Stage 1 optical rotation test — 0.6.1
 ==========================================================
 Standalone sketch for a rotating axle/substitute with ONE white reference mark.
 Optical event SD logging; no IMU integration. Code preparation/build only in this chat;
@@ -100,21 +100,39 @@ qualification. The new button/off-pulse behaviour requires physical retesting.
 Host tests/build cannot prove optical accuracy, LED behaviour or safe mounting.
 Stage 0B remaining acceptance gates are still open; no combined logger implied.
 
-SD FILE NAMES AND CLOCK
-Files use OPT_YYYY-MM-DD_HH-MM-SS_0001.BIN in UTC. The suffix increments if a
-path already exists for that second. Existing files are never overwritten.
-The ESP32 does not know wall-clock time after power loss. While IDLE send:
+SD FILE NAMES AND CLOCK — 0.6.1
+Every recording reserves the next persistent DEVICE run index in ESP32 NVS.
+With a valid UTC clock: OPT_2026-10-26_14-30-00_0001.BIN
+Without a clock: OPT_0002.BIN, OPT_0003.BIN, etc.
+Both naming modes advance the SAME counter, for example:
+OPT_2026-10-26_14-30-00_0001.BIN
+OPT_0002.BIN
+OPT_0003.BIN
+OPT_2026-10-26_14-31-00_0004.BIN
+OPT_2026-10-26_14-31-01_0005.BIN
+OPT_0006.BIN
+OPT_0007.BIN
+
+Clock loss, reset or a new card does not reset a working device counter.
+Existing recordings are not renamed/overwritten. A reserved number is never
+reused after failed file creation, collision or power interruption, so gaps
+can occur. Collision retries are bounded at 100; uint32 exhaustion or NVS
+read/write/read-back error latches ERROR instead of resetting the counter.
+
+On first migration (or when the card is ahead), seed from the greater of
+remaining optical-file count and highest recognised terminal file index.
+This is only a lower bound on legacy history: deleted old recordings cannot
+be reconstructed if NVS is erased. Startup logs migration/reconciliation.
+Legacy OPT0001 and OPT_UNSET files remain unchanged. Back up wanted recordings
+and check run numbering through the separate hardware workflow before relying
+on power-cut/reset/card-swap persistence; those physical tests are still pending.
+
+The ESP32 does not know UTC after power loss. While IDLE send:
 TIME <Unix-seconds>
-with newline in Serial Monitor. Generate the current command on your computer:
+with newline in Serial Monitor. Generate the current command on the computer:
 python3 -c "import time; print('TIME', int(time.time()))"
-Paste its output promptly into Serial Monitor. This is host-supplied time, not
-proof of clock synchronisation. TIME is rejected while testing/saving.
-Without a valid clock filenames are explicitly labelled, for example:
-OPT_UNSET_aabbccdd_UP15_0001.BIN
-This contains a random boot ID, uptime seconds and collision suffix. It never
-pretends to contain a real date. Set time again after reset/power-up. Renaming
-on the computer is safe if you retain the Serial association. Timestamped names
-use FAT long filenames; older Stage 0B RUN files remain untouched.
+TIME is rejected while testing/saving. Filename time is a label, not proof of
+clock synchronisation. The raw event format/monotonic timestamps are unchanged.
 
 FILE FORMAT — optical-events-v1 (firmware 0.4.0)
 No header/footer/padding. One 16-byte little-endian record per accepted event:
@@ -148,12 +166,12 @@ extra/missed physical marks can pass storage validation; known revolutions
 are still required for optical acceptance.
 
 SD BENCH CHECKLIST (separate upload/capture workflow)
-1. Confirm all SD/sensor/button wiring and free space; upload 0.4.0 separately.
+1. Confirm all SD/sensor/button wiring and free space; upload 0.6.1 separately.
 2. Set UTC time, start clear, run exactly 20 complete marked revolutions, stop.
    Require accepted=persisted=20, bytes=320, queue_drops=0, all CHECKS PASS.
 3. Copy the file and run the validator using the actual CRC from Serial.
-4. Repeat short runs in the same second if practical and across reset; set
-   time again and confirm unique names, retained older file hashes and counts.
+4. Repeat untimed and timed short runs across reset/card changes; confirm the
+   shared index continues, names are unique and earlier file hashes unchanged.
 5. Run at the planned rotation speeds; record gap, pot setting, independent
    revolution count/RPM, pulse widths, queue peak and worst observed latency.
 6. Preserve wanted data; use disposable contents to test insufficient space.

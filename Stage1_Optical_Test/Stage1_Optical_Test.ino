@@ -1,4 +1,4 @@
-/* Polestar NVH Logger 0.4.1 — standalone optical sensor bench test.
+/* Polestar NVH Logger 0.6.1 — standalone optical sensor bench test.
    Read README.txt before wiring. Optical SD event logging; no IMU or sibling runtime files. */
 #include <Arduino.h>
 #include <esp_timer.h>
@@ -6,7 +6,8 @@
 #include <SD.h>
 #include <time.h>
 #include <sys/time.h>
-#include <esp_system.h>
+#include <Preferences.h>
+#include <nvs.h>
 #include <stdlib.h>
 #include <freertos/FreeRTOS.h>
 #include <freertos/queue.h>
@@ -69,7 +70,7 @@ void setup() {
   digitalWrite(INDICATOR_PIN, INDICATOR_ACTIVE_LOW ? HIGH : LOW);
   pinMode(33, OUTPUT); digitalWrite(33, LOW); // Future external rotation LED.
   delay(1600);
-  Serial.println("\n=== STAGE 1 OPTICAL TEST 0.4.1 ===");
+  Serial.println("\n=== STAGE 1 OPTICAL TEST 0.6.1 ===");
   Serial.printf("OUT=GPIO26; stable detection cycle, clear to rearm; minimum_us=%lu\n",
                 (unsigned long)MIN_PULSE_INTERVAL_US);
   Serial.println("One mark/revolution assumed. Counts are accepted edges, not verified revolutions.");
@@ -163,31 +164,95 @@ static void storageError(const char *message) {
   portEXIT_CRITICAL(&pulseMux);
   Serial.printf("ERROR: %s; file retained if created; reset required.\n", message);
 }
+// Preferences reads use default values for both missing keys and read failures.
+// Use the bundled NVS status API to distinguish first migration from an error.
+static bool readRunIndex(uint32_t &value, bool *missing = nullptr) {
+  nvs_handle_t handle;
+  if (nvs_open("optical_runs", NVS_READONLY, &handle) != ESP_OK) return false;
+  esp_err_t result = nvs_get_u32(handle, "last_run", &value);
+  nvs_close(handle);
+  if (missing) {
+    *missing = result == ESP_ERR_NVS_NOT_FOUND;
+    if (*missing) { value = 0; return true; }
+  }
+  return result == ESP_OK;
+}
+static bool persistRunIndex(Preferences &preferences, uint32_t value) {
+  if (preferences.putUInt("last_run", value) != sizeof(uint32_t)) return false;
+  uint32_t checked;
+  return readRunIndex(checked) && checked == value;
+}
 static void storageTask(void *) {
   pinMode(13, OUTPUT); digitalWrite(13, HIGH);
   SPI.begin(18,19,23,13);
   if (!SD.begin(13,SPI,1000000) || SD.cardType() == CARD_NONE) {
     storageError("SD mount/card failed"); vTaskDelete(nullptr); return;
   }
-  const uint32_t bootId = esp_random();
+  Preferences runPreferences;
+  if (!runPreferences.begin("optical_runs", false)) {
+    storageError("run-index NVS open failed"); vTaskDelete(nullptr); return;
+  }
+  optical_storage::ExistingRuns existing;
+  File directory = SD.open("/");
+  if (!directory || !directory.isDirectory()) {
+    storageError("run-index SD directory scan failed"); vTaskDelete(nullptr); return;
+  }
+  bool scanOk = true;
+  for (File entry = directory.openNextFile(); entry; entry = directory.openNextFile()) {
+    if (!entry.isDirectory() && !existing.observe(entry.name())) scanOk = false;
+    entry.close();
+    if (!scanOk) break;
+    vTaskDelay(1);
+  }
+  directory.close();
+  if (!scanOk) {
+    storageError("existing optical run count/index exceeds uint32 range"); vTaskDelete(nullptr); return;
+  }
+  uint32_t lastRun = 0;
+  bool migrated = false;
+  if (!readRunIndex(lastRun, &migrated)) {
+    storageError("run-index NVS read/type failed"); vTaskDelete(nullptr); return;
+  }
+  uint32_t seed = existing.seed();
+  bool reconcile = migrated || seed > lastRun;
+  if (reconcile && !persistRunIndex(runPreferences, seed)) {
+    storageError("run-index NVS migration/reconciliation failed"); vTaskDelete(nullptr); return;
+  }
+  if (reconcile) lastRun = seed;
+  Serial.printf("RUN INDEX migration=%d reconciled=%d optical_files=%lu maximum_existing_index=%lu seed=%lu last_reserved=%lu; original files retained\n",
+    migrated, reconcile, (unsigned long)existing.count, (unsigned long)existing.highestIndex,
+    (unsigned long)seed, (unsigned long)lastRun);
   portENTER_CRITICAL(&pulseMux); logState = LogState::Idle; portEXIT_CRITICAL(&pulseMux);
-  Serial.println("SD ready; release then press button. TIME <Unix-seconds> sets UTC filenames; otherwise UNSET boot/uptime names.");
+  Serial.println("SD ready; release then press button. TIME <Unix-seconds> sets UTC filenames; otherwise sequential OPT_<index>.BIN names. One persistent index is shared by both.");
   for (;;) {
     portENTER_CRITICAL(&pulseMux); bool starting = logState == LogState::Starting; portEXIT_CRITICAL(&pulseMux);
     if (!starting) { vTaskDelay(1); continue; }
-    char label[64], filename[96];
+    char label[64] = {}, filename[96];
     time_t utcNow = time(nullptr);
     if (utcNow >= 1577836800 && uint64_t(utcNow) < 4102444800ULL) {
       struct tm utc; gmtime_r(&utcNow, &utc);
       strftime(label, sizeof(label), "%Y-%m-%d_%H-%M-%S", &utc);
-    } else snprintf(label, sizeof(label), "UNSET_%08lx_UP%llu",
-        (unsigned long)bootId, (unsigned long long)(esp_timer_get_time()/1000000));
-    bool found = false;
-    for (unsigned suffix=1; suffix<=9999; ++suffix) {
-      if (!optical_storage::eventFilename(label,suffix,filename,sizeof(filename))) break;
-      if (!SD.exists(filename)) { found = true; break; }
     }
-    if (!found) { storageError("filename collision suffixes exhausted"); continue; }
+    bool found = false;
+    for (unsigned attempt=0; attempt<100; ++attempt) {
+      uint32_t index = 0;
+      if (!optical_storage::reserveRunIndex(lastRun, index,
+          [&runPreferences](uint32_t next) { return persistRunIndex(runPreferences, next); })) {
+        storageError("run-index reservation failed or uint32 range exhausted"); break;
+      }
+      if (!optical_storage::eventFilename(label, index, filename, sizeof(filename))) {
+        storageError("run filename formatting failed"); break;
+      }
+      if (!SD.exists(filename)) { found = true; break; }
+      // Reserve another durable index on collision; never append to old data.
+      Serial.printf("Existing filename %s; reserved index skipped\n", filename);
+      vTaskDelay(1);
+    }
+    if (!found) {
+      portENTER_CRITICAL(&pulseMux); bool alreadyFailed = logState == LogState::Error; portEXIT_CRITICAL(&pulseMux);
+      if (!alreadyFailed) storageError("too many filename collisions (100 reservations); inspect card");
+      continue;
+    }
     File file = SD.open(filename, FILE_WRITE);
     if (!file) { storageError("file create failed"); continue; }
     xQueueReset(eventQueue);

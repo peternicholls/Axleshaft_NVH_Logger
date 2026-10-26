@@ -9,6 +9,7 @@ import tempfile
 import threading
 import unittest
 from unittest.mock import patch, MagicMock
+from concurrent.futures import ThreadPoolExecutor
 import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -169,9 +170,123 @@ class ReaderTests(unittest.TestCase):
         self.assertEqual(request('/api/runs', {'Origin': 'https://example.com'})[0], 400)
         self.assertEqual(request('/api/runs', {'Host': 'evil.example'})[0], 400)
         self.assertEqual(request('/api/runs', {'Sec-Fetch-Site': 'cross-site'})[0], 400)
-        self.assertEqual(request('/api/runs', method='POST')[0], 501)
+        self.assertEqual(request('/api/runs', method='POST')[0], 404)
         self.path.write_bytes(b'x'*(reader.MAX_BYTES+1))
         self.assertEqual(request('/api/run?name='+self.path.name)[0], 413)
+
+
+class MetadataTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name).resolve()
+        self.path = self.root / 'RUN.BIN'
+        self.path.write_bytes(records(10))
+        self.state = self.root / 'state.json'
+        self.store = reader.MetadataStore(self.root, self.state)
+
+    def test_persistence_and_raw_identity(self):
+        before = self.path.read_bytes()
+        result = self.store.update('RUN.BIN', {'label': '  Motor slow  ', 'marked': True, 'hidden': True})
+        expected = {'label': 'Motor slow', 'marked': True, 'hidden': True}
+        self.assertEqual(result['metadata'], expected)
+        restarted = reader.MetadataStore(self.root, self.state)
+        self.assertEqual(restarted.get('RUN.BIN'), expected)
+        self.assertEqual(self.path.read_bytes(), before)
+        self.assertEqual(sorted(p.name for p in self.root.glob('*.BIN')), ['RUN.BIN'])
+        self.store.update('RUN.BIN', {'label': ''})
+        self.assertIsNone(self.store.get('RUN.BIN')['label'])
+        self.assertTrue(self.store.get('RUN.BIN')['marked'])
+        self.path.write_bytes(records(11))
+        self.assertEqual(restarted.get('RUN.BIN'), reader.default_metadata())
+        self.store.update('RUN.BIN', {'marked': True})
+        self.assertIsNone(self.store.get('RUN.BIN')['label'])
+        nested = self.root / 'another-root'
+        nested.mkdir()
+        (nested/'RUN.BIN').write_bytes(records(11))
+        other = reader.MetadataStore(nested, self.state)
+        self.assertEqual(other.get('RUN.BIN'), reader.default_metadata())
+        other.update('RUN.BIN', {'label': 'other root'})
+        self.assertIsNone(self.store.get('RUN.BIN')['label'])
+
+    def test_invalid_updates(self):
+        for changes in ({'marked': 1}, {'hidden': 'false'}, {'label': 1}, {'label': 'x'*81},
+                        {'label': 'a\nb'}, {'label': '\u200b'}, {'oops': True}):
+            with self.assertRaises(reader.ReaderError) as error:
+                self.store.update('RUN.BIN', changes)
+            self.assertEqual(error.exception.status, 400)
+        with self.assertRaises(reader.ReaderError):
+            self.store.update('../outside.BIN', {'marked': True})
+        self.path.write_bytes(b'x'*(reader.MAX_BYTES+1))
+        with self.assertRaises(reader.ReaderError) as error:
+            self.store.update('RUN.BIN', {'marked': True})
+        self.assertEqual(error.exception.status, 413)
+        self.assertFalse(self.state.exists())
+
+    def test_corruption_preserved(self):
+        for bad in ('{broken', '{"version":2,"roots":{}}',
+                    '{"version":1,"roots":{"x":{"f":{"sha256":"oops","metadata":{}}}}}'):
+            self.state.write_text(bad)
+            for action in (lambda: self.store.get('RUN.BIN'),
+                           lambda: self.store.update('RUN.BIN', {'marked': True})):
+                with self.assertRaises(reader.ReaderError) as error:
+                    action()
+                self.assertEqual(error.exception.status, 500)
+                self.assertIn('preserved', str(error.exception))
+                self.assertEqual(self.state.read_text(), bad)
+
+    def test_concurrent_updates_and_permission_failure(self):
+        def update(index):
+            name = f'RUN{index}.BIN'
+            (self.root/name).write_bytes(records(index))
+            reader.MetadataStore(self.root, self.state).update(name, {'label': str(index)})
+        with ThreadPoolExecutor(max_workers=6) as pool:
+            list(pool.map(update, range(20)))
+        for index in range(20):
+            self.assertEqual(self.store.get(f'RUN{index}.BIN')['label'], str(index))
+        saved = self.state.read_bytes()
+        with patch.object(reader.os, 'replace', side_effect=PermissionError('test denied')):
+            with self.assertRaises(reader.ReaderError) as error:
+                self.store.update('RUN.BIN', {'marked': True})
+        self.assertEqual(error.exception.status, 500)
+        self.assertEqual(self.state.read_bytes(), saved)
+        self.assertFalse(list(self.root.glob('.reader-state-*')))
+
+    def test_http_metadata(self):
+        server = reader.ThreadingHTTPServer(('127.0.0.1', 0), reader.make_handler(self.root, state_file=self.state))
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+        self.addCleanup(server.server_close)
+        self.addCleanup(server.shutdown)
+        def request(path='/api/metadata', value=None, headers=None, method='POST', body=None):
+            connection = http.client.HTTPConnection('127.0.0.1', server.server_address[1])
+            actual_headers = {'Content-Type': 'application/json'}
+            actual_headers.update(headers or {})
+            actual_body = json.dumps(value).encode() if body is None else body
+            connection.request(method, path, body=actual_body, headers=actual_headers)
+            response = connection.getresponse()
+            data = response.read()
+            connection.close()
+            return response.status, json.loads(data)
+        status, result = request(value={'name': 'RUN.BIN', 'label': 'Rig run', 'marked': True})
+        self.assertEqual(status, 200)
+        self.assertEqual(result['metadata'], {'label': 'Rig run', 'marked': True, 'hidden': False})
+        for path in ('/api/run?name=RUN.BIN', '/api/runs'):
+            status, result = request(path, method='GET')
+            self.assertEqual(status, 200)
+            metadata = result['metadata'] if 'metadata' in result else result['runs'][0]['metadata']
+            self.assertEqual(metadata['label'], 'Rig run')
+        saved = self.state.read_bytes()
+        for headers in ({'Origin': 'https://evil.example'}, {'Host': 'evil.example'},
+                        {'Sec-Fetch-Site': 'cross-site'}, {'Content-Type': 'text/plain'}):
+            self.assertEqual(request(value={'name': 'RUN.BIN', 'hidden': True}, headers=headers)[0], 400)
+        for value in ([], {}, {'name': 2}, {'name': 'RUN.BIN', 'marked': 2},
+                      {'name': 'RUN.BIN', 'unknown': True}):
+            self.assertEqual(request(value=value)[0], 400)
+        self.assertEqual(request(body=b'{bad')[0], 400)
+        self.assertEqual(request(body=b'x'*4097)[0], 413)
+        self.assertEqual(request(value={'name': '../other.BIN'})[0], 400)
+        self.assertEqual(request(value={'name': 'missing.BIN'})[0], 404)
+        self.assertEqual(self.state.read_bytes(), saved)
 
 
 if __name__ == '__main__':

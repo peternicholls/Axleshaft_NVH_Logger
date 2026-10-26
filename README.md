@@ -52,3 +52,5 @@ Optical firmware 0.4.0 adds buffered SD event files, UTC date/time filenames (or
 ## Basic revolution reader — 0.6.0
 
 Run `python3 analysis-bench/reader.py --open` from the repository root, or double-click [StartReader.command](analysis-bench/StartReader.command) on macOS. The local GUI reads output/runs, shows revolution counts/RPM and raw events, offers tunable analysis controls and exports decoded CSV. No date code is required: files use their relative event timings. See [reader instructions](analysis-bench/README.md). Optical data only; original files remain read-only and questionable events are retained for inspection.
+
+Reader 0.6.1 defaults to RPM, adds a draggable time focus with raw RPM standard deviation/variance/CV, and stores display labels, marks and hidden recordings separately. Optical logger 0.6.1 shares one persistent run counter across timestamped and untimed names (`OPT_0002.BIN` when unset). See the stage README before the separate firmware upload; no hardware persistence acceptance is claimed here.

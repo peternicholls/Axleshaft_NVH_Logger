@@ -1,0 +1,70 @@
+async(page)=>{
+  const checks=[],ensure=(value,label)=>{if(!value)throw Error(label);checks.push(label);};
+  const original='OPT_UNSET_cd77abcc_UP19_0001.BIN';
+  const errors=[];page.on('pageerror',error=>errors.push(error.message));
+  await page.setViewportSize({width:1440,height:1100});await page.goto('http://127.0.0.1:8766');
+  await page.waitForFunction(()=>document.getElementById('detections').textContent==='346');
+  ensure(await page.locator('#rpmView').getAttribute('aria-pressed')==='true','RPM is default view');
+  await page.locator('#from').fill('0');await page.locator('#to').fill('5');await page.getByRole('button',{name:'Apply range'}).click();
+  const scope=await page.locator('#statsScope').textContent();ensure(scope.includes('0–5 s'),'numeric window updates statistics scope');
+  const expected=await page.evaluate(async()=>{
+    const run=await(await fetch('/api/run?name=OPT_UNSET_cd77abcc_UP19_0001.BIN')).json();const values=[];
+    for(let i=1;i<run.events.length;i++)if(run.events[i-1][1]>=0&&run.events[i][1]<=5e6)values.push(60e6/(run.events[i][1]-run.events[i-1][1]));
+    const mean=values.reduce((a,b)=>a+b,0)/values.length,variance=values.reduce((a,b)=>a+(b-mean)**2,0)/values.length;
+    return {mean,variance,sd:Math.sqrt(variance)};
+  });
+  const number=async id=>Number((await page.locator(id).innerText()).replaceAll(',',''));
+  ensure(Math.abs(await number('#focusMean')-expected.mean)<0.011&&Math.abs(await number('#focusSd')-expected.sd)<0.011&&Math.abs(await number('#focusVariance')-expected.variance)<0.011,'real focus mean SD and population variance match independent calculation');
+  const before=await page.locator('#focusSd').innerText();await page.locator('#window').fill('5');
+  ensure(await page.locator('#focusSd').innerText()===before,'smoothing does not alter raw statistics');
+  await page.getByRole('button',{name:'Full range'}).click();
+  async function point(fraction){await page.locator('#overview').scrollIntoViewIfNeeded();return page.locator('#overview').evaluate((svg,f)=>{const p=svg.createSVGPoint();p.x=32+936*f;p.y=45;const q=p.matrixTransform(svg.getScreenCTM());return{x:q.x,y:q.y};},fraction);}
+  const a=await point(.2),b=await point(.4);
+  await page.mouse.move(a.x,a.y);await page.mouse.down();await page.mouse.move(b.x,b.y,{steps:8});await page.mouse.up();
+  let bounds=await page.evaluate(()=>({left:Number(document.getElementById('from').value),right:Number(document.getElementById('to').value),end:Number(document.getElementById('rightBoundary').max)/1e6}));
+  ensure(Math.abs(bounds.left-bounds.end*.2)<.001&&Math.abs(bounds.right-bounds.end*.4)<.001,'left-right drag selects time focus');
+  const centre=await point(.3),moved=await point(.4);const width=bounds.right-bounds.left;
+  await page.mouse.move(centre.x,centre.y);await page.mouse.down();await page.mouse.move(moved.x,moved.y,{steps:8});await page.mouse.up();
+  bounds=await page.evaluate(()=>({left:Number(document.getElementById('from').value),right:Number(document.getElementById('to').value)}));
+  ensure(Math.abs(bounds.right-bounds.left-width)<.001&&bounds.left>10.5,'dragging selected band moves fixed-width focus');
+  // Verify coordinates at a width that letterboxes SVG content.
+  await page.setViewportSize({width:2100,height:1100});await page.getByRole('button',{name:'Full range'}).click();
+  const wideA=await point(.25),wideB=await point(.5);
+  await page.mouse.move(wideA.x,wideA.y);await page.mouse.down();await page.mouse.move(wideB.x,wideB.y,{steps:5});await page.mouse.up();
+  bounds=await page.evaluate(()=>({left:Number(document.getElementById('from').value),right:Number(document.getElementById('to').value),end:Number(document.getElementById('rightBoundary').max)/1e6}));
+  ensure(Math.abs(bounds.left-bounds.end*.25)<.001&&Math.abs(bounds.right-bounds.end*.5)<.001,'wide-layout SVG pointer mapping is accurate');
+  const right=await page.locator('#overview .focus-handle').last().boundingBox(),target=await point(.6);
+  await page.mouse.move(right.x+right.width/2,right.y+right.height/2);await page.mouse.down();await page.mouse.move(target.x,target.y,{steps:5});await page.mouse.up();
+  bounds=await page.evaluate(()=>({right:Number(document.getElementById('to').value),end:Number(document.getElementById('rightBoundary').max)/1e6}));
+  ensure(Math.abs(bounds.right-bounds.end*.6)<.001,'edge handle resizes focus');
+  await page.locator('#leftBoundary').focus();const prior=await page.locator('#leftBoundary').inputValue();await page.keyboard.press('ArrowRight');
+  ensure(Number(await page.locator('#leftBoundary').inputValue())>Number(prior),'keyboard boundary slider works');
+  await page.setViewportSize({width:1440,height:1100});
+  await page.getByRole('button',{name:'Rename label'}).click();await page.locator('#labelInput').fill('QA · steady section');await page.getByRole('button',{name:'Save name'}).click();
+  await page.waitForFunction(()=>document.getElementById('filename').textContent==='QA · steady section');
+  ensure(await page.locator('.run.active').getAttribute('data-name')===original,'rename retains active original-file identity');
+  await page.getByRole('button',{name:'Mark recording',exact:true}).click();await page.waitForFunction(()=>document.getElementById('markRun').getAttribute('aria-pressed')==='true');
+  ensure(await page.locator('.run.active.marked').count()===1,'mark shown without losing active state');
+  await page.reload();await page.waitForFunction(()=>document.getElementById('filename').textContent==='QA · steady section');
+  ensure(await page.locator('#markRun').getAttribute('aria-pressed')==='true','label and mark survive reload');
+  await page.getByRole('button',{name:'Hide recording',exact:true}).click();await page.waitForFunction(()=>document.querySelectorAll('.run').length===5);
+  ensure(await page.locator('.run').filter({hasText:'QA · steady section'}).count()===0,'hide removes from default library');
+  await page.locator('#showHidden').check();await page.locator('.run').filter({hasText:'QA · steady section'}).click();
+  await page.waitForFunction(()=>document.getElementById('hideRun').textContent==='Restore recording');
+  await page.getByRole('button',{name:'Restore recording'}).click();await page.waitForFunction(()=>document.getElementById('hideRun').textContent==='Hide recording');
+  ensure(await page.locator('.run.active').count()===1,'show-hidden and restore preserve selection');
+  // Restore the isolated QA metadata; production state is never touched.
+  await page.getByRole('button',{name:'Unmark recording'}).click();await page.waitForFunction(()=>document.getElementById('markRun').getAttribute('aria-pressed')==='false');
+  await page.getByRole('button',{name:'Rename label'}).click();await page.locator('#labelInput').fill('');await page.getByRole('button',{name:'Save name'}).click();
+  await page.waitForFunction(name=>document.getElementById('filename').textContent===name,original);
+  await page.locator('#showHidden').uncheck();
+  await page.getByRole('button',{name:'Full range'}).click();await page.getByRole('button',{name:'Reset settings'}).click();
+  await page.screenshot({path:'/Users/peternicholls/Dev/Polestar_NVH_Logger/.playwright-mcp/reader-focus-desktop.png',fullPage:true});
+  await page.setViewportSize({width:390,height:844});
+  ensure(await page.evaluate(()=>document.body.scrollWidth<=innerWidth),'mobile focus/statistics do not overflow');
+  ensure(await page.locator('#leftBoundary').isVisible()&&await page.locator('#rightBoundary').isVisible(),'mobile focus sliders available');
+  await page.screenshot({path:'/Users/peternicholls/Dev/Polestar_NVH_Logger/.playwright-mcp/reader-focus-mobile.png',fullPage:true});
+  await page.setViewportSize({width:1440,height:1100});
+  ensure(errors.length===0,'no browser JavaScript errors');
+  return checks;
+}

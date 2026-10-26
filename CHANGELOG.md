@@ -2,6 +2,13 @@
 
 Versions describe repository deliverables, not hardware qualification. The imported Stage 0A firmware has no established firmware version.
 
+## 0.6.1 — 2026-10-26
+
+- Default reader to RPM; add movable left/right focus and raw RPM mean/SD/population variance/CV/min/max/median/rate for complete intervals in the window.
+- Add persistent display labels, marks and reversible hiding, with separate atomic metadata and unchanged original files.
+- Use one persistent optical-logger run index for timed and untimed filenames; unset names become OPT_0002.BIN etc. Preserve legacy files, reserve numbers before file creation and fail closed on NVS errors/exhaustion.
+- Python/API, browser, Node math and sanitized C++ naming checks pass; ESP32 build has no warnings. No upload/hardware persistence qualification performed.
+
 ## 0.6.0 — 2026-10-26
 
 - Add dependency-free local rotation-reader GUI for output/runs, relative-time revolution/RPM plots, event inspection and CSV export.
